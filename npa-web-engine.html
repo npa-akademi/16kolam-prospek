@@ -386,7 +386,6 @@
                 <textarea id="bizDesc" class="form-control" rows="4" placeholder="Jelaskan produkmu. Contoh: Sistem prospek otomatis 16 kolam khusus untuk pebisnis jaringan."></textarea>
             </div>
             
-            <!-- URL GAMBAR DENGAN LINK TUTORIAL POSTIMAGE -->
             <div class="form-row">
                 <div class="form-group">
                     <label>
@@ -587,11 +586,15 @@
         prompt += `- Must use Tailwind CSS for all styling, layout (Flex/Grid), and responsiveness.\n`;
         prompt += `- Include FontAwesome CDN for modern iconography.\n`;
         prompt += `- Include Google Fonts matching the chosen visual style.\n`;
-        prompt += `- Add hover states and smooth transitions for interactive elements.\n`;
         if (logoUrl || heroUrl) {
             prompt += `- CRITICAL: Do NOT use placeholder images for the Logo and Hero section. You MUST use the exact image URLs provided in the Core Details above.\n`;
             prompt += `- HERO IMAGE HANDLING: Display the hero image prominently but DO NOT use 'object-cover' or full-screen background techniques that crop the image. Keep its original aspect ratio fully visible using 'object-contain' or a stacked layout.\n`;
         }
+
+        // NEW ADDITION: Premium UI/UX & Output Rules to force ChatGPT to behave well
+        prompt += `\n### PREMIUM UI/UX & OUTPUT RULES (STRICT):\n`;
+        prompt += `- Design Quality: Make it look extremely premium, modern, and expensive (like a top-tier startup). Use soft drop-shadows, subtle elegant gradients, and smooth hover animations (e.g., hover:scale-105) for all interactive elements.\n`;
+        prompt += `- Output Format: Generate the ENTIRE code in ONE SINGLE raw HTML code block. Do NOT split the code into multiple parts. It must be 100% complete and ready to copy-paste directly into GitHub Pages.\n`;
 
         document.getElementById('finalPrompt').textContent = prompt;
         document.getElementById('outputBox').style.display = 'block';
