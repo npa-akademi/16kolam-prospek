@@ -173,7 +173,7 @@
             border-color: var(--primary);
         }
 
-        /* GRID SELECTORS (CTA & VISUAL STYLE) */
+        /* GRID SELECTORS */
         .grid-selector {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -386,7 +386,6 @@
                 <textarea id="bizDesc" class="form-control" rows="4" placeholder="Jelaskan produkmu. Contoh: Sistem prospek otomatis 16 kolam khusus untuk pebisnis jaringan."></textarea>
             </div>
             
-            <!-- URL GAMBAR DENGAN LINK TUTORIAL POSTIMAGE -->
             <div class="form-row">
                 <div class="form-group">
                     <label>
@@ -556,16 +555,16 @@
         prompt += `### STRUCTURE REQUIREMENTS:\n`;
         switch(currentType) {
             case 'Landing Page':
-                prompt += `1. Sticky Header with Logo and CTA.\n2. Hero Section: High impact headline, subheadline, ${currentCTA} button, and prominent image display.\n3. Benefits Grid (3 columns).\n4. Testimonials Section.\n5. Final Call to Action.\n6. Footer.`;
+                prompt += `1. Sticky Header: Logo positioned at the far left, and ${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Hero Section: High impact headline, subheadline, ${currentCTA} button, and prominent image display.\n3. Benefits Grid (3 columns).\n4. Testimonials Section.\n5. Final Call to Action.\n6. Footer.`;
                 break;
             case 'Toko Online':
-                prompt += `1. Header with Cart icon.\n2. Hero Banner promoting a sale/new arrival.\n3. Product Grid: Minimum 6 product cards (Image, Title, Price, "Add to Cart" / "${currentCTA}" button).\n4. Category filter tabs.\n5. Footer.`;
+                prompt += `1. Sticky Header: Logo positioned at the far left, and Cart icon/${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Hero Banner promoting a sale/new arrival.\n3. Product Grid: Minimum 6 product cards (Image, Title, Price, "Add to Cart" / "${currentCTA}" button).\n4. Category filter tabs.\n5. Footer.`;
                 break;
             case 'Company Profile':
-                prompt += `1. Professional Header with Nav links.\n2. Hero Section: Corporate tagline and image.\n3. About Us / Vision Mission.\n4. Core Services (Grid layout).\n5. Contact & Location Info (Google Maps placeholder).\n6. Footer.`;
+                prompt += `1. Professional Header: Logo positioned at the far left, and Nav links/CTA positioned at the far right (Use flexbox justify-between).\n2. Hero Section: Corporate tagline and image.\n3. About Us / Vision Mission.\n4. Core Services (Grid layout).\n5. Contact & Location Info (Google Maps placeholder).\n6. Footer.`;
                 break;
             case 'Portfolio':
-                prompt += `1. Header with Anchor Links (About, Skills, Projects, Contact).\n2. Hero: Professional greeting, role, and Headshot image.\n3. Skills/Tech Stack tags.\n4. Project Gallery (Grid of cards).\n5. Contact Section using ${currentCTA} method.`;
+                prompt += `1. Header: Logo/Name on the far left, Anchor Links (About, Skills, Projects, Contact) on the right (justify-between).\n2. Hero: Professional greeting, role, and Headshot image.\n3. Skills/Tech Stack tags.\n4. Project Gallery (Grid of cards).\n5. Contact Section using ${currentCTA} method.`;
                 break;
             case 'Undangan Digital':
                 prompt += `1. Elegant intro with couple's names.\n2. Event Countdown Timer UI.\n3. Event Details (Date, Time, Location).\n4. Digital Envelope / Gift section.\n5. RSVP Form or ${currentCTA} button.`;
@@ -574,10 +573,10 @@
                 prompt += `1. Container must be max-width: 450px centered (Mobile-first look).\n2. Profile Avatar (Circle), Name, Bio.\n3. Vertical list of 5 beautifully styled action buttons (Use ${currentCTA} styling for the primary one).\n4. Row of social icons at the bottom.`;
                 break;
             case 'Menu F&B':
-                prompt += `1. Header with Restaurant Logo.\n2. Category Tabs (Mains, Drinks, Desserts).\n3. Menu List: Item name, description, price, and food image.\n4. Floating or bottom ${currentCTA} button for ordering.`;
+                prompt += `1. Header: Restaurant Logo positioned at the far left, and Menu/CTA on the far right (justify-between).\n2. Category Tabs (Mains, Drinks, Desserts).\n3. Menu List: Item name, description, price, and food image.\n4. Floating or bottom ${currentCTA} button for ordering.`;
                 break;
             case 'Halaman Jasa':
-                prompt += `1. Header and Hero explaining the service value.\n2. How it works (3 step process).\n3. Pricing Tables (Basic, Pro, VIP packages) with ${currentCTA} buttons.\n4. FAQ Section (Accordion style).\n5. Footer.`;
+                prompt += `1. Sticky Header: Logo positioned at the far left, and ${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Header and Hero explaining the service value.\n3. How it works (3 step process).\n4. Pricing Tables (Basic, Pro, VIP packages) with ${currentCTA} buttons.\n5. FAQ Section (Accordion style).\n6. Footer.`;
                 break;
             default:
                 prompt += `Ensure standard professional sections for a ${currentType}, including a Header, Hero/Intro, Main Content area detailing the offering, and a Footer. The primary conversion goal is ${currentCTA}.`;
