@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NPA Smart System — Sistem prospek 16 LP kolam prospek tanpa presentasi manual." />
+  <title>NPA Smart System — 16 LP Kolam Prospek</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif']
+          },
+          colors: {
+            gold: {
+              300: '#F8E39A',
+              400: '#E9C766',
+              500: '#D4AF37',
+              600: '#B89224',
+              700: '#8F6B13'
+            },
+            silver: {
+              200: '#E9EDF2',
+              300: '#CBD1D8',
+              400: '#AAB2BC',
+              500: '#7C8794'
+            }
+          },
+          boxShadow: {
+            gold: '0 0 45px rgba(212,175,55,.18)',
+            premium: '0 25px 80px rgba(0,0,0,.45)'
+          },
+          animation: {
+            float: 'float 5s ease-in-out infinite',
+            pulseGold: 'pulseGold 2.5s ease-in-out infinite',
+            shimmer: 'shimmer 3s linear infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' }
+            },
+            pulseGold: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(212,175,55,.35)' },
+              '50%': { boxShadow: '0 0 0 14px rgba(212,175,55,0)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-1000px 0' },
+              '100%': { backgroundPosition: '1000px 0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(212,175,55,.08), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(192,192,192,.06), transparent 28%),
+        #070708;
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, #fff4bf 0%, #d4af37 45%, #fff1a8 70%, #a67c16 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .silver-text {
+      background: linear-gradient(135deg, #ffffff, #c7cdd4, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .glass {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .gold-border {
+      border: 1px solid rgba(212,175,55,.35);
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(212,175,55,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,.045) 1px, transparent 1px);
+      background-size: 55px 55px;
+    }
+
+    .mockup-screen {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(212,175,55,.16), transparent 38%),
+        linear-gradient(145deg, #16171a, #09090a);
+    }
+
+    .shine {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+      );
+      background-size: 200% 100%;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .gradient-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d4af37, #e5e7eb, #d4af37, transparent);
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+      <div class="glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between shadow-premium">
+        
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 flex items-center justify-center text-black shadow-gold">
+            <i class="fa-solid fa-bolt text-lg"></i>
+          </div>
+          <div>
+            <div class="font-poppins font-extrabold tracking-tight">
+              <span class="gold-text">NPA</span> <span class="silver-text">SMART SYSTEM</span>
+            </div>
+            <div class="text-[9px] sm:text-[10px] uppercase tracking-[.25em] text-gray-500">
+              Smart Prospecting System
+            </div>
+          </div>
+        </a>
+
+        <a href="#cta"
+           class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 px-4 sm:px-6 py-3 text-sm font-extrabold text-black shadow-gold transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03]">
+          Mulai Sekarang
+          <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+        </a>
+
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="relative min-h-screen overflow-hidden hero-grid pt-32 pb-20">
+      
+      <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-silver-400/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          <!-- Hero Copy -->
+          <div class="text-center lg:text-left">
+            
+            <div class="inline-flex items-center gap-2 rounded-full glass gold-border px-4 py-2 mb-7 animate-pulseGold">
+              <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+              <span class="text-xs sm:text-sm font-semibold text-gray-300">
+                SISTEM PROSPEK DIGITAL
+              </span>
+            </div>
+
+            <h1 class="font-poppins text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight">
+              <span class="text-white">Berhenti</span>
+              <br>
+              <span class="gold-text">Mengejar Prospek.</span>
+              <br>
+              <span class="silver-text">Biarkan Sistem Bekerja.</span>
+            </h1>
+
+            <p class="mt-7 text-base sm:text-lg lg:text-xl leading-relaxed text-gray-400 max-w-2xl mx-auto lg:mx-0">
+              <strong class="text-gray-200">NPA Smart System</strong> membantu membangun
+              <span class="text-gold-400 font-bold">16 LP kolam prospek</span>
+              yang siap bekerja untuk Anda — tanpa harus presentasi manual berulang-ulang.
+            </p>
+
+            <div class="mt-9 flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4">
+              <a href="#cta"
+                 class="group w-full sm:w-auto inline-flex justify-center items-center gap-3 rounded-2xl bg-gradient-to-r from-gold-300 via-gold-500 to-gold-600 px-7 py-4 text-black font-black shadow-gold transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
+                <i class="fa-solid fa-rocket"></i>
+                Saya Mau Sistemnya
+                <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+              </a>
+
+              <a href="#solution"
+                 class="w-full sm:w-auto inline-flex justify-center items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-7 py-4 text-gray-200 font-bold transition-all duration-300 hover:bg-white/10 hover:border-gold-500/40">
+                <i class="fa-solid fa-circle-play text-gold-400"></i>
+                Lihat Cara Kerja
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 text-xs text-gray-500">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                Digital System
+              </span>
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                16 Landing Page
+              </span>
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                Siap Dipakai
+              </span>
+            </div>
+          </div>
+
+
+          <!-- Hero Mockup -->
+          <div class="relative flex justify-center animate-float">
+            
+            <div class="absolute -inset-8 rounded-[3rem] bg-gold-500/10 blur-3xl"></div>
+
+            <div class="relative w-full max-w-[570px]">
+              
+              <div class="absolute -top-5 -right-3 sm:-right-6 z-20 glass gold-border rounded-2xl px-4 py-3 shadow-gold">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-gold-500/15 flex items-center justify-center text-gold-400">
+                    <i class="fa-solid fa-users"></i>
+                  </div>
+                  <div>
+                    <div class="text-[10px] uppercase tracking-wider text-gray-500">Kolam Prospek</div>
+                    <div class="text-lg font-black gold-text">16 LP</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -bottom-5 -left-3 sm:-left-6 z-20 glass rounded-2xl px-4 py-3 shadow-premium">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-gray-200">
+                    <i class="fa-solid fa-robot"></i>
+                  </div>
+                  <div>
+                    <div class="text-[10px] uppercase tracking-wider text-gray-500">Manual Presentasi</div>
+                    <div class="text-lg font-black silver-text">Lebih Efisien</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Browser Mockup -->
+              <div class="relative rounded-[2rem] border border-white/15 bg-[#111214] p-2 shadow-premium">
+                
+                <div class="rounded-[1.5rem] overflow-hidden border border-white/10 mockup-screen">
+                  
+                  <!-- Browser Top -->
+                  <div class="h-12 bg-black/50 border-b border-white/10 flex items-center px-5 gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-400/70"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-400/70"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-400/70"></span>
+                    <div class="ml-4 flex-1 h-7 rounded-lg bg-white/5 flex items-center px-3 text-[10px] text-gray-600">
+                      npa-smart-system.com/dashboard
+                    </div>
+                  </div>
+
+                  <div class="p-5 sm:p-7">
+                    <div class="flex justify-between items-center mb-7">
+                      <div>
+                        <div class="text-xs text-gray-500">Dashboard</div>
+                        <div class="text-xl font-black mt-1">
+                          <span class="gold-text">NPA</span> Smart System
+                        </div>
+                      </div>
+                      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-300 to-gold-600 flex items-center justify-center text-black">
+                        <i class="fa-solid fa-bolt"></i>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                      <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider">Landing Page</div>
+                        <div class="text-2xl font-black gold-text mt-1">16</div>
+                        <div class="text-[9px] text-green-400 mt-1">
+                          <i class="fa-solid fa-arrow-up"></i> Kolam aktif
+                        </div>
+                      </div>
+
+                      <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider">Prospek</div>
+                        <div class="text-2xl font-black silver-text mt-1">∞</div>
+                        <div class="text-[9px] text-gray-500 mt-1">Terus bertambah</div>
+                      </div>
+                    </div>
+
+                    <div class="rounded-2xl bg-gradient-to-br from-gold-500/10 to-white/[.03] border border-gold-500/20 p-4">
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-gray-300">16 Kolam Prospek</span>
+                        <span class="text-[9px] text-gold-400">SMART SYSTEM</span>
+                      </div>
+
+                      <div class="grid grid-cols-4 gap-2">
+                        <div class="h-12 rounded-xl bg-gold-500/15 border border-gold-500/20 flex items-center justify-center">
+                          <i class="fa-solid fa-house text-gold-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-plane text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-wallet text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-chart-line text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-people-group text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-coins text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-bullhorn text-gray-400"></i>
+                        </div>
+                        <div class="h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                          <i class="fa-solid fa-plus text-gold-400"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-4 flex items-center gap-3">
+                      <div class="h-2 flex-1 rounded-full bg-white/5 overflow-hidden">
+                        <div class="h-full w-[82%] rounded-full bg-gradient-to-r from-gold-700 via-gold-400 to-gold-300"></div>
+                      </div>
+                      <span class="text-[10px] text-gray-500">System Ready</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TRUST STRIP -->
+    <section class="border-y border-white/5 bg-white/[.015]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-7">
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs sm:text-sm text-gray-500">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-gold-500"></i>
+            16 Landing Page
+          </span>
+          <span class="hidden sm:block text-gray-700">•</span>
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-mobile-screen-button text-gold-500"></i>
+            Mobile Friendly
+          </span>
+          <span class="hidden sm:block text-gray-700">•</span>
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-gold-500"></i>
+            Cepat & Praktis
+          </span>
+          <span class="hidden sm:block text-gray-700">•</span>
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-gold-500"></i>
+            Fokus Prospek
+          </span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROBLEM -->
+    <section id="problem" class="py-24 sm:py-32 relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-400">
+            Masalah yang Sering Terjadi
+          </span>
+
+          <h2 class="font-poppins text-3xl sm:text-4xl lg:text-5xl font-black mt-4">
+            Masih <span class="gold-text">Capek Cari Prospek?</span>
+          </h2>
+
+          <p class="text-gray-500 mt-5 leading-relaxed">
+            Banyak orang bukan tidak mau berkembang. Mereka hanya terlalu sibuk
+            melakukan semuanya secara manual.
+          </p>
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-5 mt-14">
+
+          <!-- Problem 1 -->
+          <div class="group glass rounded-3xl p-7 transition-all duration-500 hover:-translate-y-2 hover:border-red-500/30">
+            <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 text-xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-person-running"></i>
+            </div>
+
+            <div class="mt-6 text-xs uppercase tracking-widest text-red-400 font-bold">
+              Masalah #01
+            </div>
+
+            <h3 class="font-poppins text-xl font-bold mt-2">
+              Kejar Prospek Terus
+            </h3>
+
+            <p class="text-gray-500 text-sm leading-relaxed mt-3">
+              Setiap hari harus mencari orang baru, chat satu per satu,
+              follow-up dan berharap ada yang merespons.
+            </p>
+          </div>
+
+
+          <!-- Problem 2 -->
+          <div class="group glass rounded-3xl p-7 transition-all duration-500 hover:-translate-y-2 hover:border-orange-500/30">
+            <div class="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-person-chalkboard"></i>
+            </div>
+
+            <div class="mt-6 text-xs uppercase tracking-widest text-orange-400 font-bold">
+              Masalah #02
+            </div>
+
+            <h3 class="font-poppins text-xl font-bold mt-2">
+              Presentasi Berulang
+            </h3>
+
+            <p class="text-gray-500 text-sm leading-relaxed mt-3">
+              Waktu habis menjelaskan hal yang sama kepada orang yang berbeda,
+              berkali-kali setiap hari.
+            </p>
+          </div>
+
+
+          <!-- Problem 3 -->
+          <div class="group glass rounded-3xl p-7 transition-all duration-500 hover:-translate-y-2 hover:border-purple-500/30">
+            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+
+            <div class="mt-6 text-xs uppercase tracking-widest text-purple-400 font-bold">
+              Masalah #03
+            </div>
+
+            <h3 class="font-poppins text-xl font-bold mt-2">
+              Waktu Tidak Efisien
+            </h3>
+
+            <p class="text-gray-500 text-sm leading-relaxed mt-3">
+              Energi habis untuk pekerjaan repetitif, sementara waktu untuk
+              keluarga, belajar dan membangun bisnis semakin sedikit.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SOLUTION -->
+    <section id="solution" class="py-24 sm:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-gold-500/[.025] via-transparent to-transparent"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+          <!-- Visual -->
+          <div class="relative order-2 lg:order-1">
+            <div class="absolute -inset-10 bg-gold-500/10 blur-[90px] rounded-full"></div>
+
+            <div class="relative glass rounded-[2rem] p-5 sm:p-7 gold-border shadow-gold">
+
+              <div class="flex items-center justify-between mb-6">
+                <div>
+                  <div class="text-xs uppercase tracking-[.2em] text-gray-500">
+                    NPA Smart System
+                  </div>
+                  <div class="text-2xl font-black mt-1">16 Kolam Prospek</div>
+                </div>
+
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-300 to-gold-600 flex items-center justify-center text-black">
+                  <i class="fa-solid fa-network-wired"></i>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+
+                <div class="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-gold-500/30 transition">
+                  <div class="w-11 h-11 rounded-xl bg-gold-500/15 text-gold-400 flex items-center justify-center">
+                    <i class="fa-solid fa-link"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-sm">Landing Page</div>
+                    <div class="text-xs text-gray-500">Bangun kolam prospek digital</div>
+                  </div>
+                  <i class="fa-solid fa-check text-gold-400"></i>
+                </div>
+
+                <div class="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-gold-500/30 transition">
+                  <div class="w-11 h-11 rounded-xl bg-white/10 text-gray-300 flex items-center justify-center">
+                    <i class="fa-solid fa-share-nodes"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-sm">Sebarkan Link</div>
+                    <div class="text-xs text-gray-500">Promosikan ke berbagai channel</div>
+                  </div>
+                  <i class="fa-solid fa-check text-gold-400"></i>
+                </div>
+
+                <div class="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-gold-500/30 transition">
+                  <div class="w-11 h-11 rounded-xl bg-white/10 text-gray-300 flex items-center justify-center">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-sm">Prospek Masuk</div>
+                    <div class="text-xs text-gray-500">Orang datang melalui sistem</div>
+                  </div>
+                  <i class="fa-solid fa-check text-gold-400"></i>
+                </div>
+
+                <div class="flex items-center gap-4 rounded-2xl bg-gradient-to-r from-gold-500/10 to-transparent border border-gold-500/25 p-4">
+                  <div class="w-11 h-11 rounded-xl bg-gold-500 text-black flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-sm">Anda Fokus Berkembang</div>
+                    <div class="text-xs text-gray-500">Kurangi pekerjaan repetitif</div>
+                  </div>
+                  <i class="fa-solid fa-star text-gold-400"></i>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Copy -->
+          <div class="order-1 lg:order-2">
+
+            <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-400">
+              Solusi Digital
+            </span>
+
+            <h2 class="font-poppins text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mt-4">
+              Satu Sistem.
+              <br>
+              <span class="gold-text">16 Kolam Prospek.</span>
+              <br>
+              Lebih Banyak Waktu.
+            </h2>
+
+            <p class="mt-6 text-gray-400 leading-relaxed">
+              NPA Smart System dirancang untuk membantu Anda membuat ekosistem
+              prospek digital yang lebih terstruktur tanpa harus selalu melakukan
+              presentasi manual dari awal.
+            </p>
+
+            <div class="mt-8 space-y-5">
+
+              <div class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold">16 Landing Page Potensial</h3>
+                  <p class="text-sm text-gray-500 mt-1">
+                    Beragam pintu masuk untuk membangun kolam prospek sesuai kebutuhan.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold">Promosi Lebih Terarah</h3>
+                  <p class="text-sm text-gray-500 mt-1">
+                    Bagikan link dan konten ke channel digital yang sudah Anda gunakan.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold">Hemat Waktu</h3>
+                  <p class="text-sm text-gray-500 mt-1">
+                    Kurangi pekerjaan berulang sehingga Anda dapat fokus pada aktivitas yang lebih bernilai.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <a href="#cta"
+               class="inline-flex items-center gap-3 mt-9 rounded-xl border border-gold-500/40 bg-gold-500/10 px-6 py-3.5 text-sm font-bold text-gold-300 hover:bg-gold-500 hover:text-black transition-all duration-300">
+              Pelajari Sistemnya
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BENEFITS -->
+    <section class="py-24 border-y border-white/5 bg-white/[.015]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center">
+          <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-400">
+            Kenapa NPA Smart System?
+          </span>
+          <h2 class="font-poppins text-3xl sm:text-4xl font-black mt-4">
+            Dibuat untuk <span class="gold-text">Era Digital</span>
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+
+          <div class="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
+            <div class="mx-auto w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <h3 class="font-bold mt-5">Mobile Friendly</h3>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+              Nyaman digunakan melalui smartphone.
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
+            <div class="mx-auto w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="font-bold mt-5">Praktis</h3>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+              Dirancang agar mudah dipahami dan digunakan.
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
+            <div class="mx-auto w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <h3 class="font-bold mt-5">Terarah</h3>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+              Bangun beberapa jalur prospek secara sistematis.
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
+            <div class="mx-auto w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <h3 class="font-bold mt-5">Scalable</h3>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+              Dapat dikembangkan seiring pertumbuhan aktivitas Anda.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-24 sm:py-32">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-400">
+            Social Proof
+          </span>
+          <h2 class="font-poppins text-3xl sm:text-4xl font-black mt-4">
+            Jangan Hanya <span class="gold-text">Dengar dari Kami</span>
+          </h2>
+          <p class="text-gray-500 mt-4">
+            Pengalaman pengguna menjadi bagian penting dalam membangun sistem yang lebih baik.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-14">
+
+          <!-- Testimonial 1 -->
+          <div class="glass rounded-3xl p-7 sm:p-9 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl"></div>
+
+            <div class="relative">
+              <div class="flex gap-1 text-gold-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+
+              <p class="text-gray-300 leading-relaxed mt-6 text-lg">
+                “Sekarang saya punya cara yang lebih terstruktur untuk mengarahkan
+                orang ke informasi bisnis. Tidak perlu menjelaskan semuanya dari nol setiap saat.”
+              </p>
+
+              <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-300 to-gold-700 flex items-center justify-center text-black font-black">
+                  A
+                </div>
+                <div>
+                  <div class="font-bold">Andi Pratama</div>
+                  <div class="text-xs text-gray-500">Digital Entrepreneur</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Testimonial 2 -->
+          <div class="glass rounded-3xl p-7 sm:p-9 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-silver-400/10 rounded-full blur-3xl"></div>
+
+            <div class="relative">
+              <div class="flex gap-1 text-gold-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+
+              <p class="text-gray-300 leading-relaxed mt-6 text-lg">
+                “Yang paling saya suka adalah konsepnya. Bukan sekadar mencari
+                prospek satu per satu, tetapi membangun sistem agar aktivitas digital
+                kita punya banyak pintu masuk.”
+              </p>
+
+              <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-500 flex items-center justify-center text-black font-black">
+                  R
+                </div>
+                <div>
+                  <div class="font-bold">Rina Maharani</div>
+                  <div class="text-xs text-gray-500">Business Builder</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section id="cta" class="relative py-24 sm:py-32 overflow-hidden">
+      
+      <div class="absolute inset-0 hero-grid opacity-50"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gold-500/[.04] to-transparent"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        
+        <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] border border-gold-500/30 bg-gradient-to-br from-gold-500/10 via-[#111113] to-white/[.03] p-8 sm:p-12 lg:p-16 text-center shadow-gold">
+
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-40 bg-gold-400/15 blur-[80px]"></div>
+
+          <div class="relative">
+            
+            <div class="inline-flex items-center gap-2 rounded-full bg-gold-500/10 border border-gold-500/20 px-4 py-2 text-xs font-bold text-gold-300">
+              <i class="fa-solid fa-fire"></i>
+              SAATNYA NAIK LEVEL
+            </div>
+
+            <h2 class="font-poppins text-3xl sm:text-4xl lg:text-6xl font-black leading-tight mt-7">
+              Jangan Hanya
+              <span class="gold-text">Mencari Prospek.</span>
+              <br>
+              Bangun Kolamnya.
+            </h2>
+
+            <p class="max-w-2xl mx-auto text-gray-400 mt-6 leading-relaxed">
+              Mulai ubah cara Anda membangun prospek dengan
+              <strong class="text-gray-200">NPA Smart System</strong>.
+              Lebih terstruktur, lebih digital, dan siap digunakan untuk membangun
+              16 jalur kolam prospek.
+            </p>
+
+            <a href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20NPA%20Smart%20System"
+               class="group inline-flex items-center justify-center gap-3 mt-9 rounded-2xl bg-gradient-to-r from-gold-300 via-gold-500 to-gold-600 px-8 sm:px-10 py-4 sm:py-5 text-black font-black text-base sm:text-lg shadow-gold transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03]">
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              Saya Mau NPA Smart System
+              <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            </a>
+
+            <div class="flex justify-center flex-wrap gap-x-6 gap-y-3 mt-7 text-xs text-gray-500">
+              <span>
+                <i class="fa-solid fa-shield-halved text-gold-500 mr-1"></i>
+                Sistem Digital
+              </span>
+              <span>
+                <i class="fa-solid fa-layer-group text-gold-500 mr-1"></i>
+                16 LP
+              </span>
+              <span>
+                <i class="fa-solid fa-bolt text-gold-500 mr-1"></i>
+                Praktis
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black/30">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-300 to-gold-700 flex items-center justify-center text-black">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <div class="font-poppins font-black">
+                <span class="gold-text">NPA</span>
+                <span class="silver-text"> SMART SYSTEM</span>
+              </div>
+              <div class="text-[9px] text-gray-600 tracking-[.2em] uppercase">
+                Smart Prospecting System
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-6 text-sm text-gray-500">
+            <a href="#home" class="hover:text-gold-400 transition">Home</a>
+            <a href="#problem" class="hover:text-gold-400 transition">Masalah</a>
+            <a href="#solution" class="hover:text-gold-400 transition">Solusi</a>
+            <a href="#testimonials" class="hover:text-gold-400 transition">Testimoni</a>
+          </div>
+
+        </div>
+
+        <div class="gradient-line my-8"></div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+          <p>
+            © 2026 NPA Smart System. All rights reserved.
+          </p>
+
+          <p class="flex items-center gap-2">
+            Built for the
+            <span class="text-gold-500 font-bold">Digital Entrepreneur</span>
+          </p>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
