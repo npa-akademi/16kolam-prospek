@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ISTIKMAL SYARIAH — Trik dan solusi bermain Facebook Pro & AI Marketing sesuai ketentuan Facebook.">
+  <meta name="theme-color" content="#070707">
+  <title>ISTIKMAL SYARIAH — Facebook Pro & AI Marketing</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              300: "#9effc8",
+              400: "#43f58c",
+              500: "#00e676",
+              600: "#00c853",
+              700: "#00963f"
+            }
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Barlow Condensed", "sans-serif"]
+          },
+          boxShadow: {
+            neon: "0 0 35px rgba(0,230,118,.22)",
+            neonStrong: "0 0 65px rgba(0,230,118,.32)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #070707;
+    }
+
+    .font-display {
+      font-family: "Barlow Condensed", sans-serif;
+    }
+
+    .neon-text {
+      background: linear-gradient(
+        135deg,
+        #d8ffe9 0%,
+        #43f58c 35%,
+        #00e676 60%,
+        #8cffba 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(0,230,118,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,230,118,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+
+    .hero-glow {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,230,118,.12), transparent 32%),
+        radial-gradient(circle at 85% 70%, rgba(0,200,83,.08), transparent 35%);
+    }
+
+    .premium-card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.075),
+          rgba(255,255,255,.025)
+        );
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .card-shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-shine::after {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -80%;
+      width: 50%;
+      height: 300%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+      );
+      transform: rotate(25deg);
+      transition: left .9s ease;
+      pointer-events: none;
+    }
+
+    .card-shine:hover::after {
+      left: 140%;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity .75s ease,
+        transform .75s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floating {
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .pulse-neon {
+      animation: pulseNeon 2.2s infinite;
+    }
+
+    @keyframes pulseNeon {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(0,230,118,.30),
+          0 0 25px rgba(0,230,118,.12);
+      }
+
+      50% {
+        box-shadow:
+          0 0 0 13px rgba(0,230,118,0),
+          0 0 40px rgba(0,230,118,.25);
+      }
+    }
+
+    .noise {
+      background-image:
+        radial-gradient(
+          rgba(255,255,255,.045) 1px,
+          transparent 1px
+        );
+      background-size: 18px 18px;
+    }
+
+    .red-line {
+      background: linear-gradient(
+        90deg,
+        #ff1744,
+        #ff5252,
+        transparent
+      );
+    }
+
+    .green-line {
+      background: linear-gradient(
+        90deg,
+        #00e676,
+        #69f0ae,
+        transparent
+      );
+    }
+
+    .image-frame {
+      box-shadow:
+        0 0 0 1px rgba(0,230,118,.20),
+        0 25px 80px rgba(0,0,0,.55),
+        0 0 70px rgba(0,230,118,.10);
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden bg-[#070707] text-white">
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
+  <header class="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#070707]/85 backdrop-blur-2xl">
+
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+      <!-- LOGO FAR LEFT -->
+      <a
+        href="#home"
+        class="flex items-center transition duration-300 hover:scale-105"
+      >
+        <img
+          src="https://i.postimg.cc/k5HhytB9/logo-NPA.png"
+          alt="Logo ISTIKMAL SYARIAH"
+          class="h-11 w-auto object-contain sm:h-14"
+        >
+      </a>
+
+
+      <!-- WHATSAPP FAR RIGHT -->
+      <a
+        href="https://wa.me/6285218453131?text=Halo%20ISTIKMAL%20SYARIAH%2C%20saya%20ingin%20belajar%20tentang%20Facebook%20Pro%20dan%20AI%20Marketing."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center gap-2 rounded-full border border-neon-500/60 bg-neon-500/10 px-4 py-2.5 text-xs font-extrabold text-neon-300 shadow-neon transition duration-300 hover:scale-105 hover:bg-neon-500 hover:text-black sm:px-5 sm:text-sm"
+      >
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Chat WhatsApp</span>
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
+  <main id="home">
+
+
+    <!-- =======================================================
+         HERO
+         IMAGE BUKAN BACKGROUND
+         OBJECT-CONTAIN
+         RASIO ASLI TETAP UTUH
+    ======================================================== -->
+
+    <section class="hero-grid hero-glow relative overflow-hidden pt-28 sm:pt-32">
+
+      <!-- Decorative glow -->
+      <div class="pointer-events-none absolute -left-48 top-20 h-96 w-96 rounded-full bg-neon-500/10 blur-[130px]"></div>
+
+      <div class="pointer-events-none absolute -right-48 bottom-0 h-[500px] w-[500px] rounded-full bg-emerald-500/10 blur-[150px]"></div>
+
+
+      <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+
+          <!-- =================================================
+               HERO CONTENT
+          ================================================== -->
+
+          <div class="fade-up order-1 text-center lg:text-left">
+
+            <!-- Eyebrow -->
+
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-neon-500/30 bg-neon-500/5 px-4 py-2 text-[10px] font-bold uppercase tracking-[.22em] text-neon-300 backdrop-blur-xl sm:text-xs">
+
+              <span class="h-2 w-2 animate-pulse rounded-full bg-neon-400"></span>
+
+              FACEBOOK PRO
+
+              <span class="text-white/30">+</span>
+
+              AI MARKETING
+
+            </div>
+
+
+            <!-- Headline -->
+
+            <h1 class="font-display text-6xl font-black uppercase leading-[.82] tracking-tight sm:text-7xl md:text-8xl lg:text-[6.5rem]">
+
+              Main Facebook Pro
+
+              <span class="mt-2 block neon-text">
+                Bukan Asal Posting.
+              </span>
+
+            </h1>
+
+
+            <!-- Red accent -->
+
+            <div class="mx-auto mt-6 h-1 w-28 rounded-full red-line lg:mx-0"></div>
+
+
+            <!-- Subheadline -->
+
+            <p class="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/65 sm:text-base lg:mx-0 lg:text-lg">
+
+              Trik dan solusi bermain
+
+              <strong class="text-white">Facebook Pro</strong>
+
+              dengan lebih cerdas, kreatif, dan konsisten,
+              dipadukan dengan
+
+              <strong class="text-neon-400">AI Marketing</strong>
+
+              untuk membantu membuat konten yang lebih menarik
+              dan tetap memperhatikan ketentuan platform.
+
+            </p>
+
+
+            <!-- Quick points -->
+
+            <div class="mt-7 grid grid-cols-1 gap-3 text-left sm:grid-cols-3 lg:max-w-xl">
+
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.03] px-4 py-3">
+                <i class="fa-solid fa-bolt text-neon-400"></i>
+                <span class="text-xs font-semibold text-white/70">Konten Lebih Cepat</span>
+              </div>
+
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.03] px-4 py-3">
+                <i class="fa-solid fa-brain text-neon-400"></i>
+                <span class="text-xs font-semibold text-white/70">Strategi Lebih Cerdas</span>
+              </div>
+
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.03] px-4 py-3">
+                <i class="fa-solid fa-shield-halved text-neon-400"></i>
+                <span class="text-xs font-semibold text-white/70">Lebih Aman</span>
+              </div>
+
+            </div>
+
+
+            <!-- CTA -->
+
+            <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+
+              <a
+                href="https://wa.me/6285218453131?text=Halo%20ISTIKMAL%20SYARIAH%2C%20saya%20ingin%20belajar%20trik%20dan%20solusi%20Facebook%20Pro%20serta%20AI%20Marketing."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pulse-neon flex w-full items-center justify-center gap-3 rounded-full bg-neon-500 px-7 py-4 text-sm font-black text-black transition duration-300 hover:scale-105 hover:bg-neon-300 sm:w-auto"
+              >
+
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+
+                Tanya via WhatsApp
+
+              </a>
+
+
+              <a
+                href="#benefits"
+                class="flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[.04] px-7 py-4 text-sm font-bold text-white transition duration-300 hover:scale-105 hover:border-neon-500/50 hover:bg-neon-500/10 sm:w-auto"
+              >
+
+                Lihat Solusinya
+
+                <i class="fa-solid fa-arrow-down text-xs text-neon-400"></i>
+
+              </a>
+
+            </div>
+
+
+            <!-- Trust -->
+
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-[10px] uppercase tracking-[.16em] text-white/30 lg:justify-start">
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-neon-500"></i>
+                Edukasi
+              </span>
+
+              <span class="text-white/10">•</span>
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-neon-500"></i>
+                AI Tools
+              </span>
+
+              <span class="text-white/10">•</span>
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-neon-500"></i>
+                Strategi Konten
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               HERO IMAGE
+               NORMAL IMAGE ELEMENT
+               OBJECT-CONTAIN
+               NO OBJECT-COVER
+          ================================================== -->
+
+          <div class="fade-up order-2 flex justify-center lg:justify-end">
+
+            <div class="relative w-full max-w-[620px]">
+
+
+              <!-- Glow behind image -->
+
+              <div class="absolute -inset-8 rounded-full bg-neon-500/10 blur-[90px]"></div>
+
+
+              <!-- Image Frame -->
+
+              <div class="image-frame relative rounded-[2rem] border border-neon-500/25 bg-black/40 p-3 backdrop-blur-xl sm:p-4">
+
+
+                <!--
+                  CRITICAL IMAGE HANDLING:
+
+                  - Bukan background
+                  - Tidak menggunakan object-cover
+                  - Tidak menggunakan full-screen background
+                  - object-contain
+                  - aspect-square
+                  - seluruh gambar tetap terlihat
+                -->
+
+                <img
+                  src="https://i.postimg.cc/YCwLS5WT/file-00000000d1f082079fa6dffa9f722f56.png"
+                  alt="ISTIKMAL SYARIAH — Facebook Pro & AI Marketing"
+                  class="floating mx-auto aspect-square h-auto w-full object-contain"
+                >
+
+
+                <!-- Image label -->
+
+                <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/75 p-4 shadow-2xl backdrop-blur-xl sm:bottom-8 sm:left-8 sm:right-8">
+
+                  <div class="flex items-center justify-between gap-4">
+
+                    <div>
+
+                      <div class="text-[9px] font-bold uppercase tracking-[.25em] text-neon-400 sm:text-[10px]">
+                        ISTIKMAL SYARIAH
+                      </div>
+
+                      <div class="mt-1 font-display text-2xl font-bold uppercase tracking-wide text-white sm:text-3xl">
+                        Facebook Pro + AI
+                      </div>
+
+                    </div>
+
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neon-500/30 bg-neon-500/10 text-neon-400">
+                      <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         BENEFITS
+    ========================================================== -->
+
+    <section
+      id="benefits"
+      class="relative overflow-hidden bg-[#0b0b0b] py-20 sm:py-28"
+    >
+
+      <div class="absolute inset-0 noise opacity-30"></div>
+
+
+      <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+
+        <!-- Section heading -->
+
+        <div class="fade-up mx-auto max-w-3xl text-center">
+
+          <span class="text-xs font-black uppercase tracking-[.3em] text-neon-400">
+            Apa yang Kamu Dapatkan?
+          </span>
+
+          <h2 class="mt-4 font-display text-5xl font-black uppercase leading-none sm:text-7xl">
+
+            Naik Level.
+
+            <span class="neon-text">
+              Lebih Cerdas.
+            </span>
+
+          </h2>
+
+          <p class="mt-5 text-sm leading-7 text-white/55 sm:text-base">
+            Bukan sekadar mengejar angka. Fokus pada strategi,
+            kualitas konten, konsistensi, dan pemanfaatan AI secara bijak.
+          </p>
+
+        </div>
+
+
+        <!-- 3 COLUMN GRID -->
+
+        <div class="mt-14 grid gap-5 md:grid-cols-3">
+
+
+          <!-- CARD 1 -->
+
+          <article class="card-shine fade-up premium-card group rounded-3xl border border-white/10 p-7 shadow-2xl transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/50 hover:shadow-neon">
+
+            <div class="flex items-center justify-between">
+
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-neon-500/20 bg-neon-500/10 text-2xl text-neon-400 transition duration-300 group-hover:scale-110">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+              </div>
+
+              <span class="font-display text-5xl font-black text-white/5">
+                01
+              </span>
+
+            </div>
+
+
+            <div class="mt-7 text-xs font-black uppercase tracking-[.2em] text-neon-400">
+              Strategi
+            </div>
+
+
+            <h3 class="mt-2 font-display text-4xl font-black uppercase text-white">
+              Facebook Pro
+            </h3>
+
+
+            <p class="mt-4 text-sm leading-7 text-white/50">
+
+              Pahami cara membangun konten yang konsisten,
+              membaca performa, dan mengembangkan kehadiran
+              profesional di Facebook.
+
+            </p>
+
+
+            <div class="mt-6 h-px w-20 green-line"></div>
+
+          </article>
+
+
+
+          <!-- CARD 2 -->
+
+          <article class="card-shine fade-up premium-card group rounded-3xl border border-white/10 p-7 shadow-2xl transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/50 hover:shadow-neon">
+
+            <div class="flex items-center justify-between">
+
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10 text-2xl text-purple-400 transition duration-300 group-hover:scale-110">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+              </div>
+
+              <span class="font-display text-5xl font-black text-white/5">
+                02
+              </span>
+
+            </div>
+
+
+            <div class="mt-7 text-xs font-black uppercase tracking-[.2em] text-purple-400">
+              Produktivitas
+            </div>
+
+
+            <h3 class="mt-2 font-display text-4xl font-black uppercase text-white">
+              AI Marketing
+            </h3>
+
+
+            <p class="mt-4 text-sm leading-7 text-white/50">
+
+              Gunakan AI untuk membantu mencari ide,
+              menyusun konsep, membuat caption, dan mempercepat
+              proses produksi konten.
+
+            </p>
+
+
+            <div class="mt-6 h-px w-20 bg-gradient-to-r from-purple-500 to-transparent"></div>
+
+          </article>
+
+
+
+          <!-- CARD 3 -->
+
+          <article class="card-shine fade-up premium-card group rounded-3xl border border-white/10 p-7 shadow-2xl transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/50 hover:shadow-neon">
+
+            <div class="flex items-center justify-between">
+
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10 text-2xl text-amber-400 transition duration-300 group-hover:scale-110">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+              </div>
+
+              <span class="font-display text-5xl font-black text-white/5">
+                03
+              </span>
+
+            </div>
+
+
+            <div class="mt-7 text-xs font-black uppercase tracking-[.2em] text-amber-400">
+              Mindset
+            </div>
+
+
+            <h3 class="mt-2 font-display text-4xl font-black uppercase text-white">
+              Main dengan Bijak
+            </h3>
+
+
+            <p class="mt-4 text-sm leading-7 text-white/50">
+
+              Belajar membangun kebiasaan konten yang sehat,
+              menghindari praktik spam, dan selalu memperhatikan
+              ketentuan serta kebijakan platform.
+
+            </p>
+
+
+            <div class="mt-6 h-px w-20 bg-gradient-to-r from-amber-500 to-transparent"></div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         HOW IT WORKS
+    ========================================================== -->
+
+    <section class="border-y border-white/10 bg-black py-20 sm:py-28">
+
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+
+
+          <!-- LEFT -->
+
+          <div class="fade-up">
+
+            <span class="text-xs font-black uppercase tracking-[.3em] text-neon-400">
+              Cara Belajar
+            </span>
+
+            <h2 class="mt-4 font-display text-5xl font-black uppercase leading-none sm:text-7xl">
+
+              Dari Bingung
+
+              <span class="block text-white/20">
+                Jadi Paham.
+              </span>
+
+            </h2>
+
+            <p class="mt-6 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+
+              Bangun fondasi yang benar terlebih dahulu.
+              Setelah itu manfaatkan teknologi AI untuk mempercepat
+              proses kreatif dan pemasaran.
+
+            </p>
+
+
+            <a
+              href="https://wa.me/6285218453131?text=Halo%20ISTIKMAL%20SYARIAH%2C%20saya%20ingin%20mendapatkan%20panduan%20Facebook%20Pro%20dan%20AI%20Marketing."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-8 inline-flex items-center gap-3 rounded-full border border-neon-500/40 bg-neon-500/5 px-6 py-3.5 text-sm font-bold text-neon-300 transition duration-300 hover:scale-105 hover:bg-neon-500 hover:text-black"
+            >
+
+              <i class="fa-brands fa-whatsapp"></i>
+
+              Konsultasi Sekarang
+
+            </a>
+
+          </div>
+
+
+          <!-- RIGHT -->
+
+          <div class="fade-up space-y-4">
+
+
+            <!-- STEP 1 -->
+
+            <div class="group flex gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-5 transition duration-300 hover:translate-x-2 hover:border-neon-500/40">
+
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-neon-500 text-lg font-black text-black">
+                1
+              </div>
+
+              <div>
+
+                <h3 class="font-display text-2xl font-bold uppercase">
+                  Pahami Platform
+                </h3>
+
+                <p class="mt-1 text-xs leading-6 text-white/45 sm:text-sm">
+                  Kenali fitur, pola konten, dan kebiasaan audiens Facebook Pro.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="group flex gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-5 transition duration-300 hover:translate-x-2 hover:border-neon-500/40">
+
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg font-black text-neon-400">
+                2
+              </div>
+
+              <div>
+
+                <h3 class="font-display text-2xl font-bold uppercase">
+                  Buat Konten
+                </h3>
+
+                <p class="mt-1 text-xs leading-6 text-white/45 sm:text-sm">
+                  Gunakan strategi dan bantuan AI untuk menghasilkan konten yang relevan.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="group flex gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-5 transition duration-300 hover:translate-x-2 hover:border-neon-500/40">
+
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg font-black text-neon-400">
+                3
+              </div>
+
+              <div>
+
+                <h3 class="font-display text-2xl font-bold uppercase">
+                  Evaluasi
+                </h3>
+
+                <p class="mt-1 text-xs leading-6 text-white/45 sm:text-sm">
+                  Lihat hasil, pelajari respons audiens, lalu perbaiki strategi secara konsisten.
+                </p>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         TESTIMONIALS
+    ========================================================== -->
+
+    <section class="relative overflow-hidden bg-[#0b0b0b] py-20 sm:py-28">
+
+      <div class="absolute -right-40 top-20 h-96 w-96 rounded-full bg-neon-500/5 blur-[120px]"></div>
+
+
+      <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+
+        <div class="fade-up text-center">
+
+          <span class="text-xs font-black uppercase tracking-[.3em] text-neon-400">
+            Pengalaman Komunitas
+          </span>
+
+          <h2 class="mt-3 font-display text-5xl font-black uppercase sm:text-7xl">
+            Jangan Cuma
+            <span class="neon-text">
+              Dengar Kami.
+            </span>
+          </h2>
+
+        </div>
+
+
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+
+
+          <!-- TESTIMONIAL 1 -->
+
+          <article class="fade-up premium-card rounded-3xl border border-white/10 p-7 shadow-2xl transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/40">
+
+            <div class="flex gap-1 text-neon-400">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+
+            <p class="mt-6 text-sm leading-7 text-white/60">
+
+              "Setelah mulai memahami cara kerja konten,
+              saya jadi tidak asal posting lagi. Sekarang lebih punya arah."
+
+            </p>
+
+
+            <div class="mt-7 border-t border-white/10 pt-5">
+
+              <div class="font-bold text-white">
+                Member 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-neon-400">
+                Facebook Pro
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- TESTIMONIAL 2 -->
+
+          <article class="fade-up premium-card rounded-3xl border border-neon-500/20 bg-neon-500/[.03] p-7 shadow-neon transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/50">
+
+            <div class="flex gap-1 text-neon-400">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+
+            <p class="mt-6 text-sm leading-7 text-white/60">
+
+              "AI sangat membantu ketika kehabisan ide.
+              Yang paling penting saya belajar menggunakannya sebagai alat,
+              bukan menggantikan kreativitas."
+
+            </p>
+
+
+            <div class="mt-7 border-t border-white/10 pt-5">
+
+              <div class="font-bold text-white">
+                Member 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-neon-400">
+                AI Marketing
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- TESTIMONIAL 3 -->
+
+          <article class="fade-up premium-card rounded-3xl border border-white/10 p-7 shadow-2xl transition duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-neon-500/40">
+
+            <div class="flex gap-1 text-neon-400">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+
+            <p class="mt-6 text-sm leading-7 text-white/60">
+
+              "Sekarang saya lebih fokus membuat konten
+              yang benar-benar bermanfaat daripada sekadar mengejar viral."
+
+            </p>
+
+
+            <div class="mt-7 border-t border-white/10 pt-5">
+
+              <div class="font-bold text-white">
+                Member 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-neon-400">
+                Content Creator
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         FINAL CTA
+    ========================================================== -->
+
+    <section class="relative overflow-hidden bg-gradient-to-br from-[#03130a] via-[#070707] to-[#030b06] py-24 sm:py-32">
+
+
+      <div class="pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-neon-500/10 blur-[130px]"></div>
+
+
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+
+
+        <div class="fade-up">
+
+
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-neon-500/30 bg-neon-500/10 text-3xl text-neon-400 shadow-neon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+
+
+          <span class="mt-8 block text-xs font-black uppercase tracking-[.35em] text-neon-400">
+            Saatnya Naik Level
+          </span>
+
+
+          <h2 class="mt-4 font-display text-6xl font-black uppercase leading-[.85] sm:text-8xl">
+
+            Jangan
+
+            <span class="neon-text">
+              Asal Main.
+            </span>
+
+          </h2>
+
+
+          <p class="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
+
+            Pelajari Facebook Pro, manfaatkan AI secara cerdas,
+            dan bangun strategi konten yang lebih konsisten
+            dengan tetap memperhatikan ketentuan platform.
+
+          </p>
+
+
+          <!-- CTA -->
+
+          <a
+            href="https://wa.me/6285218453131?text=Halo%20ISTIKMAL%20SYARIAH%2C%20saya%20siap%20belajar%20Facebook%20Pro%20dan%20AI%20Marketing.%20Mohon%20info%20selanjutnya."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pulse-neon mt-9 inline-flex w-full items-center justify-center gap-3 rounded-full bg-neon-500 px-8 py-4 text-sm font-black text-black transition duration-300 hover:scale-105 hover:bg-neon-300 sm:w-auto"
+          >
+
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+
+            Mulai Belajar Sekarang
+
+          </a>
+
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[.2em] text-white/25">
+
+            <span>
+              Facebook Pro
+            </span>
+
+            <span class="text-neon-500">
+              •
+            </span>
+
+            <span>
+              AI Marketing
+            </span>
+
+            <span class="text-neon-500">
+              •
+            </span>
+
+            <span>
+              Konten Berkualitas
+            </span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="border-t border-white/10 bg-black">
+
+    <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
+
+
+      <div class="flex flex-col items-center justify-between gap-7 md:flex-row">
+
+
+        <!-- BRAND -->
+
+        <div class="flex items-center gap-4">
+
+          <img
+            src="https://i.postimg.cc/k5HhytB9/logo-NPA.png"
+            alt="Logo ISTIKMAL SYARIAH"
+            class="h-12 w-auto object-contain"
+          >
+
+          <div class="border-l border-white/10 pl-4">
+
+            <div class="font-display text-2xl font-black uppercase">
+              ISTIKMAL
+              <span class="text-neon-400">
+                SYARIAH
+              </span>
+            </div>
+
+            <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-white/30">
+              Facebook Pro & AI Marketing
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- SOCIAL / WHATSAPP -->
+
+        <div class="flex items-center gap-3">
+
+          <a
+            href="https://wa.me/6285218453131"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp ISTIKMAL SYARIAH"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/40 transition duration-300 hover:scale-110 hover:border-neon-500/50 hover:bg-neon-500/10 hover:text-neon-400"
+          >
+
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+
+          </a>
+
+
+          <a
+            href="#home"
+            aria-label="Kembali ke atas"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/40 transition duration-300 hover:scale-110 hover:border-neon-500/50 hover:bg-neon-500/10 hover:text-neon-400"
+          >
+
+            <i class="fa-solid fa-arrow-up"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Disclaimer -->
+
+      <div class="mt-8 border-t border-white/10 pt-6">
+
+        <p class="mx-auto max-w-4xl text-center text-[10px] leading-6 text-white/25">
+
+          Konten pada halaman ini bersifat edukasi dan berbagi pengalaman.
+          Hasil penggunaan Facebook Pro maupun AI Marketing dapat berbeda
+          pada setiap orang. Selalu gunakan fitur dan strategi sesuai
+          ketentuan, kebijakan, serta standar komunitas platform terkait.
+
+        </p>
+
+      </div>
+
+
+      <!-- Copyright -->
+
+      <div class="mt-5 text-center text-[10px] text-white/20">
+
+        © 2026 ISTIKMAL SYARIAH.
+        All Rights Reserved.
+
+      </div>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =========================================================
+       FLOATING WHATSAPP
+  ========================================================== -->
+
+  <a
+    href="https://wa.me/6285218453131?text=Halo%20ISTIKMAL%20SYARIAH%2C%20saya%20ingin%20bertanya%20tentang%20Facebook%20Pro%20dan%20AI%20Marketing."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat WhatsApp ISTIKMAL SYARIAH"
+    class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition duration-300 hover:scale-110 hover:bg-[#20bd5a] sm:bottom-7 sm:right-7"
+  >
+
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+
+  </a>
+
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+  <script>
+
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
+
+    const revealElements = document.querySelectorAll(".fade-up");
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.10
+      }
+    );
+
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(element);
+
+    });
+
+
+
+    /* =====================================================
+       SMOOTH ANCHOR SCROLL
+    ====================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+
+      anchor.addEventListener("click", function(event) {
+
+        const targetId = this.getAttribute("href");
+
+        if (!targetId || targetId === "#") {
+          return;
+        }
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      });
+
+    });
+
+
+
+    /* =====================================================
+       PREVENT IMAGE DRAG
+    ====================================================== */
+
+    document.querySelectorAll("img").forEach((image) => {
+
+      image.addEventListener("dragstart", (event) => {
+
+        event.preventDefault();
+
+      });
+
+    });
+
+
+
+    /* =====================================================
+       YEAR
+    ====================================================== */
+
+    const currentYear = new Date().getFullYear();
+
+    document.querySelectorAll("[data-year]").forEach((element) => {
+
+      element.textContent = currentYear;
+
+    });
+
+  </script>
+
+</body>
+</html>
