@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Apa yang bisa aku berikan kepada Indonesia di HUT RI ke-81? Berjuang, Berkarya, Berkah bersama 3IReborn!">
+  <meta name="description" content="3IReborn — Berjuang, Berkarya, Berkah Bersama dalam semangat HUT RI ke-81.">
   <meta name="theme-color" content="#080808">
+
   <title>3IReborn — Berjuang, Berkarya, Berkah Bersama</title>
 
   <!-- Tailwind CSS -->
@@ -31,10 +32,12 @@
               700: '#8f6505'
             }
           },
+
           fontFamily: {
             sans: ['Montserrat', 'sans-serif'],
             luxury: ['Cormorant Garamond', 'serif']
           },
+
           boxShadow: {
             gold: '0 0 35px rgba(212,167,44,0.22)',
             goldStrong: '0 0 55px rgba(212,167,44,0.35)'
@@ -63,30 +66,10 @@
         #b8860b 75%,
         #f5d77a 100%
       );
+
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-    }
-
-    .gold-border {
-      border-image: linear-gradient(
-        90deg,
-        transparent,
-        #d4a72c,
-        #fff0a0,
-        #d4a72c,
-        transparent
-      ) 1;
-    }
-
-    .hero-overlay {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,.20) 0%,
-          rgba(0,0,0,.40) 45%,
-          rgba(8,8,8,1) 100%
-        );
     }
 
     .gold-glow {
@@ -140,6 +123,7 @@
       0%, 100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-10px);
       }
@@ -153,6 +137,7 @@
       0%, 100% {
         box-shadow: 0 0 0 0 rgba(212,167,44,.35);
       }
+
       50% {
         box-shadow: 0 0 0 12px rgba(212,167,44,0);
       }
@@ -160,94 +145,147 @@
 
     .pattern {
       background-image:
-        radial-gradient(rgba(212,167,44,.12) 1px, transparent 1px);
+        radial-gradient(
+          rgba(212,167,44,.12) 1px,
+          transparent 1px
+        );
       background-size: 24px 24px;
     }
   </style>
 </head>
 
+
 <body class="bg-[#080808] text-white">
 
-  <!-- =========================
+
+  <!-- =========================================================
        STICKY HEADER
-  ========================== -->
-  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/75 backdrop-blur-xl">
+  ========================================================== -->
+
+  <header class="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/75 backdrop-blur-xl">
+
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 
-      <!-- LOGO FAR LEFT -->
+      <!-- LOGO -->
       <a href="#home" class="flex items-center">
+
         <img
           src="https://i.postimg.cc/L6S6bXyL/logo.png"
           alt="Logo 3IReborn"
           class="h-12 w-auto object-contain sm:h-14"
         >
+
       </a>
 
-      <!-- WHATSAPP FAR RIGHT -->
+
+      <!-- WHATSAPP -->
       <a
-        href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20program%203IReborn."
+        href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%203IReborn."
         target="_blank"
         rel="noopener noreferrer"
         class="group flex items-center gap-2 rounded-full border border-gold-500/60 bg-gold-500/10 px-4 py-2.5 text-xs font-bold text-gold-300 transition duration-300 hover:bg-gold-500 hover:text-black hover:shadow-gold sm:px-5 sm:text-sm"
       >
+
         <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i>
+
         <span>Hubungi Kami</span>
+
       </a>
 
     </div>
+
   </header>
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
+
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
   <main id="home">
 
-    <section class="relative min-h-screen overflow-hidden pt-24">
 
-      <!-- Hero Image -->
-      <img
-        src="https://i.postimg.cc/0yKw94gv/file-000000007bd8821181b4668124dece21.png"
-        alt="3IReborn HUT RI ke-81"
-        class="absolute inset-0 h-full w-full object-cover object-center"
-      >
+    <!-- =======================================================
+         HERO SECTION
+         IMAGE SEBAGAI ELEMEN BIASA
+         BUKAN BACKGROUND
+         TIDAK MENGGUNAKAN OBJECT-COVER
+         MENGGUNAKAN OBJECT-CONTAIN
+    ======================================================== -->
 
-      <!-- Overlay -->
-      <div class="hero-overlay absolute inset-0"></div>
+    <section
+      id="hero"
+      class="relative overflow-hidden bg-[#080808] pt-28 sm:pt-32"
+    >
 
-      <!-- Gold Glow -->
-      <div class="absolute -left-32 top-32 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]"></div>
-      <div class="absolute -right-32 bottom-32 h-96 w-96 rounded-full bg-gold-500/10 blur-[120px]"></div>
+      <!-- Decorative Gold Glow -->
 
-      <div class="relative mx-auto flex min-h-[calc(100vh-96px)] max-w-7xl items-center px-5 py-16 sm:px-8 lg:px-10">
+      <div class="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-gold-500/10 blur-[120px]"></div>
 
-        <div class="grid w-full items-center gap-12 lg:grid-cols-2">
+      <div class="pointer-events-none absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-red-600/10 blur-[130px]"></div>
 
-          <!-- HERO TEXT -->
-          <div class="fade-up text-center lg:text-left">
 
-            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-black/40 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-gold-300 backdrop-blur-md">
+      <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+
+
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+
+          <!-- =================================================
+               HERO TEXT
+          ================================================== -->
+
+          <div class="fade-up order-1 text-center lg:text-left">
+
+
+            <!-- Badge -->
+
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-gold-300 backdrop-blur-md">
+
               <span class="h-2 w-2 animate-pulse rounded-full bg-red-500"></span>
+
               HUT RI KE-81
-              <span class="text-white/40">•</span>
+
+              <span class="text-white/30">•</span>
+
               INDONESIA
+
             </div>
 
-            <h1 class="font-luxury text-5xl font-bold leading-[.95] sm:text-6xl md:text-7xl lg:text-8xl">
+
+            <!-- Headline -->
+
+            <h1 class="font-luxury text-5xl font-bold leading-[.95] sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl">
+
               Apa yang bisa
-              <span class="block gold-text">aku berikan</span>
+
+              <span class="block gold-text">
+                aku berikan
+              </span>
+
               kepada Indonesia?
+
             </h1>
 
-            <p class="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/75 sm:text-base lg:mx-0 lg:text-lg">
-              Di usia kemerdekaan yang ke-81, perjuangan bukan hanya tentang
-              mengenang sejarah. Tetapi tentang apa yang bisa kita lakukan,
-              karya apa yang bisa kita ciptakan, dan keberkahan apa yang bisa
-              kita bagikan.
+
+            <!-- Subheadline -->
+
+            <p class="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/70 sm:text-base lg:mx-0 lg:text-lg">
+
+              Di usia kemerdekaan yang ke-81,
+              perjuangan bukan hanya tentang mengenang sejarah.
+
+              Tetapi tentang apa yang bisa kita lakukan,
+              karya apa yang bisa kita ciptakan,
+              dan keberkahan apa yang bisa kita bagikan.
+
             </p>
 
-            <!-- Slogan -->
+
+            <!-- SLOGAN -->
+
             <div class="mt-8 space-y-2 font-luxury text-2xl font-semibold sm:text-3xl">
+
               <div>
                 <span class="mr-2 text-red-500">🇮🇩</span>
                 <span class="text-white">Berjuang!</span>
@@ -264,13 +302,28 @@
               </div>
 
               <div class="pt-1 text-3xl font-bold sm:text-4xl">
-                <span class="text-red-500">3I</span><span class="gold-text">Reborn!</span>
-                <span class="ml-1">🔥</span>
+
+                <span class="text-red-500">
+                  3I
+                </span>
+
+                <span class="gold-text">
+                  Reborn!
+                </span>
+
+                <span class="ml-1">
+                  🔥
+                </span>
+
               </div>
+
             </div>
 
-            <!-- CTA -->
+
+            <!-- CTA BUTTONS -->
+
             <div class="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+
 
               <a
                 href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20ingin%20tahu%20bagaimana%20saya%20bisa%20berjuang%2C%20berkarya%2C%20dan%20berkah%20bersama%203IReborn."
@@ -278,66 +331,130 @@
                 rel="noopener noreferrer"
                 class="pulse-gold flex w-full items-center justify-center gap-3 rounded-full bg-gold-500 px-7 py-4 text-sm font-extrabold text-black transition duration-300 hover:-translate-y-1 hover:bg-gold-300 sm:w-auto"
               >
+
                 <i class="fa-brands fa-whatsapp text-xl"></i>
+
                 Saya Siap Berkontribusi
+
               </a>
+
 
               <a
                 href="#makna"
                 class="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:border-gold-400/50 hover:bg-white/10 sm:w-auto"
               >
+
                 Pelajari Semangatnya
+
                 <i class="fa-solid fa-arrow-down text-xs"></i>
+
               </a>
 
             </div>
 
+
           </div>
 
 
-          <!-- HERO IMAGE DISPLAY -->
-          <div class="fade-up relative hidden lg:block">
 
-            <div class="absolute -inset-8 rounded-[3rem] bg-gold-500/10 blur-3xl"></div>
+          <!-- =================================================
+               HERO IMAGE
+               FULL IMAGE 1:1
+               OBJECT-CONTAIN
+               NO OBJECT-COVER
+          ================================================== -->
 
-            <div class="floating relative overflow-hidden rounded-[2rem] border border-gold-400/30 bg-black/30 p-2 shadow-goldStrong backdrop-blur-sm">
+          <div class="fade-up order-2 flex justify-center lg:justify-end">
 
-              <img
-                src="https://i.postimg.cc/pTvtqnV9/file-00000000bbc48211a119bfb1325215b6.png"
-                alt="Visual utama 3IReborn"
-                class="max-h-[680px] w-full rounded-[1.5rem] object-contain"
-              >
+            <div class="relative w-full max-w-[620px]">
 
-              <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/65 p-4 backdrop-blur-xl">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="text-[10px] uppercase tracking-[.25em] text-gold-300">
-                      Semangat Kemerdekaan
+
+              <!-- GOLD GLOW -->
+
+              <div class="absolute -inset-8 rounded-full bg-gold-500/10 blur-[80px]"></div>
+
+
+              <!-- IMAGE FRAME -->
+
+              <div class="relative overflow-hidden rounded-[2rem] border border-gold-400/30 bg-black/30 p-3 shadow-goldStrong backdrop-blur-sm sm:p-4">
+
+
+                <!--
+                  IMPORTANT:
+
+                  Gambar TIDAK dijadikan background.
+                  Tidak menggunakan object-cover.
+
+                  object-contain memastikan seluruh gambar
+                  rasio 1:1 terlihat utuh.
+                -->
+
+                <img
+                  src="https://i.postimg.cc/pTvtqnV9/file-00000000bbc48211a119bfb1325215b6.png"
+                  alt="3IReborn HUT RI ke-81"
+                  class="mx-auto aspect-square h-auto w-full object-contain"
+                >
+
+
+                <!-- IMAGE CAPTION -->
+
+                <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/70 p-4 backdrop-blur-xl sm:bottom-8 sm:left-8 sm:right-8">
+
+                  <div class="flex items-center justify-between gap-4">
+
+                    <div>
+
+                      <div class="text-[9px] font-bold uppercase tracking-[.25em] text-gold-300 sm:text-[10px]">
+                        Semangat Kemerdekaan
+                      </div>
+
+                      <div class="mt-1 font-luxury text-xl font-semibold text-white sm:text-2xl">
+                        Berjuang • Berkarya • Berkah
+                      </div>
+
                     </div>
-                    <div class="mt-1 font-luxury text-2xl font-semibold">
-                      Berjuang • Berkarya • Berkah
+
+                    <div class="shrink-0 text-3xl sm:text-4xl">
+                      🇮🇩
                     </div>
+
                   </div>
-                  <div class="text-3xl">🇮🇩</div>
+
                 </div>
+
+
               </div>
 
+
             </div>
+
           </div>
 
+
         </div>
+
       </div>
+
     </section>
 
 
-    <!-- =========================
-         MAKNA
-    ========================== -->
-    <section id="makna" class="relative overflow-hidden bg-[#0c0c0c] py-20 sm:py-28">
+
+    <!-- =========================================================
+         MAKNA KEMERDEKAAN
+    ========================================================== -->
+
+    <section
+      id="makna"
+      class="relative overflow-hidden bg-[#0c0c0c] py-20 sm:py-28"
+    >
 
       <div class="pattern absolute inset-0 opacity-30"></div>
 
+
       <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+
+        <!-- TITLE -->
 
         <div class="fade-up mx-auto max-w-3xl text-center">
 
@@ -346,102 +463,147 @@
           </span>
 
           <h2 class="mt-4 font-luxury text-4xl font-bold sm:text-6xl">
+
             Kemerdekaan adalah
-            <span class="gold-text">tanggung jawab.</span>
+
+            <span class="gold-text">
+              tanggung jawab.
+            </span>
+
           </h2>
 
           <p class="mt-5 text-sm leading-7 text-white/60 sm:text-base">
+
             Menjadi bagian dari Indonesia bukan hanya tentang menerima hasil
-            perjuangan generasi sebelumnya. Kita juga punya kesempatan untuk
-            melanjutkan perjuangan itu melalui karya dan kontribusi nyata.
+            perjuangan generasi sebelumnya.
+
+            Kita juga punya kesempatan untuk melanjutkan perjuangan itu
+            melalui karya dan kontribusi nyata.
+
           </p>
 
         </div>
 
 
+
         <!-- BENEFITS GRID -->
+
         <div class="mt-14 grid gap-5 md:grid-cols-3">
 
+
           <!-- CARD 1 -->
+
           <div class="card-shine fade-up gold-glow rounded-3xl border border-white/10 bg-white/[.03] p-7 transition duration-500 hover:-translate-y-2 hover:border-gold-500/50 hover:bg-gold-500/[.04]">
 
             <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-600/10 text-2xl text-red-500">
+
               <i class="fa-solid fa-fist-raised"></i>
+
             </div>
+
 
             <div class="mb-2 text-xs font-bold uppercase tracking-[.2em] text-red-400">
               01 — Berjuang
             </div>
 
+
             <h3 class="font-luxury text-3xl font-bold text-white">
               Jangan berhenti melangkah.
             </h3>
 
+
             <p class="mt-4 text-sm leading-7 text-white/55">
+
               Setiap tantangan adalah kesempatan untuk menjadi lebih kuat.
+
               Perjuangan hari ini adalah fondasi untuk masa depan yang lebih baik.
+
             </p>
 
           </div>
 
 
+
           <!-- CARD 2 -->
+
           <div class="card-shine fade-up gold-glow rounded-3xl border border-gold-500/30 bg-gold-500/[.04] p-7 transition duration-500 hover:-translate-y-2 hover:border-gold-400/70">
 
             <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gold-500/10 text-2xl text-gold-400">
+
               <i class="fa-solid fa-lightbulb"></i>
+
             </div>
+
 
             <div class="mb-2 text-xs font-bold uppercase tracking-[.2em] text-gold-400">
               02 — Berkarya
             </div>
 
+
             <h3 class="font-luxury text-3xl font-bold text-white">
               Ciptakan sesuatu yang berarti.
             </h3>
 
+
             <p class="mt-4 text-sm leading-7 text-white/55">
-              Tidak harus besar untuk menjadi berarti. Satu karya yang bermanfaat
-              bisa menjadi cahaya bagi orang lain.
+
+              Tidak harus besar untuk menjadi berarti.
+
+              Satu karya yang bermanfaat bisa menjadi cahaya bagi orang lain.
+
             </p>
 
           </div>
 
 
+
           <!-- CARD 3 -->
+
           <div class="card-shine fade-up gold-glow rounded-3xl border border-white/10 bg-white/[.03] p-7 transition duration-500 hover:-translate-y-2 hover:border-gold-500/50 hover:bg-gold-500/[.04]">
 
             <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-2xl text-emerald-400">
+
               <i class="fa-solid fa-hands-holding-child"></i>
+
             </div>
+
 
             <div class="mb-2 text-xs font-bold uppercase tracking-[.2em] text-emerald-400">
               03 — Berkah Bersama
             </div>
 
+
             <h3 class="font-luxury text-3xl font-bold text-white">
               Tumbuh sambil membantu.
             </h3>
 
+
             <p class="mt-4 text-sm leading-7 text-white/55">
+
               Kesuksesan terasa lebih indah ketika manfaatnya bisa dirasakan
               bersama dan menjadi jalan kebaikan bagi sesama.
+
             </p>
 
           </div>
 
+
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- =========================
-         QUOTE / STATEMENT
-    ========================== -->
+
+    <!-- =========================================================
+         QUOTE
+    ========================================================== -->
+
     <section class="relative overflow-hidden border-y border-gold-500/10 bg-black py-20">
 
       <div class="absolute inset-0 bg-gradient-to-r from-red-950/20 via-transparent to-gold-950/20"></div>
+
 
       <div class="relative mx-auto max-w-5xl px-5 text-center sm:px-8">
 
@@ -449,34 +611,58 @@
 
           <i class="fa-solid fa-quote-left text-3xl text-gold-500/50"></i>
 
+
           <blockquote class="mt-6 font-luxury text-4xl font-semibold leading-tight text-white sm:text-6xl">
+
             "Kemerdekaan bukan hanya
-            <span class="gold-text">warisan.</span>
+
+            <span class="gold-text">
+              warisan.
+            </span>
+
             <br>
+
             Kemerdekaan adalah
-            <span class="text-red-500">kesempatan.</span>"
+
+            <span class="text-red-500">
+              kesempatan.
+            </span>
+
+            "
+
           </blockquote>
+
 
           <div class="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
 
+
           <p class="mt-5 text-xs font-bold uppercase tracking-[.3em] text-white/40">
+
             3IReborn — Berjuang • Berkarya • Berkah Bersama
+
           </p>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================================
          TESTIMONIALS
-    ========================== -->
+    ========================================================== -->
+
     <section class="bg-[#0c0c0c] py-20 sm:py-28">
 
       <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
+
+        <!-- TITLE -->
+
         <div class="fade-up text-center">
+
           <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-400">
             Suara Perjuangan
           </span>
@@ -484,117 +670,194 @@
           <h2 class="mt-3 font-luxury text-4xl font-bold sm:text-5xl">
             Bersama, Kita Bisa.
           </h2>
+
         </div>
 
 
+
+        <!-- TESTIMONIAL GRID -->
+
         <div class="mt-12 grid gap-5 md:grid-cols-3">
 
+
           <!-- TESTIMONIAL 1 -->
+
           <article class="fade-up rounded-3xl border border-white/10 bg-white/[.03] p-7 transition duration-300 hover:border-gold-500/40">
 
             <div class="flex gap-1 text-gold-400">
+
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
+
             </div>
 
+
             <p class="mt-6 text-sm leading-7 text-white/65">
+
               "Saya percaya perubahan besar dimulai dari langkah kecil.
+
               Yang penting berani memulai dan konsisten memberikan manfaat."
+
             </p>
 
+
             <div class="mt-7 border-t border-white/10 pt-5">
-              <div class="font-semibold text-white">Pejuang 3IReborn</div>
-              <div class="mt-1 text-xs text-gold-400">Member</div>
+
+              <div class="font-semibold text-white">
+                Pejuang 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-gold-400">
+                Member
+              </div>
+
             </div>
 
           </article>
+
 
 
           <!-- TESTIMONIAL 2 -->
+
           <article class="fade-up rounded-3xl border border-gold-500/20 bg-gold-500/[.04] p-7 transition duration-300 hover:border-gold-500/50">
 
             <div class="flex gap-1 text-gold-400">
+
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
+
             </div>
 
+
             <p class="mt-6 text-sm leading-7 text-white/65">
+
               "Bagi saya, berkarya bukan sekadar mencari hasil.
+
               Yang lebih penting adalah menciptakan sesuatu yang bisa
               membawa manfaat untuk orang lain."
+
             </p>
 
+
             <div class="mt-7 border-t border-white/10 pt-5">
-              <div class="font-semibold text-white">Pejuang 3IReborn</div>
-              <div class="mt-1 text-xs text-gold-400">Leader</div>
+
+              <div class="font-semibold text-white">
+                Pejuang 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-gold-400">
+                Leader
+              </div>
+
             </div>
 
           </article>
+
 
 
           <!-- TESTIMONIAL 3 -->
+
           <article class="fade-up rounded-3xl border border-white/10 bg-white/[.03] p-7 transition duration-300 hover:border-gold-500/40">
 
             <div class="flex gap-1 text-gold-400">
+
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
+
             </div>
 
+
             <p class="mt-6 text-sm leading-7 text-white/65">
+
               "Ketika perjuangan dan karya dilakukan bersama,
-              perjalanan terasa lebih bermakna. Semoga semakin banyak
-              orang yang merasakan keberkahannya."
+              perjalanan terasa lebih bermakna.
+
+              Semoga semakin banyak orang yang merasakan keberkahannya."
+
             </p>
 
+
             <div class="mt-7 border-t border-white/10 pt-5">
-              <div class="font-semibold text-white">Pejuang 3IReborn</div>
-              <div class="mt-1 text-xs text-gold-400">Entrepreneur</div>
+
+              <div class="font-semibold text-white">
+                Pejuang 3IReborn
+              </div>
+
+              <div class="mt-1 text-xs text-gold-400">
+                Entrepreneur
+              </div>
+
             </div>
 
           </article>
+
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================================
          FINAL CTA
-    ========================== -->
+    ========================================================== -->
+
     <section class="relative overflow-hidden bg-gradient-to-br from-[#160f04] via-[#080808] to-[#120000] py-24 sm:py-32">
 
+
       <div class="absolute -left-40 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-gold-500/10 blur-[120px]"></div>
+
+
       <div class="absolute -right-40 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-red-600/10 blur-[120px]"></div>
+
 
       <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
 
+
         <div class="fade-up">
 
-          <div class="mb-6 text-5xl">🇮🇩</div>
+
+          <div class="mb-6 text-5xl">
+            🇮🇩
+          </div>
+
 
           <span class="text-xs font-bold uppercase tracking-[.35em] text-gold-400">
             HUT RI KE-81
           </span>
 
+
           <h2 class="mt-4 font-luxury text-5xl font-bold leading-tight sm:text-7xl">
+
             Jadi, apa yang akan
-            <span class="gold-text">kamu berikan?</span>
+
+            <span class="gold-text">
+              kamu berikan?
+            </span>
+
           </h2>
 
+
           <p class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
+
             Mari jadikan semangat kemerdekaan sebagai energi untuk terus
             berjuang, menghasilkan karya, dan menghadirkan keberkahan bersama.
+
           </p>
+
+
+          <!-- CTA -->
 
           <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
 
@@ -604,58 +867,104 @@
               rel="noopener noreferrer"
               class="flex w-full items-center justify-center gap-3 rounded-full bg-gold-500 px-8 py-4 text-sm font-extrabold text-black shadow-goldStrong transition duration-300 hover:-translate-y-1 hover:bg-gold-300 sm:w-auto"
             >
+
               <i class="fa-brands fa-whatsapp text-xl"></i>
+
               Mulai Bersama 3IReborn
+
             </a>
 
           </div>
 
-          <div class="mt-8 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[.2em] text-white/30">
-            <span>Berjuang</span>
-            <span class="text-gold-500">•</span>
-            <span>Berkarya</span>
-            <span class="text-gold-500">•</span>
-            <span>Berkah Bersama</span>
+
+          <!-- SLOGAN -->
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[.2em] text-white/30">
+
+            <span>
+              Berjuang
+            </span>
+
+            <span class="text-gold-500">
+              •
+            </span>
+
+            <span>
+              Berkarya
+            </span>
+
+            <span class="text-gold-500">
+              •
+            </span>
+
+            <span>
+              Berkah Bersama
+            </span>
+
           </div>
+
 
         </div>
 
       </div>
+
     </section>
+
 
   </main>
 
 
-  <!-- =========================
+
+  <!-- =========================================================
        FOOTER
-  ========================== -->
+  ========================================================== -->
+
   <footer class="border-t border-white/10 bg-black">
 
     <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
 
+
       <div class="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+
+
+        <!-- FOOTER BRAND -->
 
         <div class="flex items-center gap-3">
 
           <img
             src="https://i.postimg.cc/L6S6bXyL/logo.png"
             alt="Logo 3IReborn"
-            class="h-12 w-auto"
+            class="h-12 w-auto object-contain"
           >
 
+
           <div class="border-l border-white/10 pl-3">
+
             <div class="font-luxury text-xl font-bold text-white">
-              3I<span class="text-gold-400">Reborn</span>
+
+              3I<span class="text-gold-400">
+                Reborn
+              </span>
+
             </div>
+
+
             <div class="text-[9px] uppercase tracking-[.2em] text-white/30">
+
               Berjuang • Berkarya • Berkah
+
             </div>
+
           </div>
 
         </div>
 
 
+
+        <!-- FOOTER BUTTONS -->
+
         <div class="flex items-center gap-5">
+
 
           <a
             href="https://wa.me/6285218453131"
@@ -664,39 +973,57 @@
             aria-label="WhatsApp 3IReborn"
             class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:border-gold-500/50 hover:text-gold-400"
           >
+
             <i class="fa-brands fa-whatsapp"></i>
+
           </a>
+
 
           <a
             href="#home"
             aria-label="Kembali ke atas"
             class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:border-gold-500/50 hover:text-gold-400"
           >
+
             <i class="fa-solid fa-arrow-up"></i>
+
           </a>
 
         </div>
 
+
       </div>
 
+
+
+      <!-- COPYRIGHT -->
 
       <div class="mt-8 border-t border-white/10 pt-6 text-center">
 
         <p class="text-[11px] leading-6 text-white/30">
-          © 2026 3IReborn. Dibangun dengan semangat Indonesia.
-          <span class="mx-1">🇮🇩</span>
+
+          © 2026 3IReborn.
+          Dibangun dengan semangat Indonesia.
+
+          <span class="mx-1">
+            🇮🇩
+          </span>
+
         </p>
 
       </div>
+
 
     </div>
 
   </footer>
 
 
-  <!-- =========================
+
+  <!-- =========================================================
        FLOATING WHATSAPP
-  ========================== -->
+  ========================================================== -->
+
   <a
     href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20ingin%20bergabung%20dan%20mendapatkan%20informasi%20lebih%20lanjut."
     target="_blank"
@@ -704,62 +1031,104 @@
     aria-label="Chat WhatsApp 3IReborn"
     class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition duration-300 hover:scale-110 hover:bg-[#20bd5a] sm:bottom-7 sm:right-7"
   >
+
     <i class="fa-brands fa-whatsapp text-2xl"></i>
+
   </a>
 
 
-  <!-- =========================
+
+  <!-- =========================================================
        JAVASCRIPT
-  ========================== -->
+  ========================================================== -->
+
   <script>
 
-    // Scroll reveal animation
+    /* =========================================
+       SCROLL REVEAL ANIMATION
+    ========================================== */
+
     const revealElements = document.querySelectorAll('.fade-up');
 
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
+
         entries.forEach((entry) => {
+
           if (entry.isIntersecting) {
+
             entry.target.classList.add('show');
+
             observer.unobserve(entry.target);
+
           }
+
         });
+
       },
       {
         threshold: 0.12
       }
     );
 
+
     revealElements.forEach((element) => {
+
       revealObserver.observe(element);
+
     });
 
 
-    // Smooth scroll untuk anchor
+
+    /* =========================================
+       SMOOTH SCROLL
+    ========================================== */
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
-      anchor.addEventListener('click', function (event) {
+      anchor.addEventListener('click', function(event) {
 
         const targetId = this.getAttribute('href');
 
-        if (!targetId || targetId === '#') return;
+        if (!targetId || targetId === '#') {
+          return;
+        }
 
         const target = document.querySelector(targetId);
 
         if (target) {
+
           event.preventDefault();
 
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
+
         }
 
       });
 
     });
 
+
+
+    /* =========================================
+       PREVENT IMAGE DRAG
+    ========================================== */
+
+    document.querySelectorAll('img').forEach((img) => {
+
+      img.addEventListener('dragstart', (event) => {
+
+        event.preventDefault();
+
+      });
+
+    });
+
   </script>
+
 
 </body>
 </html>
