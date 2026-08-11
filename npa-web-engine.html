@@ -173,7 +173,7 @@
             border-color: var(--primary);
         }
 
-        /* GRID SELECTORS */
+        /* GRID SELECTORS (CTA & VISUAL STYLE) */
         .grid-selector {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -386,6 +386,7 @@
                 <textarea id="bizDesc" class="form-control" rows="4" placeholder="Jelaskan produkmu. Contoh: Sistem prospek otomatis 16 kolam khusus untuk pebisnis jaringan."></textarea>
             </div>
             
+            <!-- URL GAMBAR DENGAN LINK TUTORIAL POSTIMAGE -->
             <div class="form-row">
                 <div class="form-group">
                     <label>
@@ -589,6 +590,7 @@
         prompt += `- Add hover states and smooth transitions for interactive elements.\n`;
         if (logoUrl || heroUrl) {
             prompt += `- CRITICAL: Do NOT use placeholder images for the Logo and Hero section. You MUST use the exact image URLs provided in the Core Details above.\n`;
+            prompt += `- HERO IMAGE HANDLING: Display the hero image prominently but DO NOT use 'object-cover' or full-screen background techniques that crop the image. Keep its original aspect ratio fully visible using 'object-contain' or a stacked layout.\n`;
         }
 
         document.getElementById('finalPrompt').textContent = prompt;
