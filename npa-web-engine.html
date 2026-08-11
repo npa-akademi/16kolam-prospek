@@ -138,6 +138,23 @@
             font-size: 0.95em;
         }
 
+        .help-link {
+            float: right;
+            color: var(--primary);
+            font-size: 0.85em;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .help-link:hover {
+            background: rgba(245, 158, 11, 0.2);
+            text-decoration: underline;
+        }
+
         .form-control {
             width: 100%;
             padding: 15px;
@@ -265,6 +282,58 @@
             background-color: var(--border);
         }
 
+        /* TUTORIAL SECTION */
+        .tutorial-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            max-width: 800px;
+        }
+
+        .tutorial-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .tutorial-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-card p, .tutorial-card li {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .tutorial-card ul, .tutorial-card ol {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+            background: rgba(255,255,255,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -277,6 +346,7 @@
             .main-content { padding: 20px; }
             .grid-selector { grid-template-columns: repeat(2, 1fr); }
             .form-row { flex-direction: column; gap: 25px; }
+            .help-link { float: none; display: inline-block; margin-top: 5px; }
         }
     </style>
 </head>
@@ -316,15 +386,21 @@
                 <textarea id="bizDesc" class="form-control" rows="4" placeholder="Jelaskan produkmu. Contoh: Sistem prospek otomatis 16 kolam khusus untuk pebisnis jaringan."></textarea>
             </div>
             
-            <!-- TAMBAHAN FITUR URL GAMBAR -->
+            <!-- URL GAMBAR DENGAN LINK TUTORIAL POSTIMAGE -->
             <div class="form-row">
                 <div class="form-group">
-                    <label>URL Logo (Opsional)</label>
-                    <input type="text" id="logoUrl" class="form-control" placeholder="https://contoh.com/logo.png">
+                    <label>
+                        URL Logo (Opsional)
+                        <a href="https://postimages.org/" target="_blank" class="help-link"><i class="fa-solid fa-upload"></i> Upload Postimage ↗</a>
+                    </label>
+                    <input type="text" id="logoUrl" class="form-control" placeholder="https://i.postimg.cc/contoh/logo.png">
                 </div>
                 <div class="form-group">
-                    <label>URL Gambar Hero (Opsional)</label>
-                    <input type="text" id="heroUrl" class="form-control" placeholder="https://contoh.com/hero.jpg">
+                    <label>
+                        URL Gambar Hero (Opsional)
+                        <a href="https://postimages.org/" target="_blank" class="help-link"><i class="fa-solid fa-upload"></i> Upload Postimage ↗</a>
+                    </label>
+                    <input type="text" id="heroUrl" class="form-control" placeholder="https://i.postimg.cc/contoh/hero.jpg">
                 </div>
             </div>
 
@@ -364,6 +440,49 @@
                 <div class="prompt-result" id="finalPrompt"></div>
             </div>
         </div>
+
+        <!-- PANDUAN LENGKAP FOOTER -->
+        <div class="tutorial-section">
+            <h2><i class="fa-solid fa-book-open"></i> Panduan Lengkap NPA Engine</h2>
+            
+            <div class="tutorial-card">
+                <h3>1. Memahami 8 Engine (Jenis Website)</h3>
+                <p>Setiap website punya "struktur bangunan" yang beda. Pilih sesuai kebutuhanmu:</p>
+                <ul>
+                    <li><span class="highlight">Landing Page:</span> Fokus jualan 1 produk. Struktur panjang ke bawah (Masalah, Solusi, Testimoni, Tombol Beli).</li>
+                    <li><span class="highlight">Toko Online:</span> Web katalog dengan deretan gambar produk, harga, dan tombol Add to Cart.</li>
+                    <li><span class="highlight">Company Profile:</span> Web resmi perusahaan. Menunjukkan kredibilitas, layanan, dan alamat kontak.</li>
+                    <li><span class="highlight">Portfolio/CV:</span> Untuk pamer karya. Cocok buat desainer, agen properti, fotografer.</li>
+                    <li><span class="highlight">Undangan Digital:</span> Khusus event/pernikahan. Dilengkapi countdown (hitung mundur) dan RSVP.</li>
+                    <li><span class="highlight">Link-in-Bio:</span> Web seukuran layar HP (mirip Linktree) berisi tombol-tombol link penting.</li>
+                    <li><span class="highlight">Menu F&B:</span> Katalog menu digital untuk Cafe/Resto lengkap dengan harga.</li>
+                    <li><span class="highlight">Halaman Jasa:</span> Mirip Landing Page tapi fokus menampilkan "Tabel Paket Harga" (Basic/Pro/VIP).</li>
+                </ul>
+            </div>
+
+            <div class="tutorial-card">
+                <h3>2. Tutorial Mengisi Gambar via Postimage</h3>
+                <p>Agar AI bisa langsung memasang logo atau gambarmu di dalam website, ikuti cara ini:</p>
+                <ol>
+                    <li>Klik tautan <a href="https://postimages.org/" target="_blank" style="color:var(--primary);">Upload Postimage ↗</a> pada form di atas.</li>
+                    <li>Pilih dan upload gambarmu dari HP/Laptop.</li>
+                    <li>Setelah selesai, cari kolom yang bernama <span class="highlight">Direct link</span> atau <span class="highlight">Tautan langsung</span>.</li>
+                    <li>Copy (Salin) link tersebut (Biasanya berakhiran <i>.png</i> atau <i>.jpg</i>).</li>
+                    <li>Paste (Tempel) link itu ke kolom <strong>URL Logo</strong> atau <strong>URL Gambar Hero</strong> di NPA Engine.</li>
+                </ol>
+            </div>
+
+            <div class="tutorial-card">
+                <h3>3. Bedanya ChatGPT vs v0.dev vs Claude 3.5</h3>
+                <p>Setelah mendapatkan teks prompt dari NPA Engine, kamu harus mem-paste teks tersebut ke AI Pembuat Kode. Mana yang terbaik?</p>
+                <ul>
+                    <li><span class="highlight">v0.dev (Sangat Disarankan):</span> AI khusus pembuat desain web (UI). Setelah kamu paste prompt, dia tidak cuma kasih kode HTML, tapi <strong>langsung memunculkan wujud websitenya di layar!</strong> Kamu bisa klik-klik dan edit langsung. Gratis dengan sistem kredit bulanan.</li>
+                    <li><span class="highlight">Claude 3.5 Sonnet:</span> AI paling pintar untuk coding saat ini. Aktifkan fitur <strong>"Artifacts"</strong> di Claude, maka setiap kamu paste prompt, dia juga akan menampilkan "Preview" websitenya langsung di sebelah kanan layar. Gratis dengan limit.</li>
+                    <li><span class="highlight">ChatGPT (Biasa):</span> Jika menggunakan ChatGPT biasa, dia hanya akan membalas dengan teks mentah (kode HTML hitam-putih). Kamu harus copy kode itu dan mem-paste-nya ke Github Pages/Notepad untuk melihat hasil websitenya.</li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 <script>
@@ -442,11 +561,23 @@
             case 'Toko Online':
                 prompt += `1. Header with Cart icon.\n2. Hero Banner promoting a sale/new arrival.\n3. Product Grid: Minimum 6 product cards (Image, Title, Price, "Add to Cart" / "${currentCTA}" button).\n4. Category filter tabs.\n5. Footer.`;
                 break;
+            case 'Company Profile':
+                prompt += `1. Professional Header with Nav links.\n2. Hero Section: Corporate tagline and image.\n3. About Us / Vision Mission.\n4. Core Services (Grid layout).\n5. Contact & Location Info (Google Maps placeholder).\n6. Footer.`;
+                break;
             case 'Portfolio':
                 prompt += `1. Header with Anchor Links (About, Skills, Projects, Contact).\n2. Hero: Professional greeting, role, and Headshot image.\n3. Skills/Tech Stack tags.\n4. Project Gallery (Grid of cards).\n5. Contact Section using ${currentCTA} method.`;
                 break;
+            case 'Undangan Digital':
+                prompt += `1. Elegant intro with couple's names.\n2. Event Countdown Timer UI.\n3. Event Details (Date, Time, Location).\n4. Digital Envelope / Gift section.\n5. RSVP Form or ${currentCTA} button.`;
+                break;
             case 'Link-in-Bio':
                 prompt += `1. Container must be max-width: 450px centered (Mobile-first look).\n2. Profile Avatar (Circle), Name, Bio.\n3. Vertical list of 5 beautifully styled action buttons (Use ${currentCTA} styling for the primary one).\n4. Row of social icons at the bottom.`;
+                break;
+            case 'Menu F&B':
+                prompt += `1. Header with Restaurant Logo.\n2. Category Tabs (Mains, Drinks, Desserts).\n3. Menu List: Item name, description, price, and food image.\n4. Floating or bottom ${currentCTA} button for ordering.`;
+                break;
+            case 'Halaman Jasa':
+                prompt += `1. Header and Hero explaining the service value.\n2. How it works (3 step process).\n3. Pricing Tables (Basic, Pro, VIP packages) with ${currentCTA} buttons.\n4. FAQ Section (Accordion style).\n5. Footer.`;
                 break;
             default:
                 prompt += `Ensure standard professional sections for a ${currentType}, including a Header, Hero/Intro, Main Content area detailing the offering, and a Footer. The primary conversion goal is ${currentCTA}.`;
@@ -473,7 +604,7 @@
         const textToCopy = document.getElementById('finalPrompt').textContent;
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('Brief meta-prompt berhasil disalin! Paste ke ChatGPT / v0 / Claude.');
+                alert('Brief meta-prompt berhasil disalin! Paste ke v0.dev / Claude / ChatGPT.');
             }).catch(() => fallbackCopy(textToCopy));
         } else {
             fallbackCopy(textToCopy);
@@ -489,7 +620,7 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            alert('Brief disalin (mode alternatif). Paste ke ChatGPT / v0 / Claude.');
+            alert('Brief disalin (mode alternatif). Paste ke v0.dev / Claude / ChatGPT.');
         } catch (err) {
             alert('Gagal menyalin otomatis. Silakan blok teks manual.');
         }
