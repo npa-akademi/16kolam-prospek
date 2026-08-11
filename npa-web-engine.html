@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPA Web Prompt Engine - Pembuat Web Otomatis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            background-color: #1e293b;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            border-top: 4px solid #f59e0b;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #f59e0b;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #f8fafc;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f172a;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.4);
+        }
+
+        .output-container {
+            display: none;
+            margin-top: 30px;
+            background-color: #0f172a;
+            border: 2px dashed #475569;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .output-header h3 {
+            margin: 0;
+            color: #f59e0b;
+        }
+
+        .btn-copy {
+            background-color: #334155;
+            color: #f8fafc;
+            border: 1px solid #475569;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-copy:hover {
+            background-color: #475569;
+        }
+
+        .prompt-text {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #cbd5e1;
+            white-space: pre-wrap;
+            border: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="header">
+        <h1>NPA Web Engine</h1>
+        <p>Hasilkan Brief Profesional untuk AI Web Builder (v0, Claude, ChatGPT)</p>
+    </div>
+
+    <div class="form-group">
+        <label>Jenis Website</label>
+        <select id="webType">
+            <option value="landing_page">Landing Page Produk / Jasa</option>
+            <option value="link_bio">Halaman Link-in-Bio (Mobile First)</option>
+            <option value="portfolio">Personal Portfolio / CV Online</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Nama Bisnis / Tokoh</label>
+        <input type="text" id="bizName" placeholder="Contoh: NPA Smart System">
+    </div>
+
+    <div class="form-group">
+        <label>Deskripsi Singkat / Penawaran Utama</label>
+        <textarea id="bizDesc" placeholder="Contoh: Sistem otomatis 16 kolam prospek untuk pebisnis jaringan tanpa harus presentasi manual."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Warna Brand Utama (Opsional)</label>
+        <input type="text" id="brandColor" placeholder="Contoh: Emas dan Navy Blue, atau Minimalis Monokrom">
+    </div>
+
+    <button class="btn-generate" id="btnGen">Racik Kode Prompt 🚀</button>
+
+    <div class="output-container" id="outputBox">
+        <div class="output-header">
+            <h3>Salin & Paste ke AI (v0.dev / Claude)</h3>
+            <button class="btn-copy" id="btnCopy">📋 Salin Teks</button>
+        </div>
+        <div class="prompt-text" id="finalPrompt"></div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('btnGen').addEventListener('click', function() {
+        const type = document.getElementById('webType').value;
+        const name = document.getElementById('bizName').value.trim();
+        const desc = document.getElementById('bizDesc').value.trim();
+        const color = document.getElementById('brandColor').value.trim() || 'Modern, clean, and high-converting colors';
+
+        if (!name || !desc) {
+            alert('Beb, nama bisnis dan deskripsinya diisi dulu ya biar AI-nya paham!');
+            return;
+        }
+
+        let prompt = `Act as an Expert Senior UI/UX Designer and Frontend Developer. I want you to generate a complete, fully functional, and visually stunning single-page website using HTML and Tailwind CSS (via CDN). Do not provide explanations, only the complete working code.\n\n`;
+
+        prompt += `**Project Details:**\n`;
+        prompt += `- Website Name: ${name}\n`;
+        prompt += `- Core Business/Offer: ${desc}\n`;
+        prompt += `- Color Scheme & Vibe: ${color}\n\n`;
+
+        if (type === 'landing_page') {
+            prompt += `**Website Type: High-Converting Landing Page**\n`;
+            prompt += `Structure requirements:\n`;
+            prompt += `1. Navigation Bar: Logo on left, CTA button on right.\n`;
+            prompt += `2. Hero Section: Attention-grabbing headline, subheadline, primary CTA button, and a placeholder for a hero image/mockup.\n`;
+            prompt += `3. Pain Points/Problems: 3 column grid highlighting user problems with relevant icons.\n`;
+            prompt += `4. The Solution: Introduce the product/service with benefits.\n`;
+            prompt += `5. Testimonials/Social Proof: 2 card designs for reviews.\n`;
+            prompt += `6. Final CTA Section: Strong push to take action.\n`;
+            prompt += `7. Footer: Copyright and simple links.\n`;
+        } 
+        else if (type === 'link_bio') {
+            prompt += `**Website Type: Link-in-Bio Page (Mobile-First Design)**\n`;
+            prompt += `Structure requirements (Center aligned, max-width 400px for mobile feel): \n`;
+            prompt += `1. Profile Section: Circular avatar placeholder, Name, and a short bio.\n`;
+            prompt += `2. Social Links: Row of small social media icons.\n`;
+            prompt += `3. Link Buttons: 4 to 5 highly styled block buttons with hover animations for various links (WhatsApp, Website, Catalog, etc).\n`;
+            prompt += `4. Footer: Simple branding text.\n`;
+        }
+        else if (type === 'portfolio') {
+            prompt += `**Website Type: Professional Portfolio**\n`;
+            prompt += `Structure requirements:\n`;
+            prompt += `1. Hero Section: Greeting, Name, Role (e.g., "Hi, I'm [Name], a Professional..."), and a professional headshot placeholder.\n`;
+            prompt += `2. About Me: Short professional summary.\n`;
+            prompt += `3. Skills: Badge-style tags for skills and expertise.\n`;
+            prompt += `4. Projects/Experience: Grid layout showing past works (Title, short description, link placeholder).\n`;
+            prompt += `5. Contact: A simple contact form UI (Name, Email, Message, Submit button) and direct email link.\n`;
+        }
+
+        prompt += `\n**Technical Requirements:**\n`;
+        prompt += `- Use semantic HTML5.\n`;
+        prompt += `- Use Tailwind CSS utility classes extensively for styling, layout (Flexbox/Grid), spacing, and responsive design (must look perfect on mobile and desktop).\n`;
+        prompt += `- Include FontAwesome CDN for modern icons.\n`;
+        prompt += `- Include Google Fonts (e.g., Poppins or Inter).\n`;
+        prompt += `- Add subtle CSS animations (like hover effects on buttons or cards) using Tailwind classes.\n`;
+
+        document.getElementById('finalPrompt').textContent = prompt;
+        document.getElementById('outputBox').style.display = 'block';
+    });
+
+    // Fallback Copy Function
+    document.getElementById('btnCopy').addEventListener('click', function() {
+        const textToCopy = document.getElementById('finalPrompt').textContent;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Prompt berhasil disalin! Silakan paste ke v0.dev atau Claude.');
+            }, function() {
+                fallbackCopyTextToClipboard(textToCopy);
+            });
+        } else {
+            fallbackCopyTextToClipboard(textToCopy);
+        }
+    });
+
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            if(successful) {
+                alert('Prompt berhasil disalin (Mode Alternatif)! Silakan paste ke v0.dev atau Claude.');
+            } else {
+                alert('Gagal menyalin. Silakan blok teks manual.');
+            }
+        } catch (err) {
+            alert('Browser tidak mendukung copy otomatis. Silakan salin manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+</body>
+</html>
