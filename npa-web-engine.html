@@ -3,46 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Web Prompt Engine - Pembuat Web Otomatis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>NPA Web Engine Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-panel: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #f59e0b;
+            --primary-hover: #d97706;
+            --border: #334155;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
-            padding: 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             display: flex;
-            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .app-container {
-            background-color: #1e293b;
-            max-width: 800px;
-            width: 100%;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            border: 1px solid #334155;
-            border-top: 4px solid #f59e0b;
+        /* SIDEBAR STYLING */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            overflow-y: auto;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
+        .brand {
+            padding: 0 25px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
         }
 
-        .header h1 {
-            color: #f59e0b;
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-            letter-spacing: -1px;
-        }
-
-        .header p {
-            color: #94a3b8;
+        .brand h2 {
             margin: 0;
-            font-size: 1.1em;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-label {
+            padding: 0 25px;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .menu-item {
+            padding: 12px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--text-main);
+        }
+
+        .menu-item.active {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        /* MAIN CONTENT STYLING */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header-title {
+            margin: 0 0 30px 0;
+            font-size: 2em;
+            font-weight: 800;
+        }
+
+        .form-section {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            max-width: 800px;
         }
 
         .form-group {
@@ -51,61 +121,99 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
             font-weight: 600;
-            color: #cbd5e1;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 0.95em;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
+        .form-control {
             width: 100%;
             padding: 15px;
-            background-color: #0f172a;
-            border: 1px solid #475569;
-            color: #f8fafc;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            font-size: 1em;
+            color: var(--text-main);
             font-family: inherit;
+            font-size: 1em;
             box-sizing: border-box;
-            transition: border-color 0.3s;
+            transition: border-color 0.2s;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+        .form-control:focus {
             outline: none;
-            border-color: #f59e0b;
+            border-color: var(--primary);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            height: 100px;
+        /* GRID SELECTORS (CTA & VISUAL STYLE) */
+        .grid-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
         }
 
+        .grid-item {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+
+        .grid-item i {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .grid-item span {
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .grid-item:hover {
+            border-color: var(--primary);
+        }
+
+        .grid-item.selected {
+            background-color: rgba(245, 158, 11, 0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* GENERATE BUTTON */
         .btn-generate {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: #0f172a;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: var(--bg-dark);
             border: none;
-            padding: 18px;
-            width: 100%;
+            padding: 18px 30px;
             border-radius: 12px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 800;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
         }
 
         .btn-generate:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.4);
         }
 
-        .output-container {
+        /* OUTPUT BOX */
+        .output-box {
             display: none;
-            margin-top: 30px;
-            background-color: #0f172a;
-            border: 2px dashed #475569;
-            border-radius: 15px;
+            background-color: var(--bg-dark);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
             padding: 25px;
+            margin-top: 30px;
         }
 
         .output-header {
@@ -117,174 +225,236 @@
 
         .output-header h3 {
             margin: 0;
-            color: #f59e0b;
+            color: var(--primary);
         }
 
-        .btn-copy {
-            background-color: #334155;
-            color: #f8fafc;
-            border: 1px solid #475569;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-
-        .btn-copy:hover {
-            background-color: #475569;
-        }
-
-        .prompt-text {
-            background-color: #1e293b;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: monospace;
+        .prompt-result {
+            font-family: Consolas, monospace;
             font-size: 0.9em;
             line-height: 1.6;
             color: #cbd5e1;
             white-space: pre-wrap;
-            border: 1px solid #334155;
+            background: #111827;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .btn-copy {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-copy:hover {
+            background-color: var(--border);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 10px; }
+            .brand { width: 100%; border-bottom: none; margin-bottom: 0; padding: 10px; }
+            .menu-label { display: none; }
+            .menu-list { display: flex; overflow-x: auto; margin: 0; padding: 0 10px; width: 100%; gap: 10px; }
+            .menu-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 10px; }
+            .menu-item.active { border-left: none; border-bottom-color: var(--primary); }
+            .main-content { padding: 20px; }
+            .grid-selector { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <div class="header">
-        <h1>NPA Web Engine</h1>
-        <p>Hasilkan Brief Profesional untuk AI Web Builder (v0, Claude, ChatGPT)</p>
-    </div>
-
-    <div class="form-group">
-        <label>Jenis Website</label>
-        <select id="webType">
-            <option value="landing_page">Landing Page Produk / Jasa</option>
-            <option value="link_bio">Halaman Link-in-Bio (Mobile First)</option>
-            <option value="portfolio">Personal Portfolio / CV Online</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Nama Bisnis / Tokoh</label>
-        <input type="text" id="bizName" placeholder="Contoh: NPA Smart System">
-    </div>
-
-    <div class="form-group">
-        <label>Deskripsi Singkat / Penawaran Utama</label>
-        <textarea id="bizDesc" placeholder="Contoh: Sistem otomatis 16 kolam prospek untuk pebisnis jaringan tanpa harus presentasi manual."></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>Warna Brand Utama (Opsional)</label>
-        <input type="text" id="brandColor" placeholder="Contoh: Emas dan Navy Blue, atau Minimalis Monokrom">
-    </div>
-
-    <button class="btn-generate" id="btnGen">Racik Kode Prompt 🚀</button>
-
-    <div class="output-container" id="outputBox">
-        <div class="output-header">
-            <h3>Salin & Paste ke AI (v0.dev / Claude)</h3>
-            <button class="btn-copy" id="btnCopy">📋 Salin Teks</button>
+    <!-- SIDEBAR MENU -->
+    <div class="sidebar">
+        <div class="brand">
+            <h2><i class="fa-solid fa-bolt"></i> NPA Engine</h2>
         </div>
-        <div class="prompt-text" id="finalPrompt"></div>
+        
+        <div class="menu-label">Buat Website</div>
+        <ul class="menu-list" id="menuList">
+            <li class="menu-item active" data-type="Landing Page"><i class="fa-solid fa-rocket"></i> Landing Page</li>
+            <li class="menu-item" data-type="Toko Online"><i class="fa-solid fa-store"></i> Toko Online / Katalog</li>
+            <li class="menu-item" data-type="Company Profile"><i class="fa-solid fa-building"></i> Company Profile</li>
+            <li class="menu-item" data-type="Portfolio"><i class="fa-solid fa-user-tie"></i> Portfolio / CV Online</li>
+            <li class="menu-item" data-type="Undangan Digital"><i class="fa-solid fa-envelope-open-text"></i> Undangan Digital</li>
+            <li class="menu-item" data-type="Link-in-Bio"><i class="fa-solid fa-link"></i> Link-in-Bio</li>
+            <li class="menu-item" data-type="Menu F&B"><i class="fa-solid fa-utensils"></i> Menu F&B</li>
+            <li class="menu-item" data-type="Halaman Jasa"><i class="fa-solid fa-handshake"></i> Halaman Jasa</li>
+        </ul>
     </div>
-</div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <h1 class="header-title">Setup: <span id="activeTitle" style="color: var(--primary);">Landing Page</span></h1>
+        
+        <div class="form-section">
+            <div class="form-group">
+                <label>Nama Bisnis / Tokoh</label>
+                <input type="text" id="bizName" class="form-control" placeholder="Contoh: NPA Smart System">
+            </div>
+
+            <div class="form-group">
+                <label>Deskripsi / Copywriting Penawaran</label>
+                <textarea id="bizDesc" class="form-control" rows="4" placeholder="Jelaskan produkmu. Contoh: Sistem prospek otomatis 16 kolam khusus untuk pebisnis jaringan."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Call-to-Action (CTA)</label>
+                <div class="grid-selector" id="ctaGrid">
+                    <div class="grid-item selected" data-cta="WhatsApp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></div>
+                    <div class="grid-item" data-cta="Form Lead"><i class="fa-solid fa-clipboard-list"></i><span>Form Lead</span></div>
+                    <div class="grid-item" data-cta="Link Bayar"><i class="fa-solid fa-credit-card"></i><span>Link Bayar</span></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Target URL / Nomor WA (Opsional)</label>
+                <input type="text" id="ctaTarget" class="form-control" placeholder="Contoh: 628123456789">
+            </div>
+
+            <div class="form-group">
+                <label>Gaya Visual & Palet</label>
+                <div class="grid-selector" id="styleGrid">
+                    <div class="grid-item selected" data-style="Minimalis & Clean, dominan putih"><i class="fa-solid fa-expand"></i><span>Minimalis</span></div>
+                    <div class="grid-item" data-style="Elegan & Mewah, aksen emas"><i class="fa-solid fa-gem"></i><span>Elegan</span></div>
+                    <div class="grid-item" data-style="Bold & Agresif, kontras tinggi"><i class="fa-solid fa-fire"></i><span>Bold</span></div>
+                    <div class="grid-item" data-style="Islami, hijau dan putih bersih"><i class="fa-solid fa-moon"></i><span>Islami</span></div>
+                    <div class="grid-item" data-style="Dark Mode, neon cyberpunk"><i class="fa-solid fa-moon"></i><span>Dark</span></div>
+                </div>
+            </div>
+
+            <button class="btn-generate" id="btnGen"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Brief Meta-Prompt</button>
+
+            <!-- OUTPUT -->
+            <div class="output-box" id="outputBox">
+                <div class="output-header">
+                    <h3>Paste di ChatGPT / v0 / Claude</h3>
+                    <button class="btn-copy" id="btnCopy"><i class="fa-regular fa-copy"></i> Salin Prompt</button>
+                </div>
+                <div class="prompt-result" id="finalPrompt"></div>
+            </div>
+        </div>
+    </div>
 
 <script>
+    // State Variables
+    let currentType = 'Landing Page';
+    let currentCTA = 'WhatsApp';
+    let currentStyle = 'Minimalis & Clean, dominan putih';
+
+    // Handle Sidebar Clicks
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            menuItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            currentType = this.getAttribute('data-type');
+            document.getElementById('activeTitle').textContent = currentType;
+        });
+    });
+
+    // Handle CTA Grid Selection
+    const ctaItems = document.querySelectorAll('#ctaGrid .grid-item');
+    ctaItems.forEach(item => {
+        item.addEventListener('click', function() {
+            ctaItems.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+            currentCTA = this.getAttribute('data-cta');
+        });
+    });
+
+    // Handle Style Grid Selection
+    const styleItems = document.querySelectorAll('#styleGrid .grid-item');
+    styleItems.forEach(item => {
+        item.addEventListener('click', function() {
+            styleItems.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+            currentStyle = this.getAttribute('data-style');
+        });
+    });
+
+    // Generate Prompt Logic
     document.getElementById('btnGen').addEventListener('click', function() {
-        const type = document.getElementById('webType').value;
         const name = document.getElementById('bizName').value.trim();
         const desc = document.getElementById('bizDesc').value.trim();
-        const color = document.getElementById('brandColor').value.trim() || 'Modern, clean, and high-converting colors';
+        const target = document.getElementById('ctaTarget').value.trim() || '#';
 
         if (!name || !desc) {
-            alert('Beb, nama bisnis dan deskripsinya diisi dulu ya biar AI-nya paham!');
+            alert('Mohon lengkapi Nama Bisnis dan Deskripsi terlebih dahulu.');
             return;
         }
 
-        let prompt = `Act as an Expert Senior UI/UX Designer and Frontend Developer. I want you to generate a complete, fully functional, and visually stunning single-page website using HTML and Tailwind CSS (via CDN). Do not provide explanations, only the complete working code.\n\n`;
+        let prompt = `Act as an Expert UI/UX Designer & Senior Frontend Engineer. I need a complete, fully functional single-page HTML file utilizing Tailwind CSS (via CDN). No markdown explanations, output ONLY the raw code.\n\n`;
 
-        prompt += `**Project Details:**\n`;
-        prompt += `- Website Name: ${name}\n`;
-        prompt += `- Core Business/Offer: ${desc}\n`;
-        prompt += `- Color Scheme & Vibe: ${color}\n\n`;
+        prompt += `### CORE DETAILS:\n`;
+        prompt += `- Type: ${currentType}\n`;
+        prompt += `- Brand Name: ${name}\n`;
+        prompt += `- Business Context: ${desc}\n`;
+        prompt += `- Visual Style: ${currentStyle}\n`;
+        prompt += `- Primary CTA Action: ${currentCTA} (Link to: ${target})\n\n`;
 
-        if (type === 'landing_page') {
-            prompt += `**Website Type: High-Converting Landing Page**\n`;
-            prompt += `Structure requirements:\n`;
-            prompt += `1. Navigation Bar: Logo on left, CTA button on right.\n`;
-            prompt += `2. Hero Section: Attention-grabbing headline, subheadline, primary CTA button, and a placeholder for a hero image/mockup.\n`;
-            prompt += `3. Pain Points/Problems: 3 column grid highlighting user problems with relevant icons.\n`;
-            prompt += `4. The Solution: Introduce the product/service with benefits.\n`;
-            prompt += `5. Testimonials/Social Proof: 2 card designs for reviews.\n`;
-            prompt += `6. Final CTA Section: Strong push to take action.\n`;
-            prompt += `7. Footer: Copyright and simple links.\n`;
-        } 
-        else if (type === 'link_bio') {
-            prompt += `**Website Type: Link-in-Bio Page (Mobile-First Design)**\n`;
-            prompt += `Structure requirements (Center aligned, max-width 400px for mobile feel): \n`;
-            prompt += `1. Profile Section: Circular avatar placeholder, Name, and a short bio.\n`;
-            prompt += `2. Social Links: Row of small social media icons.\n`;
-            prompt += `3. Link Buttons: 4 to 5 highly styled block buttons with hover animations for various links (WhatsApp, Website, Catalog, etc).\n`;
-            prompt += `4. Footer: Simple branding text.\n`;
-        }
-        else if (type === 'portfolio') {
-            prompt += `**Website Type: Professional Portfolio**\n`;
-            prompt += `Structure requirements:\n`;
-            prompt += `1. Hero Section: Greeting, Name, Role (e.g., "Hi, I'm [Name], a Professional..."), and a professional headshot placeholder.\n`;
-            prompt += `2. About Me: Short professional summary.\n`;
-            prompt += `3. Skills: Badge-style tags for skills and expertise.\n`;
-            prompt += `4. Projects/Experience: Grid layout showing past works (Title, short description, link placeholder).\n`;
-            prompt += `5. Contact: A simple contact form UI (Name, Email, Message, Submit button) and direct email link.\n`;
+        // Logic based on Type
+        prompt += `### STRUCTURE REQUIREMENTS:\n`;
+        switch(currentType) {
+            case 'Landing Page':
+                prompt += `1. Sticky Header with Logo and CTA.\n2. Hero Section: High impact headline, subheadline, ${currentCTA} button, and image placeholder.\n3. Benefits Grid (3 columns).\n4. Testimonials Section.\n5. Final Call to Action.\n6. Footer.`;
+                break;
+            case 'Toko Online':
+                prompt += `1. Header with Cart icon.\n2. Hero Banner promoting a sale/new arrival.\n3. Product Grid: Minimum 6 product cards (Image placeholder, Title, Price, "Add to Cart" / "${currentCTA}" button).\n4. Category filter tabs.\n5. Footer.`;
+                break;
+            case 'Portfolio':
+                prompt += `1. Header with Anchor Links (About, Skills, Projects, Contact).\n2. Hero: Professional greeting, role, and Headshot placeholder.\n3. Skills/Tech Stack tags.\n4. Project Gallery (Grid of cards).\n5. Contact Section using ${currentCTA} method.`;
+                break;
+            case 'Link-in-Bio':
+                prompt += `1. Container must be max-width: 450px centered (Mobile-first look).\n2. Profile Avatar (Circle), Name, Bio.\n3. Vertical list of 5 beautifully styled action buttons (Use ${currentCTA} styling for the primary one).\n4. Row of social icons at the bottom.`;
+                break;
+            default:
+                prompt += `Ensure standard professional sections for a ${currentType}, including a Header, Hero/Intro, Main Content area detailing the offering, and a Footer. The primary conversion goal is ${currentCTA}.`;
         }
 
-        prompt += `\n**Technical Requirements:**\n`;
-        prompt += `- Use semantic HTML5.\n`;
-        prompt += `- Use Tailwind CSS utility classes extensively for styling, layout (Flexbox/Grid), spacing, and responsive design (must look perfect on mobile and desktop).\n`;
-        prompt += `- Include FontAwesome CDN for modern icons.\n`;
-        prompt += `- Include Google Fonts (e.g., Poppins or Inter).\n`;
-        prompt += `- Add subtle CSS animations (like hover effects on buttons or cards) using Tailwind classes.\n`;
+        prompt += `\n\n### TECHNICAL REQUIREMENTS:\n`;
+        prompt += `- Must use Tailwind CSS for all styling, layout (Flex/Grid), and responsiveness.\n`;
+        prompt += `- Include FontAwesome CDN for modern iconography.\n`;
+        prompt += `- Include Google Fonts matching the chosen visual style.\n`;
+        prompt += `- Add hover states and smooth transitions for interactive elements.\n`;
 
         document.getElementById('finalPrompt').textContent = prompt;
         document.getElementById('outputBox').style.display = 'block';
+        
+        // Scroll to output
+        document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth' });
     });
 
     // Fallback Copy Function
     document.getElementById('btnCopy').addEventListener('click', function() {
         const textToCopy = document.getElementById('finalPrompt').textContent;
-
         if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Prompt berhasil disalin! Silakan paste ke v0.dev atau Claude.');
-            }, function() {
-                fallbackCopyTextToClipboard(textToCopy);
-            });
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Brief meta-prompt berhasil disalin! Paste ke ChatGPT / v0.');
+            }).catch(() => fallbackCopy(textToCopy));
         } else {
-            fallbackCopyTextToClipboard(textToCopy);
+            fallbackCopy(textToCopy);
         }
     });
 
-    function fallbackCopyTextToClipboard(text) {
-        var textArea = document.createElement("textarea");
+    function fallbackCopy(text) {
+        let textArea = document.createElement("textarea");
         textArea.value = text;
-        textArea.style.top = "0";
-        textArea.style.left = "0";
         textArea.style.position = "fixed";
         textArea.style.opacity = "0";
         document.body.appendChild(textArea);
-        textArea.focus();
         textArea.select();
-
         try {
-            var successful = document.execCommand('copy');
-            if(successful) {
-                alert('Prompt berhasil disalin (Mode Alternatif)! Silakan paste ke v0.dev atau Claude.');
-            } else {
-                alert('Gagal menyalin. Silakan blok teks manual.');
-            }
+            document.execCommand('copy');
+            alert('Brief disalin (mode alternatif). Paste ke ChatGPT / v0.');
         } catch (err) {
-            alert('Browser tidak mendukung copy otomatis. Silakan salin manual.');
+            alert('Gagal menyalin otomatis. Silakan blok teks manual.');
         }
         document.body.removeChild(textArea);
     }
