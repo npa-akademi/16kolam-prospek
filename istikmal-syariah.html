@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3IReborn Istikmal Syariah - Bisnis Berkah</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- 1. Sticky Header -->
+    <header class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="block">
+                        <img class="h-10 md:h-12 w-auto object-contain" src="https://i.postimg.cc/yNpfFjyN/logo-istikmal.png" alt="3IReborn Istikmal Syariah">
+                    </a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="flex items-center">
+                    <a href="https://wa.me/6285218453131?text=Assalamu'alaikum,%20saya%20ingin%20info%20lebih%20lanjut%20tentang%203IReborn%20Istikmal%20Syariah" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent rounded-full shadow-sm text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+                        <i class="fab fa-whatsapp text-lg mr-2"></i>
+                        Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-100 opacity-50 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-200 opacity-40 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-brand-100 text-brand-800 text-sm font-semibold mb-6 shadow-sm border border-brand-200">
+                        <i class="fas fa-star text-yellow-500 mr-2"></i> Pilihan Utama Para Leader
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6">
+                        Bisnis Berkah <br>
+                        <span class="text-brand-600 font-serif italic">Mengantarkan Sampai Ke Mekah</span>
+                    </h1>
+                    <p class="mt-4 text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Bergabunglah dengan 3IReborn Istikmal Syariah. Raih kesuksesan finansial sekaligus kedamaian batin dengan sistem yang 100% sesuai syariat.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="https://wa.me/6285218453131?text=Assalamu'alaikum,%20saya%20siap%20beralih%20ke%203IReborn" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Konsultasi via WhatsApp
+                        </a>
+                        <a href="#alasan" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-700 bg-white border-2 border-brand-200 hover:border-brand-500 hover:bg-brand-50 rounded-full transition-all duration-300">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative mt-10 lg:mt-0">
+                    <div class="absolute inset-0 bg-brand-500 rounded-[3rem] rotate-3 opacity-10 transform scale-105"></div>
+                    <img src="https://i.postimg.cc/KvtsVtR7/umroh.png" alt="Ilustrasi Perjalanan Umroh Bisnis Berkah" class="relative w-full max-w-lg mx-auto lg:max-w-full drop-shadow-2xl rounded-[2rem] object-cover border-4 border-white">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Benefits Grid (5 Alasan) -->
+    <section id="alasan" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">5 Alasan Leader Beralih ke <br><span class="text-brand-600">3IReborn Istikmal Syariah</span></h2>
+                <div class="h-1 w-24 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-gray-600">Kami menghadirkan ekosistem bisnis yang tidak hanya fokus pada dunia, namun juga memprioritaskan akhirat.</p>
+            </div>
+
+            <!-- Grid Layout (3 Columns for desktop, nicely fitting 5 items) -->
+            <div class="flex flex-wrap justify-center gap-8">
+                
+                <!-- Alasan 1 -->
+                <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% Sistem Syariah</h3>
+                    <p class="text-gray-600">Terbebas dari riba, gharar, dan maysir. Sistem bagi hasil transparan yang diawasi langsung oleh Dewan Pengawas Syariah.</p>
+                </div>
+
+                <!-- Alasan 2 -->
+                <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Reward Umroh & Haji</h3>
+                    <p class="text-gray-600">Program reward prioritas berupa perjalanan ibadah ke Tanah Suci, mewujudkan impian setiap muslim untuk beribadah.</p>
+                </div>
+
+                <!-- Alasan 3 -->
+                <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Potensi Income Tanpa Batas</h3>
+                    <p class="text-gray-600">Marketing plan yang adil dan menguntungkan semua pihak, memberikan kebebasan finansial bagi Anda dan keluarga.</p>
+                </div>
+
+                <!-- Alasan 4 -->
+                <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Produk Halal Premium</h3>
+                    <p class="text-gray-600">Beragam produk berkualitas tinggi yang bersertifikasi halal, bermanfaat nyata, dan mudah diterima oleh masyarakat luas.</p>
+                </div>
+
+                <!-- Alasan 5 -->
+                <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Support System Solid</h3>
+                    <p class="text-gray-600">Dukungan penuh dari manajemen dan komunitas positif yang siap membimbing Anda dari nol hingga menjadi leader sukses.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="py-20 bg-brand-50 relative overflow-hidden">
+        <div class="absolute right-0 top-0 text-brand-100 opacity-50 text-[20rem] -mt-24 -mr-12 pointer-events-none select-none">
+            <i class="fas fa-quote-right"></i>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Kisah Sukses Para Leader</h2>
+                <div class="h-1 w-24 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Mereka telah membuktikan bahwa keberkahan dan kesuksesan finansial dapat diraih secara bersamaan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex text-yellow-400 mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Keputusan terbaik yang pernah saya buat. Hati tenang karena sistemnya syariah, dan alhamdulillah tahun ini bisa memberangkatkan umroh keluarga berkat reward dari 3IReborn."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold text-xl mr-4 overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Bpk. Ahmad Fauzi</h4>
+                            <span class="text-sm text-brand-600">Emerald Leader</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative transform md:-translate-y-4 border-2 border-brand-500">
+                    <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">Top Leader</div>
+                    <div class="flex text-yellow-400 mb-4 text-sm mt-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Saya sudah puluhan tahun di bisnis jaringan, namun baru di 3IReborn Istikmal Syariah saya menemukan esensi bisnis yang sebenarnya. Bukan sekadar mengejar bonus, tapi juga Ridho Allah."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold text-xl mr-4 overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?img=32" alt="Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Ibu Siti Khadijah</h4>
+                            <span class="text-sm text-brand-600">Diamond Leader</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex text-yellow-400 mb-4 text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Marketing plannya sangat masuk akal, transparan, dan adil. Produknya berkualitas sehingga mudah dipasarkan. Komunitasnya sangat mendukung pertumbuhan spiritual kita."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold text-xl mr-4 overflow-hidden">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Ust. Rahman</h4>
+                            <span class="text-sm text-brand-600">Sapphire Leader</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Final Call to Action -->
+    <section class="py-24 bg-brand-800 relative overflow-hidden">
+        <!-- Abstract Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="islamic-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="30" cy="30" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#islamic-pattern)" />
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Jangan Tunda Perjalanan <br> Berkah Anda!
+            </h2>
+            <p class="text-brand-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                Ribuan leader telah membuktikan sukses bersama kami. Ambil langkah pertama Anda hari ini menuju kebebasan finansial dan spiritual.
+            </p>
+            <a href="https://wa.me/6285218453131?text=Bismillah,%20saya%20siap%20bergabung%20dan%20dibimbing%20di%203IReborn%20Istikmal%20Syariah" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-brand-800 bg-white hover:bg-gray-100 rounded-full shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105">
+                <i class="fab fa-whatsapp text-2xl mr-3 text-green-500"></i>
+                Mulai Sekarang - Hubungi WhatsApp
+            </a>
+            <p class="mt-6 text-sm text-brand-200">
+                Respon Cepat | Konsultasi Gratis | Rahasia Terjamin
+            </p>
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <img src="https://i.postimg.cc/yNpfFjyN/logo-istikmal.png" alt="3IReborn Istikmal Syariah" class="h-10 mb-4 mx-auto md:mx-0 filter brightness-0 invert opacity-75">
+                    <p class="text-sm max-w-md">
+                        3IReborn Istikmal Syariah.<br>
+                        Bisnis Berkah Mengantarkan Sampai Ke Mekah.
+                    </p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">
+                        <span class="sr-only">Facebook</span>
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">
+                        <span class="sr-only">Instagram</span>
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">
+                        <span class="sr-only">YouTube</span>
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">
+                    &copy; 2026 3IReborn Istikmal Syariah. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-4 text-sm">
+                    <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
