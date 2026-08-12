@@ -115,6 +115,7 @@
             color: var(--text-muted);
             margin-bottom: 30px;
             font-size: 1em;
+            line-height: 1.5;
         }
 
         .form-section {
@@ -241,17 +242,69 @@
             opacity: 0.9;
         }
 
+        /* TUTORIAL SECTION */
+        .tutorial-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            max-width: 800px;
+        }
+
+        .tutorial-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .tutorial-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .tutorial-card h3 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-card p, .tutorial-card li {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .tutorial-card ul, .tutorial-card ol {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 10px; }
+            .sidebar { width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 10px; border-right: none; border-bottom: 1px solid var(--border); }
             .brand { width: 100%; border-bottom: none; margin-bottom: 0; padding: 10px; }
             .menu-category { margin-bottom: 0; width: 100%; }
             .menu-label { display: none; }
-            .menu-list { display: flex; overflow-x: auto; margin: 0; padding: 0 10px; width: 100%; gap: 10px; }
-            .menu-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 10px; font-size: 0.8em; }
+            .menu-list { display: flex; overflow-x: auto; margin: 0; padding: 0 10px; width: 100%; gap: 5px; scrollbar-width: none; } /* Hide scrollbar for cleaner look */
+            .menu-list::-webkit-scrollbar { display: none; }
+            .menu-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 12px 15px; font-size: 0.85em; }
             .menu-item.active { border-left: none; border-bottom-color: var(--primary); }
             .main-content { padding: 20px; }
+            .header-title { font-size: 1.8em; }
         }
     </style>
 </head>
@@ -321,6 +374,36 @@
                 <div class="prompt-result" id="finalPrompt"></div>
             </div>
         </div>
+
+        <!-- PANDUAN LENGKAP FOOTER -->
+        <div class="tutorial-section">
+            <h2><i class="fa-solid fa-book-open"></i> Panduan NPA Marketing Engine</h2>
+            
+            <div class="tutorial-card">
+                <h3>🚀 Cara Penggunaan Dasar</h3>
+                <p>Aplikasi ini bukanlah AI penjawab chat, melainkan <strong class="highlight">"Pabrik Prompt"</strong> yang meracik perintah super detail agar AI (seperti ChatGPT) bisa bekerja maksimal untuk bisnismu.</p>
+                <ol>
+                    <li><strong>Pilih Kebutuhan:</strong> Geser menu di atas/samping untuk memilih alat yang dibutuhkan (Contoh: Bikin Caption atau Riset Pasar).</li>
+                    <li><strong>Isi 3 Kotak Ajaib:</strong> Masukkan Nama Produk, Deskripsi ringkas dengan bahasa sehari-hari, dan siapa Target Marketnya.</li>
+                    <li><strong>Generate & Salin:</strong> Klik tombol Generate, lalu klik tombol "Salin Teks" pada hasil bahasa Inggris yang muncul.</li>
+                    <li><strong>Eksekusi:</strong> Buka ChatGPT atau Claude, paste (tempel) teks tersebut, dan kirim. Nikmati hasilnya!</li>
+                </ol>
+            </div>
+
+            <div class="tutorial-card">
+                <h3>💡 Penjelasan 7 Fitur Utama</h3>
+                <ul>
+                    <li><strong class="highlight">5 Level Riset Pasar:</strong> Gunakan sebelum jualan untuk membongkar ketakutan dan impian terdalam prospekmu.</li>
+                    <li><strong class="highlight">Analisa Kompetitor:</strong> Mencari tahu kelemahan pesaing agar kamu bisa tampil beda dan menang.</li>
+                    <li><strong class="highlight">Kalender Konten 30 Hari:</strong> Membuat tabel jadwal postingan sebulan penuh, lengkap dengan ide dan Call to Action.</li>
+                    <li><strong class="highlight">Hook & Script Video Vertikal:</strong> Membuat naskah video TikTok/Reels/FB Pro dengan kata-kata pembuka (hook) yang bikin orang berhenti men-scroll.</li>
+                    <li><strong class="highlight">Caption & Hashtag Auto:</strong> Merangkai kata-kata emosional untuk caption FB/IG lengkap dengan hashtag viral.</li>
+                    <li><strong class="highlight">Skrip Follow-up WA:</strong> Membuat urutan chat tektokan untuk mem-follow up prospek tanpa terkesan memaksa.</li>
+                    <li><strong class="highlight">Meta Ads Campaign:</strong> Menyusun struktur iklan (Facebook/IG Ads) dari headline sampai copywriting yang aman dari blokir.</li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 <script>
