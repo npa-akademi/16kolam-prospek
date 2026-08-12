@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050816">
+  <meta name="description" content="3IReborn — Bukan masalah gajimu kurang besar, tapi gajimu tidak tahu arah tujuan.">
+  <title>3IReborn | Arahkan Gajimu, Bangun Masa Depan</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif']
+          },
+          boxShadow: {
+            neon: '0 0 25px rgba(0,255,200,.22), 0 0 60px rgba(0,153,255,.10)',
+            neonPink: '0 0 25px rgba(255,0,153,.25), 0 0 60px rgba(168,85,247,.12)'
+          },
+          animation: {
+            float: 'float 5s ease-in-out infinite',
+            pulseGlow: 'pulseGlow 2.5s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' }
+            },
+            pulseGlow: {
+              '0%,100%': { opacity: '.45', transform: 'scale(1)' },
+              '50%': { opacity: '.9', transform: 'scale(1.08)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(0,255,200,.08), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(0,140,255,.10), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(180,0,255,.08), transparent 35%),
+        #050816;
+      color: #f8fafc;
+    }
+
+    .cyber-grid {
+      background-image:
+        linear-gradient(rgba(0,255,200,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,200,.035) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .glass {
+      background: rgba(9,15,32,.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(148,163,184,.12);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg,#67ffe2,#42bfff,#c084fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .neon-border {
+      position: relative;
+    }
+
+    .neon-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(
+        135deg,
+        rgba(0,255,200,.7),
+        rgba(0,153,255,.25),
+        rgba(192,132,252,.7)
+      );
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .hero-image {
+      filter:
+        drop-shadow(0 0 25px rgba(0,255,200,.18))
+        drop-shadow(0 20px 50px rgba(0,0,0,.45));
+    }
+
+    .section-glow {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 9999px;
+      filter: blur(90px);
+      opacity: .18;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden">
+
+  <!-- ================= HEADER ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <nav class="glass rounded-2xl px-4 sm:px-6 py-3 shadow-neon flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <img
+            src="https://i.postimg.cc/L6S6bXyL/logo.png"
+            alt="Logo 3IReborn"
+            class="h-10 sm:h-12 w-auto object-contain transition duration-300 group-hover:scale-105"
+          >
+        </a>
+
+        <!-- WHATSAPP HEADER -->
+        <a
+          href="https://wa.me/6285218453131?text=Halo%203IReborn,%20saya%20ingin%20tahu%20lebih%20lanjut."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-4 sm:px-6 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg shadow-emerald-500/20 transition duration-300 hover:scale-105 hover:shadow-emerald-400/40"
+        >
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">WhatsApp</span>
+          <span class="sm:hidden">Chat</span>
+        </a>
+
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="home">
+
+    <!-- ================= HERO ================= -->
+    <section class="relative cyber-grid min-h-screen pt-32 pb-16 sm:pt-40 sm:pb-24 flex items-center overflow-hidden">
+
+      <div class="section-glow bg-emerald-400 left-[-100px] top-[25%]"></div>
+      <div class="section-glow bg-purple-500 right-[-100px] top-[35%]"></div>
+
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"></div>
+        <div class="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          <!-- HERO TEXT -->
+          <div class="text-center lg:text-left">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-emerald-400/20 mb-6">
+
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+
+              <span class="text-xs sm:text-sm font-semibold tracking-wide text-emerald-300">
+                SAATNYA MENGUBAH ARAH
+              </span>
+
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight">
+
+              Bukan Masalah
+
+              <span class="gradient-text block">
+                Gajimu Kurang Besar.
+              </span>
+
+            </h1>
+
+            <p class="mt-6 text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
+
+              Tapi...
+
+              <span class="text-emerald-300">
+                Gajimu Tidak Tahu
+              </span>
+
+              <span class="text-cyan-300">
+                Arah Tujuan.
+              </span>
+
+            </p>
+
+            <p class="mt-6 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-slate-400 leading-relaxed">
+
+              Berapa pun penghasilanmu, tanpa strategi yang tepat uang hanya
+              datang dan pergi. Saatnya mengarahkan penghasilan untuk membangun
+              masa depan yang lebih terencana bersama
+
+              <strong class="text-white">
+                3IReborn
+              </strong>.
+
+            </p>
+
+            <!-- CTA -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+
+              <a
+                href="https://wa.me/6285218453131?text=Halo%203IReborn,%20saya%20ingin%20belajar%20cara%20mengatur%20arah%20penghasilan%20saya."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 px-7 py-4 font-black text-slate-950 shadow-neon transition duration-300 hover:scale-105"
+              >
+
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+
+                <span>
+                  CHAT VIA WHATSAPP
+                </span>
+
+                <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+
+              </a>
+
+
+              <a
+                href="#manfaat"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-700 bg-slate-900/60 px-7 py-4 font-bold text-slate-200 transition duration-300 hover:scale-105 hover:border-cyan-400/40 hover:text-cyan-300"
+              >
+
+                Pelajari Lebih Lanjut
+
+                <i class="fa-solid fa-chevron-down text-xs"></i>
+
+              </a>
+
+            </div>
+
+
+            <!-- TRUST -->
+            <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 text-xs sm:text-sm text-slate-500">
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                Strategi Terarah
+              </span>
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                Mudah Dipahami
+              </span>
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                Konsultasi WhatsApp
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- HERO IMAGE -->
+          <div class="relative flex justify-center lg:justify-end animate-float">
+
+            <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-cyan-400/10 blur-3xl animate-pulseGlow"></div>
+
+            <div class="relative w-full max-w-xl glass neon-border rounded-3xl p-3 sm:p-5 shadow-neon">
+
+              <div class="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full bg-black/60 border border-white/10 px-3 py-1.5 backdrop-blur-md">
+
+                <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"></span>
+
+                <span class="font-mono text-[10px] sm:text-xs text-emerald-300 tracking-wider">
+                  3IREBORN.SYSTEM
+                </span>
+
+              </div>
+
+
+              <!-- ORIGINAL IMAGE / NO CROP -->
+              <div class="overflow-hidden rounded-2xl bg-slate-950/70">
+
+                <img
+                  src="https://i.postimg.cc/YCwLS5WT/file-00000000d1f082079fa6dffa9f722f56.png"
+                  alt="3IReborn"
+                  class="hero-image block w-full h-auto object-contain"
+                  loading="eager"
+                >
+
+              </div>
+
+
+              <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center pointer-events-none">
+
+                <span class="font-mono text-[9px] sm:text-xs text-cyan-300/70">
+                  DIRECTION // FUTURE
+                </span>
+
+                <span class="font-mono text-[9px] sm:text-xs text-purple-300/70">
+                  01 / 03
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROBLEM ================= -->
+    <section class="relative py-20 sm:py-28 border-t border-white/5">
+
+      <div class="section-glow bg-purple-500 right-[-120px] top-1/4"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+
+        <p class="font-display text-xs sm:text-sm tracking-[.25em] text-cyan-400 font-bold">
+          THE REAL PROBLEM
+        </p>
+
+        <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black">
+
+          Penghasilan Besar Belum Tentu
+
+          <span class="gradient-text">
+            Mengubah Masa Depan.
+          </span>
+
+        </h2>
+
+        <p class="mt-6 text-slate-400 max-w-3xl mx-auto leading-relaxed">
+
+          Banyak orang bekerja keras setiap hari.
+          Gaji masuk, kebutuhan dibayar, cicilan berjalan...
+          lalu bulan berikutnya kembali dari nol.
+
+          <strong class="text-white">
+            Masalahnya bukan selalu pada jumlah penghasilan.
+            Masalahnya adalah tidak memiliki arah.
+          </strong>
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= BENEFITS ================= -->
+    <section
+      id="manfaat"
+      class="relative py-20 sm:py-28 cyber-grid border-y border-white/5"
+    >
+
+      <div class="section-glow bg-emerald-400 left-[-150px] top-1/3"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+
+          <p class="font-display text-xs sm:text-sm tracking-[.25em] text-emerald-400 font-bold">
+            3IREBORN
+          </p>
+
+          <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black">
+
+            Arahkan Uangmu.
+
+            <span class="gradient-text">
+              Bangun Masa Depanmu.
+            </span>
+
+          </h2>
+
+          <p class="mt-5 text-slate-400">
+            Fokus bukan sekadar mencari penghasilan lebih besar,
+            tetapi bagaimana penghasilan yang ada bisa memiliki tujuan.
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+
+          <!-- CARD 1 -->
+          <article class="group relative glass neon-border rounded-3xl p-7 sm:p-8 transition duration-500 hover:-translate-y-2 hover:shadow-neon">
+
+            <div class="w-14 h-14 rounded-2xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center mb-6">
+
+              <i class="fa-solid fa-compass text-2xl text-emerald-300"></i>
+
+            </div>
+
+            <div class="font-display text-xs text-emerald-400 tracking-widest mb-3">
+              01 // DIRECTION
+            </div>
+
+            <h3 class="text-2xl font-black text-white">
+              Punya Arah
+            </h3>
+
+            <p class="mt-4 text-slate-400 leading-relaxed">
+              Ubah penghasilan yang selama ini hanya lewat menjadi bagian
+              dari rencana finansial yang lebih terarah.
+            </p>
+
+            <div class="mt-6 text-emerald-300 text-sm font-bold flex items-center gap-2">
+
+              Arahkan
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+          </article>
+
+
+          <!-- CARD 2 -->
+          <article class="group relative glass neon-border rounded-3xl p-7 sm:p-8 transition duration-500 hover:-translate-y-2 hover:shadow-neon">
+
+            <div class="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mb-6">
+
+              <i class="fa-solid fa-chart-line text-2xl text-cyan-300"></i>
+
+            </div>
+
+            <div class="font-display text-xs text-cyan-400 tracking-widest mb-3">
+              02 // GROWTH
+            </div>
+
+            <h3 class="text-2xl font-black text-white">
+              Bertumbuh
+            </h3>
+
+            <p class="mt-4 text-slate-400 leading-relaxed">
+              Bangun kebiasaan finansial yang tidak hanya bergantung
+              pada satu sumber penghasilan.
+            </p>
+
+            <div class="mt-6 text-cyan-300 text-sm font-bold flex items-center gap-2">
+
+              Bertumbuh
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+          </article>
+
+
+          <!-- CARD 3 -->
+          <article class="group relative glass neon-border rounded-3xl p-7 sm:p-8 transition duration-500 hover:-translate-y-2 hover:shadow-neonPink">
+
+            <div class="w-14 h-14 rounded-2xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center mb-6">
+
+              <i class="fa-solid fa-rocket text-2xl text-purple-300"></i>
+
+            </div>
+
+            <div class="font-display text-xs text-purple-400 tracking-widest mb-3">
+              03 // FUTURE
+            </div>
+
+            <h3 class="text-2xl font-black text-white">
+              Siapkan Masa Depan
+            </h3>
+
+            <p class="mt-4 text-slate-400 leading-relaxed">
+              Jadikan setiap keputusan finansial hari ini sebagai langkah
+              menuju tujuan yang ingin kamu capai.
+            </p>
+
+            <div class="mt-6 text-purple-300 text-sm font-bold flex items-center gap-2">
+
+              Mulai Bergerak
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="relative py-20 sm:py-28">
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+        <div class="text-center mb-12">
+
+          <p class="font-display text-xs tracking-[.25em] text-cyan-400 font-bold">
+            SIMPLE FLOW
+          </p>
+
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black">
+            Mulai dari Langkah Kecil.
+          </h2>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-5">
+
+
+          <div class="glass rounded-2xl p-6 border border-white/5 hover:-translate-y-1 transition duration-300">
+
+            <span class="font-display text-4xl font-black text-emerald-400/30">
+              01
+            </span>
+
+            <h3 class="mt-4 font-black text-xl">
+              Kenali Tujuan
+            </h3>
+
+            <p class="mt-2 text-sm text-slate-400">
+              Tentukan apa yang sebenarnya ingin kamu capai.
+            </p>
+
+          </div>
+
+
+          <div class="glass rounded-2xl p-6 border border-white/5 hover:-translate-y-1 transition duration-300">
+
+            <span class="font-display text-4xl font-black text-cyan-400/30">
+              02
+            </span>
+
+            <h3 class="mt-4 font-black text-xl">
+              Susun Strategi
+            </h3>
+
+            <p class="mt-2 text-sm text-slate-400">
+              Pelajari cara mengarahkan penghasilan dengan lebih terencana.
+            </p>
+
+          </div>
+
+
+          <div class="glass rounded-2xl p-6 border border-white/5 hover:-translate-y-1 transition duration-300">
+
+            <span class="font-display text-4xl font-black text-purple-400/30">
+              03
+            </span>
+
+            <h3 class="mt-4 font-black text-xl">
+              Mulai Bergerak
+            </h3>
+
+            <p class="mt-2 text-sm text-slate-400">
+              Ambil langkah pertama dan evaluasi perjalananmu secara berkala.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= TESTIMONIAL ================= -->
+    <section class="relative py-20 sm:py-28 bg-slate-950/40 border-y border-white/5">
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12">
+
+          <p class="font-display text-xs tracking-[.25em] text-emerald-400 font-bold">
+            COMMUNITY VOICE
+          </p>
+
+          <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black">
+
+            Bukan Sekadar
+
+            <span class="gradient-text">
+              Bicara.
+            </span>
+
+          </h2>
+
+          <p class="mt-4 text-slate-400">
+            Yang penting adalah mulai memahami dan mengambil tindakan.
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+
+          <div class="glass rounded-3xl p-7 border border-white/5 hover:border-emerald-400/20 transition duration-300 hover:-translate-y-1">
+
+            <div class="flex gap-1 text-emerald-400 text-sm">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+
+              “Dulu saya fokus mengejar gaji.
+              Sekarang saya mulai belajar memberikan tujuan
+              untuk setiap uang yang saya hasilkan.”
+
+            </p>
+
+            <div class="mt-6 flex items-center gap-3">
+
+              <div class="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-slate-950 font-black">
+                A
+              </div>
+
+              <div>
+                <p class="font-bold text-white">
+                  Andi
+                </p>
+
+                <p class="text-xs text-slate-500">
+                  Member 3IReborn
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="glass rounded-3xl p-7 border border-white/5 hover:border-cyan-400/20 transition duration-300 hover:-translate-y-1">
+
+            <div class="flex gap-1 text-cyan-400 text-sm">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+
+              “Yang saya suka bukan sekadar soal uang,
+              tapi mulai punya sudut pandang baru tentang
+              bagaimana merencanakan masa depan.”
+
+            </p>
+
+            <div class="mt-6 flex items-center gap-3">
+
+              <div class="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-slate-950 font-black">
+                R
+              </div>
+
+              <div>
+                <p class="font-bold text-white">
+                  Rina
+                </p>
+
+                <p class="text-xs text-slate-500">
+                  Member 3IReborn
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="glass rounded-3xl p-7 border border-white/5 hover:border-purple-400/20 transition duration-300 hover:-translate-y-1">
+
+            <div class="flex gap-1 text-purple-400 text-sm">
+
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+
+            </div>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+
+              “Saya sadar ternyata bukan hanya penghasilan
+              yang harus ditingkatkan.
+              Cara mengelolanya juga harus berubah.”
+
+            </p>
+
+            <div class="mt-6 flex items-center gap-3">
+
+              <div class="h-10 w-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-slate-950 font-black">
+                D
+              </div>
+
+              <div>
+                <p class="font-bold text-white">
+                  Dedi
+                </p>
+
+                <p class="text-xs text-slate-500">
+                  Member 3IReborn
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FINAL CTA ================= -->
+    <section id="cta" class="relative py-24 sm:py-32 overflow-hidden">
+
+      <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10"></div>
+
+      <div class="section-glow bg-cyan-400 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+
+        <div class="glass neon-border rounded-[2rem] p-8 sm:p-12 lg:p-16 shadow-neon">
+
+          <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-400/10 border border-emerald-400/20 mb-7">
+
+            <i class="fa-solid fa-location-arrow text-2xl text-emerald-300"></i>
+
+          </div>
+
+
+          <p class="font-display text-xs sm:text-sm tracking-[.3em] text-emerald-400 font-bold">
+            YOUR NEXT MOVE
+          </p>
+
+
+          <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-black leading-tight">
+
+            Jangan Hanya Bekerja Keras.
+
+            <span class="gradient-text block">
+              Arahkan Penghasilanmu.
+            </span>
+
+          </h2>
+
+
+          <p class="mt-6 text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+
+            Kalau kamu merasa penghasilan selama ini datang dan pergi
+            tanpa tujuan yang jelas, mungkin sekarang waktunya
+            melihat perspektif baru.
+
+          </p>
+
+
+          <a
+            href="https://wa.me/6285218453131?text=Halo%203IReborn,%20saya%20tertarik%20dan%20ingin%20tahu%20lebih%20lanjut."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-8 inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-black text-slate-950 shadow-neon transition duration-300 hover:scale-105"
+          >
+
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+
+            SAYA MAU TAHU LEBIH LANJUT
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+
+          <p class="mt-5 text-xs text-slate-600">
+            Konsultasi awal melalui WhatsApp • Tidak perlu menunggu nanti
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/5 bg-black/30">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-4">
+
+          <img
+            src="https://i.postimg.cc/L6S6bXyL/logo.png"
+            alt="3IReborn Logo"
+            class="h-10 w-auto object-contain"
+          >
+
+          <div>
+
+            <p class="font-display font-bold text-white">
+              3IReborn
+            </p>
+
+            <p class="text-xs text-slate-500">
+              Direction • Growth • Future
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <a
+          href="https://wa.me/6285218453131"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp 3IReborn"
+          class="h-11 w-11 rounded-full glass flex items-center justify-center text-emerald-400 transition duration-300 hover:scale-110 hover:text-emerald-300"
+        >
+
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+
+        </a>
+
+      </div>
+
+
+      <div class="mt-8 pt-6 border-t border-white/5 text-center">
+
+        <p class="text-xs text-slate-600">
+          © 2026 3IReborn. All rights reserved.
+        </p>
+
+        <p class="mt-2 text-[10px] text-slate-700">
+          Informasi pada halaman ini bersifat edukasi. Hasil setiap individu dapat berbeda.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= FLOATING WHATSAPP ================= -->
+  <a
+    href="https://wa.me/6285218453131?text=Halo%203IReborn,%20saya%20ingin%20bertanya."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat WhatsApp 3IReborn"
+    class="fixed bottom-5 right-5 z-50 h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-[0_0_30px_rgba(16,185,129,.4)] transition duration-300 hover:scale-110 hover:bg-emerald-400"
+  >
+
+    <span class="absolute inset-0 rounded-full border border-emerald-300/50 animate-ping opacity-30"></span>
+
+    <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl"></i>
+
+  </a>
+
+</body>
+</html>
