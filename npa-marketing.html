@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPA Marketing Engine Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-panel: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #f59e0b; /* Warna Emas/Amber khas NPA */
+            --primary-hover: #d97706;
+            --border: #334155;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR STYLING */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+
+        .brand {
+            padding: 0 25px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .brand h2 {
+            margin: 0;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-category {
+            margin-bottom: 25px;
+        }
+
+        .menu-label {
+            padding: 0 25px;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            padding: 12px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--text-main);
+        }
+
+        .menu-item.active {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        /* MAIN CONTENT STYLING */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header-title {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: 800;
+        }
+        
+        .header-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .form-section {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 0.95em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-control::placeholder {
+            color: #475569;
+        }
+
+        /* GENERATE BUTTON */
+        .btn-generate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: var(--bg-dark);
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        /* OUTPUT BOX */
+        .output-box {
+            display: none;
+            background-color: var(--bg-dark);
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .output-header h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.2em;
+        }
+
+        .prompt-result {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .btn-copy {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-copy:hover {
+            opacity: 0.9;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 10px; }
+            .brand { width: 100%; border-bottom: none; margin-bottom: 0; padding: 10px; }
+            .menu-category { margin-bottom: 0; width: 100%; }
+            .menu-label { display: none; }
+            .menu-list { display: flex; overflow-x: auto; margin: 0; padding: 0 10px; width: 100%; gap: 10px; }
+            .menu-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 10px; font-size: 0.8em; }
+            .menu-item.active { border-left: none; border-bottom-color: var(--primary); }
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR MENU -->
+    <div class="sidebar">
+        <div class="brand">
+            <h2><i class="fa-solid fa-bullseye"></i> NPA Marketing</h2>
+        </div>
+        
+        <div class="menu-category">
+            <div class="menu-label">Riset & Strategi</div>
+            <ul class="menu-list">
+                <li class="menu-item active" data-tool="riset-pasar"><i class="fa-solid fa-magnifying-glass-chart"></i> 5 Level Riset Pasar</li>
+                <li class="menu-item" data-tool="analisa-kompetitor"><i class="fa-solid fa-user-ninja"></i> Analisa Kompetitor</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <div class="menu-label">Content Creation</div>
+            <ul class="menu-list">
+                <li class="menu-item" data-tool="kalender-konten"><i class="fa-regular fa-calendar-days"></i> Kalender Konten 30 Hari</li>
+                <li class="menu-item" data-tool="script-video"><i class="fa-solid fa-mobile-screen"></i> Hook & Script Video Vertikal</li>
+                <li class="menu-item" data-tool="caption-generator"><i class="fa-solid fa-pen-nib"></i> Caption & Hashtag Auto</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <div class="menu-label">Funnel & Konversi</div>
+            <ul class="menu-list">
+                <li class="menu-item" data-tool="materi-followup"><i class="fa-brands fa-whatsapp"></i> Skrip Follow-up WA</li>
+                <li class="menu-item" data-tool="meta-ads"><i class="fa-solid fa-rectangle-ad"></i> Meta Ads Campaign</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <h1 class="header-title">Setup: <span id="activeTitle" style="color: var(--primary);">5 Level Riset Pasar</span></h1>
+        <p class="header-subtitle" id="activeDesc">Ubah ide sederhana menjadi prompt riset mendalam untuk AI.</p>
+        
+        <div class="form-section">
+            <div class="form-group">
+                <label>Nama Produk / Bisnis Anda</label>
+                <input type="text" id="inputProduct" class="form-control" placeholder="Contoh: NPA Smart System">
+            </div>
+
+            <div class="form-group">
+                <label>Deskripsi Singkat / Keunggulan Utama</label>
+                <textarea id="inputDesc" class="form-control" rows="3" placeholder="Contoh: Sistem prospek otomatis dengan 16 kolam tanpa presentasi manual."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Siapa Target Market Anda? (Audiens)</label>
+                <input type="text" id="inputTarget" class="form-control" placeholder="Contoh: Pebisnis jaringan, agen asuransi, pemula bisnis online">
+            </div>
+
+            <button class="btn-generate" id="btnGen"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Brief AI</button>
+
+            <!-- OUTPUT BOX -->
+            <div class="output-box" id="outputBox">
+                <div class="output-header">
+                    <h3>Hasil Prompt (Paste di ChatGPT/Claude)</h3>
+                    <button class="btn-copy" id="btnCopy"><i class="fa-regular fa-copy"></i> Salin Teks</button>
+                </div>
+                <div class="prompt-result" id="finalPrompt"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // State Tracking
+    let currentTool = 'riset-pasar';
+
+    // Deskripsi Dinamis untuk Subtitle
+    const descriptions = {
+        'riset-pasar': 'Bedah tuntas pain point, impian, dan ketakutan terdalam dari target pasar Anda.',
+        'analisa-kompetitor': 'Temukan celah kelemahan kompetitor yang bisa dimenangkan oleh bisnis Anda.',
+        'kalender-konten': 'Buat jadwal posting 30 hari penuh lengkap dengan Hook, Angle, dan CTA.',
+        'script-video': 'Hasilkan skrip video vertikal (TikTok/Reels/FB Pro) dengan retensi penonton tinggi.',
+        'caption-generator': 'Buat caption memikat bergaya storytelling lengkap dengan hashtag viral.',
+        'materi-followup': 'Rancang urutan chat WhatsApp untuk mengubah prospek dingin menjadi pembeli.',
+        'meta-ads': 'Buat struktur iklan Facebook & Instagram (Headline, Copy, Creative Direction).'
+    };
+
+    // Handle Sidebar Clicks
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            menuItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            currentTool = this.getAttribute('data-tool');
+            document.getElementById('activeTitle').textContent = this.textContent.trim();
+            document.getElementById('activeDesc').textContent = descriptions[currentTool];
+            document.getElementById('outputBox').style.display = 'none'; // Sembunyikan output saat pindah menu
+        });
+    });
+
+    // Generate Logic
+    document.getElementById('btnGen').addEventListener('click', function() {
+        const product = document.getElementById('inputProduct').value.trim();
+        const desc = document.getElementById('inputDesc').value.trim();
+        const target = document.getElementById('inputTarget').value.trim();
+
+        if (!product || !desc || !target) {
+            alert('Mohon isi semua kotak (Produk, Deskripsi, Target Market) terlebih dahulu ya beb!');
+            return;
+        }
+
+        let prompt = `Act as an Expert Digital Marketer and Copywriter. I need you to create a comprehensive strategy/content based on the following details:\n\n`;
+        prompt += `### BUSINESS CONTEXT:\n`;
+        prompt += `- Product/Business Name: ${product}\n`;
+        prompt += `- Core Value/Description: ${desc}\n`;
+        prompt += `- Target Audience: ${target}\n\n`;
+
+        prompt += `### YOUR TASK:\n`;
+
+        switch(currentTool) {
+            case 'riset-pasar':
+                prompt += `Conduct a "5-Level Market Research" for this audience. Output in Indonesian:\n`;
+                prompt += `1. Demographics & Psychographics.\n`;
+                prompt += `2. Top 5 Pain Points (Masalah utama yang bikin mereka frustasi).\n`;
+                prompt += `3. Top 5 Desires (Keinginan dan impian terbesar mereka).\n`;
+                prompt += `4. Top 3 Objections (Alasan kenapa mereka ragu untuk membeli produk saya).\n`;
+                prompt += `5. Marketing Angle (3 sudut pandang promosi terbaik untuk menembus pasar ini).`;
+                break;
+            case 'analisa-kompetitor':
+                prompt += `Perform a theoretical Competitor Analysis. Output in Indonesian:\n`;
+                prompt += `1. Identify the likely top 3 indirect or direct competitors in this niche.\n`;
+                prompt += `2. List their usual strengths.\n`;
+                prompt += `3. List their likely weaknesses (Blind spots).\n`;
+                prompt += `4. Suggest 3 Unique Selling Propositions (USPs) my product can use to dominate them.`;
+                break;
+            case 'kalender-konten':
+                prompt += `Create a highly engaging 30-Day Content Calendar formatted as a Markdown Table. Output in Indonesian. The columns must include:\n`;
+                prompt += `| Hari | Pilar Konten (Edukasi/Hiburan/Jualan) | Ide Konten | Judul/Hook Menarik | Caption Singkat Siap Pakai | CTA (Call to Action) |\n\n`;
+                prompt += `Ensure the content flows naturally, balancing value-driven posts with subtle selling.`;
+                break;
+            case 'script-video':
+                prompt += `Create 3 highly engaging short-form vertical video scripts (optimized for TikTok, Reels, Facebook Pro). Output in Indonesian.\n\n`;
+                prompt += `For each script, provide:\n`;
+                prompt += `- Visual/B-Roll Direction: What should the camera show?\n`;
+                prompt += `- The 3-Second Hook: A strong pattern interrupt.\n`;
+                prompt += `- The Body/Value: Fast-paced, concise script resolving the hook.\n`;
+                prompt += `- Call to Action: Tell them exactly what to do next.\n`;
+                prompt += `- Suggested Background Audio vibe.`;
+                break;
+            case 'caption-generator':
+                prompt += `Write 5 different Instagram/Facebook captions for this product. Output in Indonesian. Use the following frameworks:\n`;
+                prompt += `1. Storytelling (Emosional & relatable).\n`;
+                prompt += `2. PAS (Problem, Agitate, Solve).\n`;
+                prompt += `3. AIDA (Attention, Interest, Desire, Action).\n`;
+                prompt += `4. Short & Punchy (To the point).\n`;
+                prompt += `5. Myth-Busting (Membongkar mitos di industri ini).\n\n`;
+                prompt += `Include relevant emojis and 10 highly targeted hashtags at the bottom of each caption.`;
+                break;
+            case 'materi-followup':
+                prompt += `Write a 5-part WhatsApp Follow-up sequence for cold leads who asked about the product but haven't bought yet. Output in Indonesian, sounding natural, friendly, and NOT like a robot. Use formatting (bolding with *).\n`;
+                prompt += `Message 1: Sent 1 hour after inquiry (Checking in / Building rapport).\n`;
+                prompt += `Message 2: Sent 1 day later (Providing free value/tips related to their problem).\n`;
+                prompt += `Message 3: Sent 2 days later (Social proof/Testimonial soft pitch).\n`;
+                prompt += `Message 4: Sent 4 days later (Answering a common FAQ / Removing objections).\n`;
+                prompt += `Message 5: Sent 7 days later (Scarcity / Final offer push).`;
+                break;
+            case 'meta-ads':
+                prompt += `Design a complete Meta Ads (Facebook/Instagram) campaign structure. Output in Indonesian:\n`;
+                prompt += `1. Campaign Objective & Suggested Targeting.\n`;
+                prompt += `2. Creative Idea 1 (Video): Visual brief + Primary Text + Headline.\n`;
+                prompt += `3. Creative Idea 2 (Single Image): Visual brief + Primary Text + Headline.\n`;
+                prompt += `4. Creative Idea 3 (Carousel): Slide-by-slide text + Primary Text.\n\n`;
+                prompt += `Ensure the copy is compliant with Meta's advertising policies (No unrealistic promises or banned words).`;
+                break;
+        }
+
+        prompt += `\n\n### FORMATTING RULES:\n`;
+        prompt += `Do not include pleasantries. Start immediately with the requested output. Use bolding and bullet points for readability.`;
+
+        document.getElementById('finalPrompt').textContent = prompt;
+        document.getElementById('outputBox').style.display = 'block';
+        
+        // Scroll to bottom
+        document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Copy with robust Fallback
+    document.getElementById('btnCopy').addEventListener('click', function() {
+        const textToCopy = document.getElementById('finalPrompt').textContent;
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Teks berhasil disalin! Silakan paste ke ChatGPT / Claude.');
+            }).catch(() => fallbackCopy(textToCopy));
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    });
+
+    function fallbackCopy(text) {
+        let textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert('Teks berhasil disalin (Mode Alternatif)! Silakan paste ke ChatGPT / Claude.');
+        } catch (err) {
+            alert('Gagal menyalin otomatis. Silakan blok teks manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+</body>
+</html>
