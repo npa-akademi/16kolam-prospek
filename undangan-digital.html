@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Undangan Digital Product Knowledge Istikmal Syariah bersama PT AJ Central Asia Raya">
+  <title>Product Knowledge — Istikmal Syariah</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Montserrat", "sans-serif"],
+            serif: ["Playfair Display", "serif"]
+          },
+          colors: {
+            gold: {
+              50: "#fffdf2",
+              100: "#fff5c7",
+              200: "#f9e79b",
+              300: "#efd16a",
+              400: "#dfb83f",
+              500: "#c99a25",
+              600: "#a97915",
+              700: "#805a0e",
+              800: "#583d08"
+            }
+          },
+          boxShadow: {
+            luxury: "0 25px 80px rgba(0,0,0,.45)",
+            gold: "0 15px 45px rgba(201,154,37,.25)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(223,184,63,.10), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(223,184,63,.08), transparent 30%),
+        #080808;
+    }
+
+    .gold-text {
+      background: linear-gradient(
+        135deg,
+        #fff8cf 0%,
+        #efd16a 30%,
+        #c99a25 65%,
+        #fff1a8 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .luxury-card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.075),
+          rgba(255,255,255,.025)
+        ),
+        rgba(10,10,10,.78);
+      border: 1px solid rgba(223,184,63,.22);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .pattern {
+      background-image:
+        linear-gradient(rgba(223,184,63,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(223,184,63,.025) 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
+
+    .floating {
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    .pulse-gold {
+      animation: pulseGold 2.2s infinite;
+    }
+
+    @keyframes pulseGold {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(223,184,63,.25);
+      }
+      50% {
+        box-shadow: 0 0 0 16px rgba(223,184,63,0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ornament {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #dfb83f,
+        transparent
+      );
+    }
+
+    .glass-button {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(223,184,63,.25);
+      backdrop-filter: blur(12px);
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+      );
+      transform: skewX(-20deg);
+      transition: .8s;
+    }
+
+    .shine:hover::after {
+      left: 150%;
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans pattern min-h-screen">
+
+  <!-- =========================================
+       HERO SECTION
+  ========================================== -->
+  <section class="relative min-h-screen flex items-center justify-center px-5 py-16 overflow-hidden">
+
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(223,184,63,.12),transparent_48%)]"></div>
+
+    <div class="absolute top-10 left-10 text-gold-400/10 text-8xl">
+      ✦
+    </div>
+
+    <div class="absolute bottom-10 right-10 text-gold-400/10 text-8xl">
+      ✦
+    </div>
+
+    <div class="relative z-10 w-full max-w-5xl mx-auto text-center">
+
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-gold-400/30 bg-gold-400/5 text-gold-200 text-xs md:text-sm tracking-[.22em] uppercase mb-8">
+        <span class="w-2 h-2 bg-gold-400 rounded-full animate-pulse"></span>
+        Product Knowledge
+      </div>
+
+      <div class="floating mx-auto w-24 h-24 md:w-28 md:h-28 rounded-full luxury-card shadow-gold flex items-center justify-center mb-8">
+        <span class="text-5xl md:text-6xl">📚</span>
+      </div>
+
+      <p class="text-gold-300 text-xs md:text-sm tracking-[.35em] uppercase mb-5">
+        Information of Product
+      </p>
+
+      <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl font-semibold leading-tight gold-text">
+        Istikmal Syariah
+      </h1>
+
+      <div class="flex items-center justify-center gap-4 my-8">
+        <span class="ornament"></span>
+        <i class="fa-solid fa-star text-gold-400 text-xs"></i>
+        <span class="ornament"></span>
+      </div>
+
+      <p class="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed">
+        Ingin memahami lebih dalam mengenai produk
+        <span class="text-gold-300 font-semibold">
+          Istikmal Syariah?
+        </span>
+        Jangan lewatkan sesi Product Knowledge bersama narasumber dari
+        <span class="text-white font-semibold">
+          PT AJ Central Asia Raya.
+        </span>
+      </p>
+
+      <!-- PEMATERI -->
+      <div class="luxury-card max-w-2xl mx-auto mt-10 p-7 md:p-9 rounded-3xl shadow-luxury">
+
+        <p class="text-gray-500 text-xs uppercase tracking-[.3em] mb-4">
+          🎙 Pemateri
+        </p>
+
+        <h2 class="font-serif text-3xl md:text-4xl text-white">
+          Gledies Anggy
+        </h2>
+
+        <p class="text-gold-300 font-medium mt-3">
+          Recruitment & Business Development
+        </p>
+
+        <p class="text-gray-400 text-sm mt-1">
+          PT. AJ Central Asia Raya
+        </p>
+
+      </div>
+
+      <a
+        href="#detail"
+        class="shine inline-flex items-center gap-3 mt-10 px-7 py-4 rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 text-black font-bold shadow-gold transition duration-300 hover:scale-105"
+      >
+        <i class="fa-solid fa-calendar-check"></i>
+        Lihat Detail Acara
+        <i class="fa-solid fa-arrow-down"></i>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       COUNTDOWN
+  ========================================== -->
+  <section class="px-5 py-20">
+
+    <div class="max-w-5xl mx-auto text-center reveal">
+
+      <p class="text-gold-300 uppercase tracking-[.3em] text-xs">
+        Jangan Sampai Terlewat
+      </p>
+
+      <h2 class="font-serif text-4xl md:text-5xl mt-3 gold-text">
+        Menuju Acara
+      </h2>
+
+      <p class="text-gray-500 text-sm mt-4">
+        Hitung mundur menuju Product Knowledge Istikmal Syariah
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-10">
+
+        <div class="luxury-card rounded-3xl p-6 shadow-luxury transition duration-300 hover:scale-105">
+          <div id="days" class="font-serif text-4xl md:text-6xl gold-text">
+            00
+          </div>
+          <div class="text-xs uppercase tracking-[.2em] text-gray-500 mt-3">
+            Hari
+          </div>
+        </div>
+
+        <div class="luxury-card rounded-3xl p-6 shadow-luxury transition duration-300 hover:scale-105">
+          <div id="hours" class="font-serif text-4xl md:text-6xl gold-text">
+            00
+          </div>
+          <div class="text-xs uppercase tracking-[.2em] text-gray-500 mt-3">
+            Jam
+          </div>
+        </div>
+
+        <div class="luxury-card rounded-3xl p-6 shadow-luxury transition duration-300 hover:scale-105">
+          <div id="minutes" class="font-serif text-4xl md:text-6xl gold-text">
+            00
+          </div>
+          <div class="text-xs uppercase tracking-[.2em] text-gray-500 mt-3">
+            Menit
+          </div>
+        </div>
+
+        <div class="luxury-card rounded-3xl p-6 shadow-luxury transition duration-300 hover:scale-105">
+          <div id="seconds" class="font-serif text-4xl md:text-6xl gold-text">
+            00
+          </div>
+          <div class="text-xs uppercase tracking-[.2em] text-gray-500 mt-3">
+            Detik
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       DETAIL ACARA
+  ========================================== -->
+  <section id="detail" class="px-5 py-20">
+
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center reveal">
+
+        <p class="text-gold-300 uppercase tracking-[.3em] text-xs">
+          Event Information
+        </p>
+
+        <h2 class="font-serif text-4xl md:text-5xl mt-3 gold-text">
+          Detail Acara
+        </h2>
+
+        <p class="text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed">
+          Catat jadwalnya dan jangan lewatkan kesempatan untuk memahami
+          Istikmal Syariah lebih dalam.
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-6 mt-12">
+
+        <!-- TANGGAL -->
+        <div class="luxury-card rounded-3xl p-8 text-center shadow-luxury transition duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal">
+
+          <div class="mx-auto w-16 h-16 rounded-2xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center mb-6">
+            <i class="fa-regular fa-calendar-days text-2xl text-gold-300"></i>
+          </div>
+
+          <p class="text-xs uppercase tracking-[.25em] text-gray-500">
+            Tanggal
+          </p>
+
+          <h3 class="font-serif text-2xl text-white mt-3">
+            Segera Hadir
+          </h3>
+
+          <p class="text-gray-500 text-sm mt-2">
+            Informasi tanggal akan diperbarui
+          </p>
+
+        </div>
+
+
+        <!-- WAKTU -->
+        <div class="luxury-card rounded-3xl p-8 text-center shadow-luxury transition duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal">
+
+          <div class="mx-auto w-16 h-16 rounded-2xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center mb-6">
+            <i class="fa-regular fa-clock text-2xl text-gold-300"></i>
+          </div>
+
+          <p class="text-xs uppercase tracking-[.25em] text-gray-500">
+            Waktu
+          </p>
+
+          <h3 class="font-serif text-2xl text-white mt-3">
+            Segera Hadir
+          </h3>
+
+          <p class="text-gray-500 text-sm mt-2">
+            Jam acara akan diinformasikan
+          </p>
+
+        </div>
+
+
+        <!-- LOKASI -->
+        <div class="luxury-card rounded-3xl p-8 text-center shadow-luxury transition duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal">
+
+          <div class="mx-auto w-16 h-16 rounded-2xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-location-dot text-2xl text-gold-300"></i>
+          </div>
+
+          <p class="text-xs uppercase tracking-[.25em] text-gray-500">
+            Lokasi
+          </p>
+
+          <h3 class="font-serif text-2xl text-white mt-3">
+            Online / Meeting
+          </h3>
+
+          <p class="text-gray-500 text-sm mt-2">
+            Link meeting akan diinformasikan
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       PEMATERI
+  ========================================== -->
+  <section class="px-5 py-20">
+
+    <div class="max-w-5xl mx-auto luxury-card rounded-[2rem] p-8 md:p-12 shadow-luxury reveal">
+
+      <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-12 items-center">
+
+        <div class="floating mx-auto w-40 h-40 rounded-full border border-gold-400/40 bg-gradient-to-br from-gold-400/20 to-transparent flex items-center justify-center shadow-gold">
+
+          <i class="fa-solid fa-user-tie text-6xl text-gold-300"></i>
+
+        </div>
+
+        <div class="text-center md:text-left">
+
+          <p class="text-gold-300 text-xs uppercase tracking-[.3em]">
+            Our Speaker
+          </p>
+
+          <h2 class="font-serif text-4xl md:text-5xl mt-3 gold-text">
+            Gledies Anggy
+          </h2>
+
+          <p class="text-white font-semibold mt-4">
+            Recruitment & Business Development
+          </p>
+
+          <p class="text-gray-500 mt-1">
+            PT. AJ Central Asia Raya
+          </p>
+
+          <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
+
+            <span class="px-4 py-2 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-200 text-sm">
+              Product Knowledge
+            </span>
+
+            <span class="px-4 py-2 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-200 text-sm">
+              Istikmal Syariah
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       DIGITAL ENVELOPE / GIFT
+  ========================================== -->
+  <section class="px-5 py-20">
+
+    <div class="max-w-4xl mx-auto text-center reveal">
+
+      <p class="text-gold-300 uppercase tracking-[.3em] text-xs">
+        Digital Envelope
+      </p>
+
+      <h2 class="font-serif text-4xl md:text-5xl mt-3 gold-text">
+        Hadiah & Apresiasi
+      </h2>
+
+      <p class="text-gray-500 mt-5 max-w-xl mx-auto leading-relaxed">
+        Kehadiran dan antusiasme Anda adalah bentuk apresiasi terbaik.
+        Mari belajar bersama dan membuka peluang baru melalui pemahaman
+        produk yang lebih baik.
+      </p>
+
+
+      <div class="luxury-card rounded-[2rem] p-10 md:p-14 shadow-luxury mt-10">
+
+        <div class="floating mx-auto w-24 h-24 rounded-3xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center">
+
+          <i class="fa-solid fa-envelope-open-text text-4xl text-gold-300"></i>
+
+        </div>
+
+        <h3 class="font-serif text-3xl mt-8">
+          Sebuah Undangan Eksklusif
+        </h3>
+
+        <p class="text-gray-500 mt-3">
+          Simpan informasi acara ini dan pastikan Anda hadir.
+        </p>
+
+        <a
+          href="https://wa.me/6285218453131?text=Halo%20Pak%2C%20saya%20tertarik%20mengikuti%20Product%20Knowledge%20Istikmal%20Syariah."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shine inline-flex items-center gap-3 mt-8 px-7 py-4 rounded-full bg-[#25D366] text-white font-bold shadow-lg transition duration-300 hover:scale-105"
+        >
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          Konfirmasi Kehadiran
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       RSVP
+  ========================================== -->
+  <section class="px-5 py-20">
+
+    <div class="max-w-4xl mx-auto text-center reveal">
+
+      <div class="ornament mx-auto mb-8"></div>
+
+      <p class="text-gold-300 uppercase tracking-[.3em] text-xs">
+        RSVP
+      </p>
+
+      <h2 class="font-serif text-4xl md:text-5xl mt-3 gold-text">
+        Konfirmasi Kehadiran
+      </h2>
+
+      <p class="text-gray-500 mt-5 max-w-xl mx-auto leading-relaxed">
+        Ingin mendapatkan informasi lebih lanjut mengenai Product Knowledge
+        Istikmal Syariah?
+      </p>
+
+      <a
+        href="https://wa.me/6285218453131?text=Assalamu%27alaikum%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20Product%20Knowledge%20Istikmal%20Syariah."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pulse-gold shine inline-flex items-center justify-center gap-3 mt-8 px-8 py-5 rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 text-black font-bold text-base md:text-lg transition duration-300 hover:scale-105"
+      >
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        Hubungi via WhatsApp
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+  <footer class="border-t border-gold-400/10 px-5 py-14">
+
+    <div class="max-w-6xl mx-auto text-center">
+
+      <div class="font-serif text-3xl gold-text">
+        Istikmal Syariah
+      </div>
+
+      <p class="text-gray-500 text-sm mt-3">
+        Product Knowledge • Information of Product
+      </p>
+
+
+      <!-- SOCIAL MEDIA -->
+      <div class="flex justify-center flex-wrap gap-3 mt-8">
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com/share/18Kx4HMbza/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          class="w-12 h-12 rounded-full luxury-card flex items-center justify-center text-gray-400 transition duration-300 hover:scale-110 hover:text-gold-300 hover:border-gold-400/60"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/sugiartokurniawan3i?igsh=MThhNDBsYjhheWJ0Yg="
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="w-12 h-12 rounded-full luxury-card flex items-center justify-center text-gray-400 transition duration-300 hover:scale-110 hover:text-gold-300 hover:border-gold-400/60"
+        >
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          href="https://www.tiktok.com/@kurniawansugiarto3i"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          class="w-12 h-12 rounded-full luxury-card flex items-center justify-center text-gray-400 transition duration-300 hover:scale-110 hover:text-gold-300 hover:border-gold-400/60"
+        >
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <!-- YouTube -->
+        <a
+          href="https://youtube.com/live/zInLcqkN_3E?feature=share"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+          class="w-12 h-12 rounded-full luxury-card flex items-center justify-center text-gray-400 transition duration-300 hover:scale-110 hover:text-gold-300 hover:border-gold-400/60"
+        >
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+      </div>
+
+
+      <div class="flex justify-center items-center gap-3 mt-10 text-gray-600 text-xs">
+        <span>© 2026</span>
+        <span>•</span>
+        <span>Istikmal Syariah</span>
+        <span>•</span>
+        <span>All Rights Reserved</span>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================
+       FLOATING WHATSAPP
+  ========================================== -->
+  <a
+    href="https://wa.me/6285218453131?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20Product%20Knowledge%20Istikmal%20Syariah."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+    class="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center text-2xl shadow-2xl transition duration-300 hover:scale-110"
+  >
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+  <script>
+
+    /*
+    ============================================================
+    PENGATURAN ACARA
+
+    UBAH TANGGAL DI BAWAH INI SESUAI JADWAL ACARA.
+
+    Format:
+    YYYY-MM-DDTHH:MM:SS+07:00
+
+    Contoh:
+    2026-09-15T19:30:00+07:00
+    ============================================================
+    */
+
+    const EVENT_DATE = "2026-09-15T19:30:00+07:00";
+
+
+    /*
+    ============================================================
+    COUNTDOWN TIMER
+    ============================================================
+    */
+
+    function updateCountdown() {
+
+      const targetDate = new Date(EVENT_DATE).getTime();
+      const currentDate = new Date().getTime();
+
+      const difference = targetDate - currentDate;
+
+
+      if (difference <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        return;
+      }
+
+
+      const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+      );
+
+      const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+      );
+
+      const seconds = Math.floor(
+        (difference / 1000) % 60
+      );
+
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+
+
+    /*
+    ============================================================
+    SCROLL REVEAL ANIMATION
+    ============================================================
+    */
+
+    const revealObserver = new IntersectionObserver(
+      function(entries) {
+
+        entries.forEach(function(entry) {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(function(element) {
+
+        revealObserver.observe(element);
+
+      });
+
+
+    /*
+    ============================================================
+    PREVENT HASH JUMP JIKA DIPERLUKAN
+    ============================================================
+    */
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+
+      link.addEventListener("click", function(event) {
+
+        const targetId = this.getAttribute("href");
+
+        if (targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
