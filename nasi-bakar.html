@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nasi Bakar Mama Asha — Sekali Coba, Auto Ketagihan.">
+  <meta name="theme-color" content="#21150c">
+
+  <title>Nasi Bakar Mama Asha | Sekali Coba, Auto Ketagihan</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: "#f8df91",
+              400: "#e8bd55",
+              500: "#c9952e",
+              600: "#a87519",
+              700: "#805711"
+            },
+            cocoa: {
+              800: "#3a2416",
+              900: "#21150c",
+              950: "#120b07"
+            },
+            cream: "#fbf6ec"
+          },
+          fontFamily: {
+            sans: ["DM Sans", "sans-serif"],
+            display: ["Playfair Display", "serif"]
+          },
+          boxShadow: {
+            luxury: "0 25px 70px rgba(55,35,18,.12)",
+            gold: "0 12px 35px rgba(201,149,46,.22)",
+            goldStrong: "0 20px 55px rgba(201,149,46,.32)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #fbf6ec;
+      color: #21150c;
+    }
+
+    .font-display {
+      font-family: "Playfair Display", serif;
+    }
+
+    .gold-text {
+      background: linear-gradient(
+        135deg,
+        #fff1b7,
+        #e8bd55,
+        #a87519,
+        #f8df91
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-glow {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(232,189,85,.16), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(168,117,25,.10), transparent 35%);
+    }
+
+    .product-card {
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 25px 60px rgba(55,35,18,.15);
+    }
+
+    .product-image {
+      transition: transform .6s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.06);
+    }
+
+    .filter-btn {
+      transition: all .3s ease;
+    }
+
+    .filter-btn.active {
+      background: #21150c;
+      color: #f8df91;
+      border-color: #21150c;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floating-wa {
+      animation: waPulse 2.5s infinite;
+    }
+
+    @keyframes waPulse {
+      0%,100% {
+        box-shadow: 0 0 0 0 rgba(37,211,102,.25);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(37,211,102,0);
+      }
+    }
+
+    .hero-image-frame {
+      box-shadow:
+        0 25px 70px rgba(33,21,12,.25),
+        0 0 0 1px rgba(201,149,46,.2);
+    }
+
+    .pattern {
+      background-image:
+        radial-gradient(rgba(201,149,46,.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .cart-bounce {
+      animation: cartBounce .35s ease;
+    }
+
+    @keyframes cartBounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-cocoa-950/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+      <a href="#home" class="transition duration-300 hover:scale-105">
+        <img
+          src="https://i.postimg.cc/FKdDqDWv/logo-mama-asha.png"
+          alt="Logo Nasi Bakar Mama Asha"
+          class="h-12 w-auto object-contain sm:h-14"
+        >
+      </a>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+
+        <button
+          id="cartButton"
+          type="button"
+          class="relative flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/40 bg-white/5 text-gold-300 transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+          aria-label="Buka keranjang"
+        >
+          <i class="fa-solid fa-bag-shopping"></i>
+
+          <span
+            id="cartCount"
+            class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-gold-500 px-1 text-[10px] font-black text-cocoa-950"
+          >
+            0
+          </span>
+        </button>
+
+        <a
+          href="https://wa.me/6285932684440?text=Halo%20Mama%20Asha%2C%20saya%20ingin%20pesan%20Nasi%20Bakar."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-xs font-bold text-white transition hover:scale-105 hover:bg-[#20bd5a] sm:px-5 sm:text-sm"
+        >
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">Pesan</span>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section
+    id="home"
+    class="hero-glow relative overflow-hidden bg-cocoa-950 pt-28 sm:pt-32"
+  >
+
+    <div class="absolute inset-0 pattern opacity-10"></div>
+
+    <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+        <!-- HERO TEXT -->
+        <div class="fade-up text-center lg:text-left">
+
+          <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-500/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[.22em] text-gold-300 sm:text-xs">
+            <span class="h-2 w-2 animate-pulse rounded-full bg-gold-400"></span>
+            Fresh • Homemade • Premium
+          </div>
+
+          <h1 class="font-display text-5xl font-bold leading-tight text-white sm:text-6xl md:text-7xl">
+            Sekali Coba,
+            <span class="block gold-text">
+              Auto Ketagihan.
+            </span>
+          </h1>
+
+          <p class="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/65 sm:text-base lg:mx-0 lg:text-lg">
+            Nasi bakar rumahan dengan aroma daun pisang,
+            nasi gurih, dan isian lezat yang dibuat sepenuh hati.
+          </p>
+
+          <div class="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70">
+              🌿 Daun Pisang
+            </span>
+
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70">
+              🍚 Nasi Gurih
+            </span>
+
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70">
+              ❤️ Dibuat Fresh
+            </span>
+          </div>
+
+          <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+
+            <a
+              href="https://wa.me/6285932684440?text=Halo%20Mama%20Asha%2C%20saya%20mau%20pesan%20Nasi%20Bakar.%20Mohon%20info%20menu%20hari%20ini."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex w-full items-center justify-center gap-3 rounded-full bg-gold-500 px-7 py-4 text-sm font-extrabold text-cocoa-950 shadow-gold transition hover:scale-105 hover:bg-gold-300 sm:w-auto"
+            >
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              Pesan Sekarang
+            </a>
+
+            <a
+              href="#produk"
+              class="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold text-white transition hover:scale-105 hover:border-gold-400/50 sm:w-auto"
+            >
+              Lihat Menu
+              <i class="fa-solid fa-arrow-down text-xs text-gold-400"></i>
+            </a>
+
+          </div>
+
+          <div class="mt-7 text-xs text-white/35">
+            <i class="fa-solid fa-clock text-gold-400"></i>
+            Pre Order H-2 • Minimal 10 porsi
+          </div>
+
+        </div>
+
+
+        <!-- HERO IMAGE -->
+        <div class="fade-up flex justify-center lg:justify-end">
+
+          <div class="relative w-full max-w-[620px]">
+
+            <div class="absolute -inset-8 rounded-full bg-gold-500/10 blur-[90px]"></div>
+
+            <div class="hero-image-frame relative overflow-hidden rounded-[2rem] border border-gold-400/30 bg-white/5 p-3 backdrop-blur-sm sm:p-4">
+
+              <!-- GAMBAR TIDAK DIPOTONG -->
+              <img
+                src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+                alt="Nasi Bakar Mama Asha Ampela Ayam"
+                class="mx-auto aspect-square h-auto w-full object-contain"
+              >
+
+              <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-cocoa-950/85 p-4 backdrop-blur-xl sm:bottom-8 sm:left-8 sm:right-8">
+
+                <div class="flex items-center justify-between gap-4">
+
+                  <div>
+                    <div class="text-[9px] font-bold uppercase tracking-[.25em] text-gold-300">
+                      Signature Menu
+                    </div>
+
+                    <div class="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">
+                      Nasi Bakar Ampela Ayam
+                    </div>
+                  </div>
+
+                  <div class="shrink-0 text-3xl">
+                    🔥
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PRODUK -->
+  <section id="produk" class="scroll-mt-24 bg-cream py-16 sm:py-24">
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+      <div class="fade-up text-center">
+
+        <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-600">
+          Menu Favorit
+        </span>
+
+        <h2 class="mt-3 font-display text-4xl font-bold text-cocoa-900 sm:text-5xl">
+          Pilih Favoritmu
+        </h2>
+
+        <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-cocoa-600">
+          Dari menu utama sampai paket hemat,
+          semuanya dibuat dengan rasa rumahan yang bikin ingin pesan lagi.
+        </p>
+
+      </div>
+
+
+      <!-- FILTER -->
+      <div class="mt-9 flex flex-wrap justify-center gap-2">
+
+        <button
+          type="button"
+          class="filter-btn active rounded-full border border-cocoa-900 px-5 py-2.5 text-xs font-bold"
+          data-filter="all"
+        >
+          Semua
+        </button>
+
+        <button
+          type="button"
+          class="filter-btn rounded-full border border-cocoa-900/15 bg-white px-5 py-2.5 text-xs font-bold text-cocoa-700"
+          data-filter="nasi"
+        >
+          Nasi Bakar
+        </button>
+
+        <button
+          type="button"
+          class="filter-btn rounded-full border border-cocoa-900/15 bg-white px-5 py-2.5 text-xs font-bold text-cocoa-700"
+          data-filter="paket"
+        >
+          Paket Hemat
+        </button>
+
+        <button
+          type="button"
+          class="filter-btn rounded-full border border-cocoa-900/15 bg-white px-5 py-2.5 text-xs font-bold text-cocoa-700"
+          data-filter="spesial"
+        >
+          Spesial
+        </button>
+
+      </div>
+
+
+      <!-- PRODUCT GRID -->
+      <div id="productGrid" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+
+        <!-- PRODUK 1 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="nasi"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Nasi Bakar Ampela Ayam"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-cocoa-900 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gold-300">
+              Best Seller
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Nasi Bakar Ampela Ayam
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Nasi gurih dengan isian ampela ayam berbumbu.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Rp8.000
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="add-cart mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+              data-product="Nasi Bakar Ampela Ayam"
+              data-price="8000"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Tambah ke Keranjang
+            </button>
+
+          </div>
+        </article>
+
+
+        <!-- PRODUK 2 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="nasi"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Nasi Bakar Ayam Suwir"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-gold-500 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-cocoa-950">
+              Favorit
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Nasi Bakar Ayam Suwir
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Ayam suwir gurih dalam balutan daun pisang.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Rp8.000
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="add-cart mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+              data-product="Nasi Bakar Ayam Suwir"
+              data-price="8000"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Tambah ke Keranjang
+            </button>
+
+          </div>
+        </article>
+
+
+        <!-- PRODUK 3 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="paket"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Paket Hemat 5 Porsi"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-red-600 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white">
+              Hemat
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Paket Hemat 5 Porsi
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Pilihan praktis untuk makan bersama.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Rp38.000
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="add-cart mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+              data-product="Paket Hemat 5 Porsi"
+              data-price="38000"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Tambah ke Keranjang
+            </button>
+
+          </div>
+        </article>
+
+
+        <!-- PRODUK 4 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="paket"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Paket Keluarga 10 Porsi"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-cocoa-900 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gold-300">
+              Family
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Paket Keluarga 10 Porsi
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Cocok untuk keluarga, arisan, atau kantor.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Rp75.000
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="add-cart mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+              data-product="Paket Keluarga 10 Porsi"
+              data-price="75000"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Tambah ke Keranjang
+            </button>
+
+          </div>
+        </article>
+
+
+        <!-- PRODUK 5 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="spesial"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Nasi Bakar Spesial Mama Asha"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-gold-500 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-cocoa-950">
+              Spesial
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Nasi Bakar Spesial
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Racikan spesial khas Mama Asha.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Rp10.000
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="add-cart mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+              data-product="Nasi Bakar Spesial"
+              data-price="10000"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Tambah ke Keranjang
+            </button>
+
+          </div>
+        </article>
+
+
+        <!-- PRODUK 6 -->
+        <article
+          class="product-card fade-up overflow-hidden rounded-3xl border border-cocoa-900/5 bg-white shadow-luxury"
+          data-category="spesial"
+        >
+
+          <div class="relative overflow-hidden bg-cream p-3">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Paket Event Mama Asha"
+              class="product-image aspect-square w-full object-contain"
+            >
+
+            <span class="absolute left-6 top-6 rounded-full bg-cocoa-900 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gold-300">
+              Pre Order
+            </span>
+
+          </div>
+
+          <div class="p-5">
+
+            <div class="flex items-start justify-between gap-3">
+
+              <div>
+                <h3 class="font-display text-2xl font-bold text-cocoa-900">
+                  Paket Event
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Untuk kantor, arisan, dan acara keluarga.
+                </p>
+              </div>
+
+              <span class="whitespace-nowrap text-sm font-extrabold text-gold-600">
+                Custom
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="event-order mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-cocoa-900 px-5 py-3 text-xs font-bold text-white transition hover:scale-105 hover:bg-gold-500 hover:text-cocoa-950"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+              Tanya Harga
+            </button>
+
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="bg-white py-20 sm:py-28">
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+
+        <div class="fade-up">
+
+          <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-600">
+            Tentang Mama Asha
+          </span>
+
+          <h2 class="mt-4 font-display text-4xl font-bold leading-tight text-cocoa-900 sm:text-6xl">
+            Dibuat Sederhana.
+            <span class="block text-gold-600">
+              Rasanya Istimewa.
+            </span>
+          </h2>
+
+          <p class="mt-6 text-sm leading-7 text-cocoa-600 sm:text-base">
+            Kami percaya makanan enak tidak harus rumit.
+            Nasi yang gurih, isian berbumbu, aroma daun pisang,
+            dan proses memasak dengan sepenuh hati menjadi rahasia
+            kenapa Nasi Bakar Mama Asha begitu sulit dilupakan.
+          </p>
+
+          <div class="mt-8 space-y-4">
+
+            <div class="flex gap-4">
+
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-cocoa-900">
+                  Aroma Daun Pisang
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Dipanggang hingga aroma khas nasi bakar keluar.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-cocoa-900">
+                  Dibuat dengan Hati
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Setiap pesanan dipersiapkan dengan perhatian.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-cocoa-900">
+                  Cocok untuk Banyak Momen
+                </h3>
+
+                <p class="mt-1 text-xs leading-5 text-cocoa-500">
+                  Makan sendiri, keluarga, kantor, arisan, hingga acara.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="fade-up">
+
+          <div class="relative overflow-hidden rounded-[2rem] bg-cream p-5 shadow-luxury">
+
+            <img
+              src="https://i.postimg.cc/GpH5Rc2L/hero-nasi-bakar-ampela-ayam.png"
+              alt="Nasi Bakar Mama Asha"
+              class="aspect-square w-full object-contain"
+            >
+
+            <div class="absolute bottom-8 left-8 right-8 rounded-2xl bg-cocoa-950/90 p-5 text-white backdrop-blur-xl">
+
+              <div class="text-[10px] font-bold uppercase tracking-[.25em] text-gold-300">
+                Mama Asha
+              </div>
+
+              <div class="mt-1 font-display text-2xl font-bold">
+                Sekali Coba, Auto Ketagihan ❤️
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden bg-cocoa-900 py-20 sm:py-28">
+
+    <div class="absolute -left-40 top-0 h-96 w-96 rounded-full bg-gold-500/10 blur-[120px]"></div>
+
+    <div class="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-gold-500/10 blur-[120px]"></div>
+
+    <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+
+      <div class="fade-up">
+
+        <div class="mb-5 text-5xl">
+          🍚🔥
+        </div>
+
+        <span class="text-xs font-bold uppercase tracking-[.3em] text-gold-300">
+          Siap Makan Enak?
+        </span>
+
+        <h2 class="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-6xl">
+          Jangan Cuma Bayangin Rasanya.
+          <span class="block text-gold-300">
+            Langsung Pesan!
+          </span>
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/60 sm:text-base">
+          Klik WhatsApp, pilih menu favoritmu,
+          dan biarkan Nasi Bakar Mama Asha menemani harimu.
+        </p>
+
+        <a
+          href="https://wa.me/6285932684440?text=Halo%20Mama%20Asha%20%F0%9F%91%8B%20Saya%20mau%20pesan%20Nasi%20Bakar."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 text-sm font-extrabold text-white transition hover:scale-105 hover:bg-[#20bd5a] sm:w-auto"
+        >
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          Pesan via WhatsApp
+        </a>
+
+        <div class="mt-6 text-xs text-white/35">
+          Pre Order H-2 • Minimal 10 porsi • DP 50%
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-cocoa-950">
+
+    <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
+
+      <div class="flex flex-col items-center justify-between gap-7 md:flex-row">
+
+        <div class="flex items-center gap-4">
+
+          <img
+            src="https://i.postimg.cc/FKdDqDWv/logo-mama-asha.png"
+            alt="Logo Nasi Bakar Mama Asha"
+            class="h-12 w-auto object-contain"
+          >
+
+          <div class="border-l border-white/10 pl-4">
+
+            <div class="font-display text-xl font-bold text-white">
+              Nasi Bakar
+              <span class="text-gold-400">
+                Mama Asha
+              </span>
+            </div>
+
+            <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-white/30">
+              Sekali Coba, Auto Ketagihan
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="flex items-center gap-3">
+
+          <a
+            href="https://wa.me/6285932684440"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Mama Asha"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:scale-110 hover:border-[#25D366]/50 hover:text-[#25D366]"
+          >
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+          </a>
+
+          <a
+            href="#home"
+            aria-label="Kembali ke atas"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:scale-110 hover:border-gold-400/50 hover:text-gold-300"
+          >
+            <i class="fa-solid fa-arrow-up"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="mt-8 border-t border-white/10 pt-6 text-center">
+
+        <p class="text-[10px] leading-6 text-white/25">
+          © 2026 Nasi Bakar Mama Asha. Semua hak dilindungi.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- FLOATING WHATSAPP -->
+  <a
+    href="https://wa.me/6285932684440?text=Halo%20Mama%20Asha%20%F0%9F%91%8B%20Saya%20ingin%20pesan%20Nasi%20Bakar."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Pesan Nasi Bakar Mama Asha"
+    class="floating-wa fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition hover:scale-110 hover:bg-[#20bd5a] sm:bottom-7 sm:right-7"
+  >
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+  </a>
+
+
+  <!-- CART OVERLAY -->
+  <div
+    id="cartOverlay"
+    class="pointer-events-none fixed inset-0 z-[60] bg-black/50 opacity-0 backdrop-blur-sm transition duration-300"
+  ></div>
+
+
+  <!-- CART DRAWER -->
+  <aside
+    id="cartDrawer"
+    class="fixed right-0 top-0 z-[70] flex h-full w-full max-w-md translate-x-full flex-col bg-cream shadow-2xl transition-transform duration-500"
+  >
+
+    <div class="flex items-center justify-between border-b border-cocoa-900/10 bg-white px-5 py-4">
+
+      <div>
+        <div class="text-[10px] font-bold uppercase tracking-[.25em] text-gold-600">
+          Your Order
+        </div>
+
+        <h2 class="font-display text-2xl font-bold text-cocoa-900">
+          Keranjang
+        </h2>
+      </div>
+
+      <button
+        id="closeCart"
+        type="button"
+        aria-label="Tutup keranjang"
+        class="flex h-10 w-10 items-center justify-center rounded-full bg-cocoa-900/5 text-cocoa-900 transition hover:scale-105 hover:bg-cocoa-900 hover:text-white"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <div
+      id="cartItems"
+      class="flex-1 overflow-y-auto p-5"
+    >
+      <div id="emptyCart" class="flex h-full flex-col items-center justify-center text-center">
+
+        <div class="flex h-20 w-20 items-center justify-center rounded-full bg-gold-500/10 text-3xl">
+          🛍️
+        </div>
+
+        <h3 class="mt-5 font-display text-2xl font-bold text-cocoa-900">
+          Keranjang masih kosong
+        </h3>
+
+        <p class="mt-2 max-w-xs text-xs leading-6 text-cocoa-500">
+          Yuk pilih nasi bakar favoritmu dan masukkan ke keranjang.
+        </p>
+
+      </div>
+    </div>
+
+
+    <div class="border-t border-cocoa-900/10 bg-white p-5">
+
+      <div class="flex items-center justify-between">
+
+        <span class="text-sm font-semibold text-cocoa-500">
+          Total
+        </span>
+
+        <span
+          id="cartTotal"
+          class="font-display text-2xl font-bold text-cocoa-900"
+        >
+          Rp0
+        </span>
+
+      </div>
+
+
+      <button
+        id="checkoutButton"
+        type="button"
+        class="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-sm font-extrabold text-white transition hover:scale-105 hover:bg-[#20bd5a]"
+      >
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        Checkout via WhatsApp
+      </button>
+
+      <p class="mt-3 text-center text-[10px] leading-5 text-cocoa-400">
+        Pesanan akan dikirim ke WhatsApp Mama Asha untuk konfirmasi.
+      </p>
+
+    </div>
+
+  </aside>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    const WHATSAPP_NUMBER = "6285932684440";
+
+    let cart = [];
+
+
+    const cartButton = document.getElementById("cartButton");
+    const cartCount = document.getElementById("cartCount");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const closeCart = document.getElementById("closeCart");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutButton = document.getElementById("checkoutButton");
+
+
+    /* FORMAT RUPIAH */
+
+    function formatRupiah(number) {
+
+      return new Intl.NumberFormat(
+        "id-ID",
+        {
+          style: "currency",
+          currency: "IDR",
+          maximumFractionDigits: 0
+        }
+      ).format(number);
+
+    }
+
+
+    /* OPEN CART */
+
+    function openCart() {
+
+      cartDrawer.classList.remove("translate-x-full");
+
+      cartOverlay.classList.remove(
+        "pointer-events-none",
+        "opacity-0"
+      );
+
+      cartOverlay.classList.add("opacity-100");
+
+      document.body.classList.add("overflow-hidden");
+
+    }
+
+
+    /* CLOSE CART */
+
+    function closeCartDrawer() {
+
+      cartDrawer.classList.add("translate-x-full");
+
+      cartOverlay.classList.add(
+        "pointer-events-none",
+        "opacity-0"
+      );
+
+      cartOverlay.classList.remove("opacity-100");
+
+      document.body.classList.remove("overflow-hidden");
+
+    }
+
+
+    cartButton.addEventListener("click", openCart);
+
+    closeCart.addEventListener("click", closeCartDrawer);
+
+    cartOverlay.addEventListener("click", closeCartDrawer);
+
+
+    /* ADD TO CART */
+
+    document.querySelectorAll(".add-cart").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const name = button.dataset.product;
+
+        const price = Number(button.dataset.price);
+
+        const existing = cart.find(item => item.name === name);
+
+
+        if (existing) {
+
+          existing.quantity += 1;
+
+        } else {
+
+          cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+          });
+
+        }
+
+
+        updateCart();
+
+        cartButton.classList.remove("cart-bounce");
+
+        void cartButton.offsetWidth;
+
+        cartButton.classList.add("cart-bounce");
+
+        openCart();
+
+      });
+
+    });
+
+
+    /* EVENT ORDER */
+
+    document.querySelector(".event-order").addEventListener("click", () => {
+
+      const message =
+        "Halo Mama Asha 👋%0A%0A" +
+        "Saya tertarik dengan Paket Event Mama Asha.%0A" +
+        "Mohon info harga dan detail pesanannya ya.";
+
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
+        "_blank"
+      );
+
+    });
+
+
+    /* UPDATE CART */
+
+    function updateCart() {
+
+      const totalItems = cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
+
+      const totalPrice = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+
+
+      cartCount.textContent = totalItems;
+
+      cartTotal.textContent = formatRupiah(totalPrice);
+
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+          <div class="flex h-full flex-col items-center justify-center text-center">
+            <div class="flex h-20 w-20 items-center justify-center rounded-full bg-gold-500/10 text-3xl">
+              🛍️
+            </div>
+
+            <h3 class="mt-5 font-display text-2xl font-bold text-cocoa-900">
+              Keranjang masih kosong
+            </h3>
+
+            <p class="mt-2 max-w-xs text-xs leading-6 text-cocoa-500">
+              Yuk pilih nasi bakar favoritmu dan masukkan ke keranjang.
+            </p>
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      cartItems.innerHTML = cart.map((item, index) => `
+
+        <div class="mb-3 rounded-2xl border border-cocoa-900/10 bg-white p-4">
+
+          <div class="flex items-start justify-between gap-3">
+
+            <div>
+
+              <h3 class="font-display text-lg font-bold text-cocoa-900">
+                ${item.name}
+              </h3>
+
+              <div class="mt-1 text-xs text-gold-600">
+                ${formatRupiah(item.price)} / porsi
+              </div>
+
+            </div>
+
+            <button
+              type="button"
+              onclick="removeCartItem(${index})"
+              class="text-cocoa-300 transition hover:text-red-500"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+
+          </div>
+
+
+          <div class="mt-4 flex items-center justify-between">
+
+            <div class="flex items-center gap-2">
+
+              <button
+                type="button"
+                onclick="changeQuantity(${index}, -1)"
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-cocoa-900/5 transition hover:bg-cocoa-900 hover:text-white"
+              >
+                <i class="fa-solid fa-minus text-[10px]"></i>
+              </button>
+
+              <span class="w-7 text-center text-sm font-bold">
+                ${item.quantity}
+              </span>
+
+              <button
+                type="button"
+                onclick="changeQuantity(${index}, 1)"
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-gold-500 text-cocoa-950 transition hover:scale-105"
+              >
+                <i class="fa-solid fa-plus text-[10px]"></i>
+              </button>
+
+            </div>
+
+            <div class="text-sm font-extrabold text-cocoa-900">
+              ${formatRupiah(item.price * item.quantity)}
+            </div>
+
+          </div>
+
+        </div>
+
+      `).join("");
+
+    }
+
+
+    /* CHANGE QUANTITY */
+
+    function changeQuantity(index, change) {
+
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      updateCart();
+
+    }
+
+
+    /* REMOVE */
+
+    function removeCartItem(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    /* CHECKOUT */
+
+    checkoutButton.addEventListener("click", () => {
+
+      if (cart.length === 0) {
+
+        alert("Keranjang masih kosong. Silakan pilih menu terlebih dahulu.");
+
+        return;
+
+      }
+
+
+      let message =
+        "Halo Mama Asha 👋%0A%0A" +
+        "Saya ingin pesan:%0A";
+
+
+      cart.forEach(item => {
+
+        message +=
+          `• ${item.name} x${item.quantity} = ${formatRupiah(item.price * item.quantity)}%0A`;
+
+      });
+
+
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+
+
+      message +=
+        `%0A*Total: ${formatRupiah(total)}*%0A%0A` +
+        "Mohon konfirmasi ketersediaan dan detail pesanannya ya. Terima kasih 🙏";
+
+
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
+        "_blank"
+      );
+
+    });
+
+
+    /* CATEGORY FILTER */
+
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
+
+    const productCards =
+      document.querySelectorAll(".product-card");
+
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const filter = button.dataset.filter;
+
+
+        filterButtons.forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
+
+
+        button.classList.add("active");
+
+
+        productCards.forEach(card => {
+
+          const category = card.dataset.category;
+
+
+          if (
+            filter === "all" ||
+            category === filter
+          ) {
+
+            card.style.display = "";
+
+          } else {
+
+            card.style.display = "none";
+
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* SCROLL REVEAL */
+
+    const revealElements =
+      document.querySelectorAll(".fade-up");
+
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("show");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.1
+        }
+      );
+
+
+    revealElements.forEach(element => {
+
+      observer.observe(element);
+
+    });
+
+
+    /* SMOOTH SCROLL */
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+      anchor.addEventListener("click", function(event) {
+
+        const id = this.getAttribute("href");
+
+        if (!id || id === "#") return;
+
+        const target = document.querySelector(id);
+
+        if (target) {
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      });
+
+    });
+
+
+    /* INITIAL */
+
+    updateCart();
+
+  </script>
+
+</body>
+</html>
