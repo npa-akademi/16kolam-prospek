@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3IReborn — Temukan Arah, Bukan Cuma Angka</title>
+<link rel="icon" href="https://i.postimg.cc/L6S6bXyL/logo.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#07040f',
+          panel: '#0f0a1e',
+          panel2: '#150e29',
+          cyan: '#00f6ff',
+          magenta: '#ff2e97',
+          violet: '#8b5cf6',
+          mist: '#a9a3c4',
+        },
+        fontFamily: {
+          display: ['"Chakra Petch"', 'sans-serif'],
+          body: ['Rajdhani', 'sans-serif'],
+          mono: ['"Space Mono"', 'monospace'],
+        },
+        boxShadow: {
+          'neon-cyan': '0 0 5px rgba(0,246,255,0.6), 0 0 25px rgba(0,246,255,0.25)',
+          'neon-magenta': '0 0 5px rgba(255,46,151,0.6), 0 0 25px rgba(255,46,151,0.25)',
+          'neon-violet': '0 0 5px rgba(139,92,246,0.6), 0 0 30px rgba(139,92,246,0.2)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #07040f; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0,246,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,246,255,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .text-glow-cyan { text-shadow: 0 0 10px rgba(0,246,255,0.55), 0 0 30px rgba(0,246,255,0.25); }
+  .text-glow-magenta { text-shadow: 0 0 10px rgba(255,46,151,0.55), 0 0 30px rgba(255,46,151,0.25); }
+
+  .heading-outline {
+    -webkit-text-stroke: 1px rgba(169,163,196,0.4);
+    color: transparent;
+  }
+
+  .glass {
+    background: rgba(15,10,30,0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .card-panel {
+    background: linear-gradient(155deg, rgba(21,14,41,0.9), rgba(10,6,20,0.9));
+    border: 1px solid rgba(139,92,246,0.18);
+  }
+
+  .route-line {
+    background: repeating-linear-gradient(to bottom, rgba(0,246,255,0.55) 0, rgba(0,246,255,0.55) 6px, transparent 6px, transparent 14px);
+    box-shadow: 0 0 12px rgba(0,246,255,0.35);
+  }
+
+  .waypoint-dot {
+    box-shadow: 0 0 0 4px rgba(7,4,15,1), 0 0 12px rgba(0,246,255,0.8), 0 0 24px rgba(0,246,255,0.4);
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  .pulse-glow { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  .float-y { animation: floatY 5s ease-in-out infinite; }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,246,255,0.06), transparent);
+    animation: scanline 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .btn-neon {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-neon:hover { transform: translateY(-2px) scale(1.04); }
+
+  ::selection { background: rgba(0,246,255,0.3); color: #fff; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #07040f; }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(#00f6ff, #8b5cf6); border-radius: 8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-glow, .float-y, .scanline::after { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #00f6ff;
+    outline-offset: 3px;
+  }
+</style>
+</head>
+
+<body class="bg-void text-mist font-body antialiased overflow-x-hidden">
+
+<!-- ===================== HEADER ===================== -->
+<header class="fixed top-0 left-0 w-full z-50 glass border-b border-violet/20">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 shrink-0">
+      <img src="https://i.postimg.cc/L6S6bXyL/logo.png" alt="Logo 3IReborn" class="h-10 w-auto drop-shadow-[0_0_10px_rgba(0,246,255,0.45)]">
+      <span class="font-display font-semibold text-lg sm:text-xl tracking-wide text-white">3I<span class="text-cyan">Reborn</span></span>
+    </a>
+
+    <a href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20program%20ini"
+       target="_blank" rel="noopener noreferrer"
+       class="btn-neon inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan to-violet text-void font-display font-semibold text-sm sm:text-base px-4 sm:px-6 py-2.5 shadow-neon-cyan hover:shadow-neon-violet">
+      <i class="fa-brands fa-whatsapp text-lg"></i>
+      <span class="hidden sm:inline">Hubungi via WhatsApp</span>
+      <span class="sm:hidden">WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="relative grid-bg pt-36 pb-24 sm:pt-44 sm:pb-32 overflow-hidden">
+  <div class="pointer-events-none absolute -top-32 -left-32 w-96 h-96 bg-magenta/25 rounded-full blur-[120px]"></div>
+  <div class="pointer-events-none absolute top-40 -right-24 w-[28rem] h-[28rem] bg-cyan/20 rounded-full blur-[130px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-1/3 w-80 h-80 bg-violet/25 rounded-full blur-[110px]"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+    <div class="flex flex-col items-center text-center gap-6">
+
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-panel/70 px-4 py-1.5 font-mono text-xs tracking-[0.2em] uppercase text-cyan">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan pulse-glow"></span>
+        Sistem Navigasi Karier &amp; Finansial
+      </div>
+
+      <h1 class="font-display font-bold leading-[1.05] max-w-4xl">
+        <span class="block text-2xl sm:text-4xl md:text-5xl text-white/90">Bukan masalah</span>
+        <span class="block text-3xl sm:text-5xl md:text-6xl heading-outline my-1">GAJIMU KURANG BESAR</span>
+        <span class="block text-2xl sm:text-4xl md:text-5xl text-white/90 mt-3">Tapi gajimu</span>
+        <span class="block text-4xl sm:text-6xl md:text-7xl text-glow-cyan bg-gradient-to-r from-cyan via-white to-magenta bg-clip-text text-transparent mt-1">
+          TIDAK TAHU ARAH TUJUAN
+        </span>
+      </h1>
+
+      <p class="max-w-2xl text-base sm:text-lg text-mist font-medium">
+        3IReborn membantumu memetakan ulang arah penghasilan — dari sekadar "diterima setiap bulan" menjadi sistem yang jelas: mau dikemanakan, untuk apa, dan sampai kapan. Tanpa teori panjang, tanpa drama finansial berulang.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
+        <a href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20mau%20mulai%20menemukan%20arah%20finansial%20saya"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-neon inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-cyan to-magenta text-void font-display font-bold text-base sm:text-lg px-8 py-4 shadow-neon-magenta hover:shadow-neon-cyan">
+          <i class="fa-brands fa-whatsapp text-2xl"></i>
+          Mulai Temukan Arahmu
+        </a>
+        <span class="font-mono text-xs text-mist/70 tracking-wide">// respon rata-rata &lt; 15 menit</span>
+      </div>
+
+      <!-- HERO IMAGE -->
+      <div class="relative mt-14 w-full max-w-3xl float-y">
+        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-r from-cyan/40 via-violet/30 to-magenta/40 blur-2xl opacity-60"></div>
+        <div class="relative rounded-3xl border border-cyan/30 bg-panel/60 p-3 sm:p-4 shadow-neon-violet scanline overflow-hidden">
+          <img src="https://i.postimg.cc/YCwLS5WT/file-00000000d1f082079fa6dffa9f722f56.png"
+               alt="Ilustrasi 3IReborn — arah tujuan finansial"
+               class="w-full h-auto object-contain rounded-2xl">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROUTE WRAPPER (Benefits -> Testimonials -> Final CTA) ===================== -->
+<div class="relative">
+  <!-- decorative route line, desktop only -->
+  <div class="hidden md:block absolute left-10 top-16 bottom-16 w-px route-line"></div>
+
+  <!-- ===================== BENEFITS ===================== -->
+  <section class="relative py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 md:pl-24">
+
+      <div class="hidden md:flex items-center gap-4 absolute left-[26px] -translate-x-1/2 top-24">
+        <span class="w-4 h-4 rounded-full bg-cyan waypoint-dot"></span>
+      </div>
+
+      <div class="max-w-2xl mb-16">
+        <span class="font-mono text-xs tracking-[0.25em] uppercase text-magenta">01 — Titik Berangkat</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mt-3">
+          Tiga hal yang benar-benar mengubah arah
+        </h2>
+        <p class="mt-4 text-mist">
+          Bukan tips generik. Ini kerangka yang dipakai untuk membaca ulang kondisi keuanganmu, lalu menyusun rute yang bisa kamu jalani — bukan hanya kamu baca.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+        <div class="card-panel group rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-cyan/50 hover:shadow-neon-cyan">
+          <div class="w-14 h-14 rounded-xl bg-cyan/10 border border-cyan/30 flex items-center justify-center mb-6 group-hover:shadow-neon-cyan transition-shadow">
+            <i class="fa-solid fa-compass text-cyan text-2xl"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-2">Peta Arah, Bukan Angka</h3>
+          <p class="text-mist text-sm leading-relaxed">
+            Kami bantu kamu menentukan tujuan finansial yang spesifik dan realistis, supaya setiap rupiah yang masuk tahu harus pergi kemana.
+          </p>
+        </div>
+
+        <div class="card-panel group rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-magenta/50 hover:shadow-neon-magenta">
+          <div class="w-14 h-14 rounded-xl bg-magenta/10 border border-magenta/30 flex items-center justify-center mb-6 group-hover:shadow-neon-magenta transition-shadow">
+            <i class="fa-solid fa-route text-magenta text-2xl"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-2">Sistem, Bukan Semangat Sesaat</h3>
+          <p class="text-mist text-sm leading-relaxed">
+            Rencana yang bertahan lebih dari satu bulan gajian. Kami susun kebiasaan dan alur uang yang bisa kamu jaga secara konsisten.
+          </p>
+        </div>
+
+        <div class="card-panel group rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-violet/50 hover:shadow-neon-violet">
+          <div class="w-14 h-14 rounded-xl bg-violet/10 border border-violet/30 flex items-center justify-center mb-6 group-hover:shadow-neon-violet transition-shadow">
+            <i class="fa-solid fa-user-group text-violet text-2xl"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-2">Didampingi, Bukan Sendirian</h3>
+          <p class="text-mist text-sm leading-relaxed">
+            Pendampingan langsung dari tim 3IReborn, jadi kamu punya tempat bertanya saat arah mulai terasa buram lagi.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="relative py-24 sm:py-32 bg-panel/40 border-y border-violet/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 md:pl-24">
+
+      <div class="hidden md:flex items-center gap-4 absolute left-[26px] -translate-x-1/2 top-24">
+        <span class="w-4 h-4 rounded-full bg-magenta waypoint-dot"></span>
+      </div>
+
+      <div class="max-w-2xl mb-16">
+        <span class="font-mono text-xs tracking-[0.25em] uppercase text-cyan">02 — Yang Sudah Menemukan Arah</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mt-3">
+          Cerita dari yang sudah jalan lebih dulu
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+        <div class="card-panel rounded-2xl p-7">
+          <i class="fa-solid fa-quote-left text-cyan/50 text-2xl mb-4"></i>
+          <p class="text-mist text-sm leading-relaxed mb-6">
+            Gaji saya sebenarnya sudah cukup, masalahnya selalu habis tanpa jelas kemana. Setelah didampingi, arah keuangan saya jadi kelihatan bentuknya.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan to-violet flex items-center justify-center font-display font-bold text-void">RA</div>
+            <div>
+              <p class="text-white font-semibold text-sm">Rian A.</p>
+              <p class="text-xs text-mist/70">Staff Operasional</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel rounded-2xl p-7">
+          <i class="fa-solid fa-quote-left text-magenta/50 text-2xl mb-4"></i>
+          <p class="text-mist text-sm leading-relaxed mb-6">
+            Yang paling kerasa itu pendampingannya. Bukan cuma dikasih rencana, tapi ditemani sampai rencananya benar-benar jalan.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-magenta to-violet flex items-center justify-center font-display font-bold text-void">SN</div>
+            <div>
+              <p class="text-white font-semibold text-sm">Sinta N.</p>
+              <p class="text-xs text-mist/70">Karyawan Swasta</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel rounded-2xl p-7">
+          <i class="fa-solid fa-quote-left text-violet/50 text-2xl mb-4"></i>
+          <p class="text-mist text-sm leading-relaxed mb-6">
+            Dulu saya kira solusinya cuma cari gaji lebih besar. Ternyata yang saya butuh cuma arah yang jelas. Sekarang jauh lebih tenang.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-violet to-cyan flex items-center justify-center font-display font-bold text-void">DP</div>
+            <div>
+              <p class="text-white font-semibold text-sm">Dimas P.</p>
+              <p class="text-xs text-mist/70">Wirausaha Kecil</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="relative py-24 sm:py-32 overflow-hidden">
+    <div class="hidden md:flex items-center gap-4 absolute left-[26px] -translate-x-1/2 top-24">
+      <span class="w-4 h-4 rounded-full bg-violet waypoint-dot"></span>
+    </div>
+
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-full grid-bg opacity-40"></div>
+    <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[36rem] h-[36rem] bg-violet/25 rounded-full blur-[140px]"></div>
+
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 md:pl-24 relative text-center md:text-left">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase text-magenta">03 — Tujuan Tercapai</span>
+      <h2 class="font-display font-bold text-3xl sm:text-5xl text-white mt-4 leading-tight">
+        Arahmu bukan misteri.<br>
+        <span class="text-glow-cyan bg-gradient-to-r from-cyan to-magenta bg-clip-text text-transparent">Tinggal dipetakan.</span>
+      </h2>
+      <p class="mt-5 text-mist max-w-xl mx-auto md:mx-0">
+        Satu percakapan singkat cukup untuk mulai. Ceritakan kondisimu sekarang, kami bantu susun arah yang masuk akal untukmu.
+      </p>
+      <a href="https://wa.me/6285218453131?text=Halo%203IReborn%2C%20saya%20siap%20menyusun%20arah%20finansial%20saya"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-neon inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-cyan to-magenta text-void font-display font-bold text-base sm:text-lg px-8 py-4 mt-8 shadow-neon-cyan hover:shadow-neon-magenta">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        Chat Tim 3IReborn Sekarang
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="relative border-t border-violet/20 bg-panel/60">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+    <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
+
+      <div class="text-center md:text-left">
+        <a href="#top" class="inline-flex items-center gap-3">
+          <img src="https://i.postimg.cc/L6S6bXyL/logo.png" alt="Logo 3IReborn" class="h-9 w-auto">
+          <span class="font-display font-semibold text-lg text-white">3I<span class="text-cyan">Reborn</span></span>
+        </a>
+        <p class="text-sm text-mist/70 mt-3 max-w-xs">
+          Pendampingan arah finansial &amp; karier — bukan sekadar soal besar-kecilnya gaji.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center md:items-start gap-3">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-cyan/80">Hubungi Kami</span>
+        <a href="https://wa.me/6285218453131" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-white hover:text-cyan transition-colors">
+          <i class="fa-brands fa-whatsapp"></i> +62 852-1845-3131
+        </a>
+      </div>
+
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-mist/50">© 2026 3IReborn. Semua hak dilindungi.</p>
+      <p class="font-mono text-xs text-mist/40">Arahmu, dipetakan dengan jelas.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
