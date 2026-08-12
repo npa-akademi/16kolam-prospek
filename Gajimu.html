@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3IReborn | Arahkan Gajimu, Wujudkan Impianmu</title>
+    
+    <!-- Google Fonts: Orbitron for headers (Cyberpunk feel), Rajdhani for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#050507',
+                            dark: '#0f0f13',
+                            gray: '#1a1a24',
+                            cyan: '#00f0ff',
+                            pink: '#ff003c',
+                            purple: '#bd00ff'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'cyber-grid': "linear-gradient(to right, rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 240, 255, 0.1) 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050507;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .neon-text-cyan {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        
+        .neon-text-pink {
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.8), 0 0 20px rgba(255, 0, 60, 0.4);
+        }
+
+        .neon-box-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.5);
+        }
+
+        .neon-box-pink {
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3), inset 0 0 10px rgba(255, 0, 60, 0.1);
+            border: 1px solid rgba(255, 0, 60, 0.5);
+        }
+
+        .cyber-grid-bg {
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+
+        /* Glitch effect on hover for buttons */
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            background-color: #00f0ff;
+            color: #050507;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-5deg); }
+            40% { transform: skew(5deg); }
+            60% { transform: skew(-2deg); }
+            80% { transform: skew(2deg); }
+            100% { transform: skew(0deg); }
+        }
+    </style>
+</head>
+<body class="antialiased relative cyber-grid-bg bg-cyber-grid">
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyber-purple/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyber-cyan/10 blur-[120px] rounded-full"></div>
+    </div>
+
+    <!-- 1. STICKY HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-cyber-black/80 backdrop-blur-md border-b border-cyber-cyan/30">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 transform transition hover:scale-105 duration-300">
+                <img src="https://i.postimg.cc/L6S6bXyL/logo.png" alt="3IReborn Logo" class="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">
+                <span class="font-display font-bold text-2xl tracking-widest text-white hidden sm:block">
+                    3I<span class="text-cyber-cyan neon-text-cyan">REBORN</span>
+                </span>
+            </a>
+            
+            <!-- WhatsApp CTA -->
+            <a href="https://wa.me/6285218453131" target="_blank" rel="noopener noreferrer" 
+               class="relative inline-flex items-center justify-center px-6 py-2.5 font-display font-bold text-cyber-cyan bg-transparent border-2 border-cyber-cyan uppercase tracking-wider transition-all duration-300 hover:bg-cyber-cyan hover:text-cyber-black neon-box-cyan hover:shadow-[0_0_20px_rgba(0,240,255,0.8)] group overflow-hidden">
+                <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Konsultasi WA
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
+            
+            <!-- Text Content -->
+            <div class="flex flex-col items-start space-y-6 z-10">
+                <div class="inline-block px-4 py-1.5 rounded-sm bg-cyber-dark border border-cyber-pink/50 text-cyber-pink font-semibold tracking-widest text-sm uppercase mb-2 neon-box-pink">
+                    <i class="fa-solid fa-bolt mr-2"></i> Masa Depan Finansial
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight font-display">
+                    Bukan Masalah <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">Gajimu Kurang Besar</span>
+                </h1>
+                
+                <p class="text-xl md:text-3xl font-semibold text-gray-300 font-display leading-snug border-l-4 border-cyber-cyan pl-4">
+                    Tapi gajimu tidak tahu <br><span class="text-white neon-text-cyan">Arah Tujuan.</span>
+                </p>
+                
+                <p class="text-lg text-gray-400 max-w-lg font-medium leading-relaxed">
+                    Bersama 3IReborn, kendalikan sistem keuanganmu. Ubah pendapatan aktif menjadi kekuatan investasi pasif yang bekerja untukmu 24/7 di era digital.
+                </p>
+                
+                <div class="pt-4 w-full sm:w-auto">
+                    <a href="https://wa.me/6285218453131" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex w-full sm:w-auto items-center justify-center px-8 py-4 font-display font-bold text-lg text-cyber-black bg-cyber-cyan border-2 border-cyber-cyan uppercase tracking-widest transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,240,255,0.6)] hover:shadow-[0_0_35px_rgba(0,240,255,0.9)] rounded-sm group">
+                        Mulai Transformasi <i class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Prominent Image Display -->
+            <div class="relative w-full flex justify-center lg:justify-end z-10 group perspective-1000">
+                <!-- Decorative background elements behind image -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-gradient-to-tr from-cyber-cyan/20 to-cyber-purple/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-700"></div>
+                
+                <div class="relative w-full max-w-[550px] transform transition-transform duration-700 hover:scale-105 hover:-translate-y-2">
+                    <!-- Scanner effect line -->
+                    <div class="absolute w-full h-1 bg-cyber-cyan/80 top-0 left-0 shadow-[0_0_15px_#00f0ff] opacity-0 group-hover:opacity-100 group-hover:animate-[scan_3s_ease-in-out_infinite] z-20 pointer-events-none"></div>
+                    
+                    <!-- Exact Image URL as requested, strictly using object-contain to prevent cropping -->
+                    <img src="https://i.postimg.cc/YCwLS5WT/file-00000000d1f082079fa6dffa9f722f56.png" 
+                         alt="3IReborn Financial Strategy" 
+                         class="w-full h-auto max-h-[600px] object-contain relative z-10 drop-shadow-[0_20px_50px_rgba(0,240,255,0.2)] filter contrast-125">
+                         
+                    <!-- Decorative corner borders -->
+                    <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-cyber-cyan z-0 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-cyber-pink z-0 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- 3. BENEFITS GRID -->
+    <section class="py-24 px-6 bg-cyber-dark relative z-10 border-t border-cyber-gray">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-cyber-cyan font-semibold tracking-[0.2em] uppercase text-sm">System Upgrade</h2>
+                <h3 class="text-3xl md:text-5xl font-black font-display text-white">Mengapa Memilih <span class="neon-text-pink text-cyber-pink">3IReborn?</span></h3>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Solusi finansial yang dirancang khusus untuk memberikan arah yang jelas pada setiap rupiah yang kamu hasilkan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-cyber-black p-8 border border-cyber-gray hover:border-cyber-cyan transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,240,255,0.15)] group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-cyan/5 rounded-bl-full -z-10 group-hover:bg-cyber-cyan/20 transition-colors"></div>
+                    <div class="w-14 h-14 bg-cyber-dark flex items-center justify-center rounded-sm mb-6 border border-cyber-cyan/30 group-hover:border-cyber-cyan group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
+                        <i class="fa-solid fa-route text-2xl text-cyber-cyan"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold font-display mb-3 text-white">Arah Terkalibrasi</h4>
+                    <p class="text-gray-400 font-medium leading-relaxed">Kami memetakan ulang DNA keuanganmu, memastikan pendapatanmu mengalir ke aset produktif, bukan sekadar gaya hidup konsumtif.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-cyber-black p-8 border border-cyber-gray hover:border-cyber-pink transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(255,0,60,0.15)] group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-pink/5 rounded-bl-full -z-10 group-hover:bg-cyber-pink/20 transition-colors"></div>
+                    <div class="w-14 h-14 bg-cyber-dark flex items-center justify-center rounded-sm mb-6 border border-cyber-pink/30 group-hover:border-cyber-pink group-hover:shadow-[0_0_15px_rgba(255,0,60,0.4)] transition-all">
+                        <i class="fa-solid fa-chart-line text-2xl text-cyber-pink"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold font-display mb-3 text-white">Pertumbuhan Eksponensial</h4>
+                    <p class="text-gray-400 font-medium leading-relaxed">Sistem compounding yang bekerja secara otomatis. Gajimu bukan lagi batas akhir, melainkan titik awal kekayaan.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-cyber-black p-8 border border-cyber-gray hover:border-cyber-purple transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(189,0,255,0.15)] group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-purple/5 rounded-bl-full -z-10 group-hover:bg-cyber-purple/20 transition-colors"></div>
+                    <div class="w-14 h-14 bg-cyber-dark flex items-center justify-center rounded-sm mb-6 border border-cyber-purple/30 group-hover:border-cyber-purple group-hover:shadow-[0_0_15px_rgba(189,0,255,0.4)] transition-all">
+                        <i class="fa-solid fa-shield-halved text-2xl text-cyber-purple"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold font-display mb-3 text-white">Proteksi Firewall</h4>
+                    <p class="text-gray-400 font-medium leading-relaxed">Keamanan finansial lapis baja. Melindungi masa depanmu dari inflasi dan krisis ekonomi tak terduga.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TESTIMONIALS SECTION -->
+    <section class="py-24 px-6 relative z-10 overflow-hidden">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-black font-display text-white mb-4">LOG DATA: <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple">SUCCESS STORIES</span></h3>
+                <div class="h-1 w-24 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+                <!-- Testimonial 1 -->
+                <div class="bg-cyber-black/80 backdrop-blur-sm p-8 border-l-4 border-cyber-cyan shadow-lg hover:bg-cyber-gray transition-colors duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-cyber-dark border border-cyber-cyan flex items-center justify-center text-cyber-cyan font-display font-bold text-xl mr-4 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+                            AK
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold font-display text-lg">Andi Kurniawan</h5>
+                            <p class="text-cyber-cyan text-sm tracking-wider">SYSTEM ADMINISTRATOR</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic">"Dulu gaji numpang lewat, sekarang saya tahu persis kemana uang saya pergi dan berkembang. 3IReborn memberikan roadmap yang rasional dan terbukti berhasil."</p>
+                    <div class="mt-4 flex text-cyber-cyan text-sm">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-cyber-black/80 backdrop-blur-sm p-8 border-l-4 border-cyber-pink shadow-lg hover:bg-cyber-gray transition-colors duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-cyber-dark border border-cyber-pink flex items-center justify-center text-cyber-pink font-display font-bold text-xl mr-4 shadow-[0_0_10px_rgba(255,0,60,0.3)]">
+                            DP
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold font-display text-lg">Dian Pertiwi</h5>
+                            <p class="text-cyber-pink text-sm tracking-wider">CREATIVE DIRECTOR</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic">"Mindset saya berubah 180 derajat. Bukan lagi soal seberapa besar gaji saya, tapi bagaimana saya mengarahkan gaji tersebut. Terima kasih 3IReborn!"</p>
+                    <div class="mt-4 flex text-cyber-pink text-sm">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FINAL CALL TO ACTION -->
+    <section class="py-24 px-6 relative overflow-hidden flex items-center justify-center border-y border-cyber-cyan/30 bg-cyber-dark">
+        <!-- Glow Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-cyber-cyan/10 to-cyber-purple/10 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-64 bg-cyber-cyan/20 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black font-display text-white mb-6 uppercase tracking-wide">
+                Siap Mengarahkan <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-white to-cyber-pink neon-text-cyan">Masa Depanmu?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Jangan biarkan hasil kerjamu hilang tanpa arah. Hubungi kami sekarang untuk mendapatkan Blueprint Finansial eksklusif.</p>
+            
+            <a href="https://wa.me/6285218453131" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center px-10 py-5 font-display font-bold text-xl text-cyber-black bg-white border-2 border-white uppercase tracking-widest transition-all duration-300 hover:bg-transparent hover:text-white hover:border-cyber-cyan hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] rounded-sm group glitch-hover">
+                <i class="fa-brands fa-whatsapp text-2xl mr-3 text-green-500 group-hover:text-cyber-black"></i> 
+                Hubungi Konsultan Sekarang
+            </a>
+            <p class="mt-6 text-sm text-cyber-cyan/70 font-display tracking-widest">[ SYSTEM SECURE CONNECTION : ACTIVE ]</p>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="bg-cyber-black border-t border-cyber-gray pt-16 pb-8 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            
+            <div class="md:col-span-2">
+                <a href="#" class="flex items-center gap-3 mb-6">
+                    <img src="https://i.postimg.cc/L6S6bXyL/logo.png" alt="3IReborn Logo" class="h-10 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-500">
+                    <span class="font-display font-bold text-xl tracking-widest text-white">
+                        3I<span class="text-cyber-cyan">REBORN</span>
+                    </span>
+                </a>
+                <p class="text-gray-500 text-sm max-w-md mb-6 leading-relaxed">
+                    Platform revolusioner yang membantu profesional dan pekerja untuk memetakan arah keuangan mereka menuju kemapanan absolut. Welcome to the future of wealth.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-sm bg-cyber-dark flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:border hover:border-cyber-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.5)] transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-sm bg-cyber-dark flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:border hover:border-cyber-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.5)] transition-all">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-sm bg-cyber-dark flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:border hover:border-cyber-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.5)] transition-all">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-display font-bold mb-6 tracking-wider">NAVIGASI</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-500 hover:text-cyber-cyan transition-colors text-sm flex items-center"><i class="fa-solid fa-angle-right text-xs mr-2 text-cyber-cyan"></i> Beranda</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-cyber-cyan transition-colors text-sm flex items-center"><i class="fa-solid fa-angle-right text-xs mr-2 text-cyber-cyan"></i> Tentang Kami</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-cyber-cyan transition-colors text-sm flex items-center"><i class="fa-solid fa-angle-right text-xs mr-2 text-cyber-cyan"></i> Program</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-cyber-cyan transition-colors text-sm flex items-center"><i class="fa-solid fa-angle-right text-xs mr-2 text-cyber-cyan"></i> Testimoni</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-display font-bold mb-6 tracking-wider">KONTAK</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start text-gray-500 text-sm">
+                        <i class="fa-solid fa-location-dot mt-1 mr-3 text-cyber-pink"></i> 
+                        Jakarta, Indonesia <br> (Virtual Office Available)
+                    </li>
+                    <li class="flex items-center text-gray-500 text-sm mt-4">
+                        <i class="fa-brands fa-whatsapp mr-3 text-cyber-cyan text-lg"></i> 
+                        <a href="https://wa.me/6285218453131" target="_blank" class="hover:text-cyber-cyan transition-colors">+62 852-1845-3131</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="max-w-7xl mx-auto pt-8 border-t border-cyber-gray/50 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-600 text-xs font-display tracking-widest mb-4 md:mb-0">
+                &copy; 2026 3IREBORN NETWORK. ALL RIGHTS RESERVED.
+            </p>
+            <p class="text-gray-600 text-xs font-display tracking-widest flex items-center">
+                SYSTEM VER: <span class="text-cyber-cyan ml-2">V.1.0.0</span>
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        /* Extra keyframes used in classes */
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</body>
+</html>
