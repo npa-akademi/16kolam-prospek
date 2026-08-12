@@ -403,6 +403,27 @@
                 </div>
             </div>
 
+            <!-- TAMBAHAN FORM SOSIAL MEDIA -->
+            <div class="form-group">
+                <label>Link Sosial Media (Opsional)</label>
+                <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <input type="text" id="linkFB" class="form-control" placeholder="URL Facebook">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="linkIG" class="form-control" placeholder="URL Instagram">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="linkTikTok" class="form-control" placeholder="URL TikTok">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="linkYT" class="form-control" placeholder="URL YouTube">
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>Jenis Call-to-Action (CTA)</label>
                 <div class="grid-selector" id="ctaGrid">
@@ -528,6 +549,12 @@
         const target = document.getElementById('ctaTarget').value.trim() || '#';
         const logoUrl = document.getElementById('logoUrl').value.trim();
         const heroUrl = document.getElementById('heroUrl').value.trim();
+        
+        // Ambil link sosmed
+        const linkFB = document.getElementById('linkFB').value.trim();
+        const linkIG = document.getElementById('linkIG').value.trim();
+        const linkTikTok = document.getElementById('linkTikTok').value.trim();
+        const linkYT = document.getElementById('linkYT').value.trim();
 
         if (!name || !desc) {
             alert('Mohon lengkapi Nama Bisnis dan Deskripsi terlebih dahulu.');
@@ -549,13 +576,24 @@
         if (heroUrl) {
             prompt += `- Hero/Main Image URL to use: ${heroUrl}\n`;
         }
+
+        // TAMBAHAN SOCIAL MEDIA LINKS
+        if (linkFB || linkIG || linkTikTok || linkYT) {
+            prompt += `\n### SOCIAL MEDIA LINKS:\n`;
+            prompt += `If adding social media icons in the footer, use THESE EXACT URLs instead of '#':\n`;
+            if (linkFB) prompt += `- Facebook: ${linkFB}\n`;
+            if (linkIG) prompt += `- Instagram: ${linkIG}\n`;
+            if (linkTikTok) prompt += `- TikTok: ${linkTikTok}\n`;
+            if (linkYT) prompt += `- YouTube: ${linkYT}\n`;
+        }
+        
         prompt += `\n`;
 
         // Logic based on Type
         prompt += `### STRUCTURE REQUIREMENTS:\n`;
         switch(currentType) {
             case 'Landing Page':
-                prompt += `1. Sticky Header: Logo positioned at the far left, and ${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Hero Section: High impact headline, subheadline, ${currentCTA} button, and prominent image display.\n3. Benefits Grid (3 columns).\n4. Testimonials Section.\n5. Final Call to Action.\n6. Footer.`;
+                prompt += `1. Sticky Header: Logo positioned at the far left, and ${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Hero Section: High impact headline, subheadline, ${currentCTA} button, and prominent image display.\n3. Benefits Grid (3 columns).\n4. Testimonials Section.\n5. Final Call to Action.\n6. Footer (Include the provided social media links here).`;
                 break;
             case 'Toko Online':
                 prompt += `1. Sticky Header: Logo positioned at the far left, and Cart icon/${currentCTA} button positioned at the far right (Use flexbox justify-between).\n2. Hero Banner promoting a sale/new arrival.\n3. Product Grid: Minimum 6 product cards (Image, Title, Price, "Add to Cart" / "${currentCTA}" button).\n4. Category filter tabs.\n5. Footer.`;
@@ -586,12 +624,13 @@
         prompt += `- Must use Tailwind CSS for all styling, layout (Flex/Grid), and responsiveness.\n`;
         prompt += `- Include FontAwesome CDN for modern iconography.\n`;
         prompt += `- Include Google Fonts matching the chosen visual style.\n`;
+        
         if (logoUrl || heroUrl) {
             prompt += `- CRITICAL: Do NOT use placeholder images for the Logo and Hero section. You MUST use the exact image URLs provided in the Core Details above.\n`;
             prompt += `- HERO IMAGE HANDLING: Display the hero image prominently but DO NOT use 'object-cover' or full-screen background techniques that crop the image. Keep its original aspect ratio fully visible using 'object-contain' or a stacked layout.\n`;
+            prompt += `- LOGO PLACEMENT RULE: ONLY place the Logo image in the top Header navigation. DO NOT duplicate or place the logo anywhere else (e.g., do not put it in the footer) to avoid visual clutter.\n`;
         }
 
-        // NEW ADDITION: Premium UI/UX & Output Rules to force ChatGPT to behave well
         prompt += `\n### PREMIUM UI/UX & OUTPUT RULES (STRICT):\n`;
         prompt += `- Design Quality: Make it look extremely premium, modern, and expensive (like a top-tier startup). Use soft drop-shadows, subtle elegant gradients, and smooth hover animations (e.g., hover:scale-105) for all interactive elements.\n`;
         prompt += `- Output Format: Generate the ENTIRE code in ONE SINGLE raw HTML code block. Do NOT split the code into multiple parts. It must be 100% complete and ready to copy-paste directly into GitHub Pages.\n`;
