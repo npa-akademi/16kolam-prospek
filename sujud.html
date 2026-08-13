@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAND BOP - SUJUD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        islamic: {
+                            900: '#064e3b', // Dark Emerald
+                            800: '#065f46',
+                            700: '#047857',
+                        },
+                        gold: '#fbbf24',
+                        goldHover: '#f59e0b'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f8fafc; scroll-behavior: smooth; }
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .glow-gold { box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-islamic-900 text-white overflow-hidden bg-pattern">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+        <div class="relative max-w-4xl mx-auto px-6 py-20 text-center z-10">
+            <span class="inline-block py-1 px-4 rounded-full bg-gold/20 border border-gold/50 text-gold text-xs font-bold uppercase tracking-widest mb-6">
+                GRAND BOP ISTIKMAL SYARIAH
+            </span>
+            <h1 class="font-serif text-4xl md:text-6xl font-black leading-tight mb-4">
+                SUJUD: Saatnya Umroh Terwujud 🕋 <br>
+                <span class="text-gold">& Saatnya Sukses Terwujud ✍️</span>
+            </h1>
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Banyak orang punya niat ke Baitullah, tapi bingung mulai dari mana. Mari kupas tuntas bagaimana membangun ikhtiar menuju umrah sekaligus memahami peluang bisnis luar biasa bersama 3i-Networks.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#daftar" class="btn-wa w-full sm:w-auto bg-gold text-islamic-900 font-black px-8 py-4 rounded-full text-lg hover:scale-105 transition-transform glow-gold flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> AMANKAN TIKET
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- EVENT DETAILS -->
+    <section class="py-16 px-6 -mt-10 relative z-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-slate-100 flex flex-col md:flex-row gap-8 justify-between items-center">
+                
+                <div class="flex items-center gap-4 w-full md:w-auto">
+                    <div class="w-14 h-14 bg-islamic-900/10 text-islamic-900 rounded-2xl flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-500 font-bold uppercase">Tanggal & Waktu</p>
+                        <p class="font-bold text-lg text-slate-800 txt-tanggal"></p>
+                        <p class="text-islamic-700 font-semibold txt-waktu"></p>
+                    </div>
+                </div>
+
+                <div class="hidden md:block w-px h-16 bg-slate-200"></div>
+
+                <div class="flex items-center gap-4 w-full md:w-auto">
+                    <div class="w-14 h-14 bg-islamic-900/10 text-islamic-900 rounded-2xl flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-500 font-bold uppercase">Lokasi Acara</p>
+                        <p class="font-bold text-lg text-slate-800 txt-tempat"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PEMATERI SECTION -->
+    <section class="py-16 px-6 bg-slate-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-black text-islamic-900 mb-4">Bersama Pemateri Ahli</h2>
+                <p class="text-slate-600">Belajar langsung dari leader berpengalaman yang telah membuktikan sistem ini.</p>
+            </div>
+
+            <!-- Kontainer Pemateri (Diisi otomatis oleh JavaScript) -->
+            <div id="speakers-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Data pemateri akan muncul di sini -->
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO TIKET & CTA -->
+    <section id="daftar" class="py-20 px-6 bg-islamic-900 text-white relative overflow-hidden bg-pattern">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="mb-8">
+                <span class="inline-block bg-red-600 text-white font-black px-4 py-1 rounded-md text-sm mb-4 animate-pulse">
+                    KAPASITAS TERBATAS: <span class="txt-kapasitas"></span>
+                </span>
+                <h2 class="font-serif text-3xl md:text-5xl font-black mb-6">Jangan Sampai Kehabisan Tiket!</h2>
+                <p class="text-xl text-gold font-bold mb-2">HTM: <span class="txt-harga"></span></p>
+                <p class="text-sm text-slate-300">Pemesanan tiket maksimal tanggal <span class="txt-batas font-bold text-white"></span>. <br>(Tidak ada pembelian tiket di tempat).</p>
+            </div>
+
+            <div class="bg-white/10 border border-white/20 p-8 rounded-3xl backdrop-blur-sm">
+                <p class="text-lg mb-6">Jika Anda penasaran bagaimana Istikmal Syariah bekerja dan peluang penghasilannya, acara ini WAJIB Anda ikuti.</p>
+                
+                <a href="#" class="btn-wa inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-green-500 text-white font-black px-8 py-4 rounded-full text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(34,197,94,0.4)]">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i> 
+                    <span>HUBUNGI <span class="txt-admin uppercase"></span></span>
+                </a>
+                <p class="mt-4 text-xs text-slate-400">Ketik "TIKET BOP" saat menghubungi WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 py-8 text-center text-slate-500 text-sm">
+        &copy; 2026 Istikmal Syariah 3i-Networks. All Rights Reserved.
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- AREA EDIT DATA: GANTI TEKS DI DALAM TANDA KUTIP (") DI BAWAH INI SAJA -->
+    <!-- ===================================================================== -->
+    <script>
+        const dataEvent = {
+            // INFO WAKTU & TEMPAT
+            tanggal: "Minggu, 23 Agustus 2026",
+            waktu: "13.00 – 16.00 WIB",
+            tempat: "Graha Super Sambal Lt.3 – Grand Galaxy Park, Bekasi",
+            
+            // INFO TIKET
+            harga: "Rp 35.000 (Sudah termasuk nasi box)",
+            kapasitas: "300 Peserta",
+            batasPemesanan: "20 Agustus 2026",
+
+            // INFO KONTAK ADMIN WHATSAPP
+            noWA: "6281283221073", // Gunakan format 628... tanpa spasi/tanda hubung
+            namaAdmin: "Yuliana",
+            pesanOtomatis: "Halo Kak Yuliana, saya mau pesan TIKET BOP untuk acara SUJUD. Masih ada kuota?",
+
+            // DAFTAR PEMATERI (Bisa ditambah atau dikurangi)
+            pemateri: [
+                { nama: "Yuda Wirawan", jabatan: "Direktur CAR Life Syariah" },
+                { nama: "Zaharuddin", jabatan: "Diamond Executive" },
+                { nama: "Yuliana", jabatan: "Silver Entrepreneur" },
+                { nama: "Widayat", jabatan: "Bronze Entrepreneur" },
+                { nama: "Wildan", jabatan: "Leader Entrepreneur" }
+            ]
+        };
+
+        // =====================================================================
+        // SCRIPT OTOMATISASI (JANGAN DIUBAH BAGIAN BAWAH INI)
+        // =====================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            // Sebar data teks ke seluruh HTML
+            document.querySelectorAll('.txt-tanggal').forEach(el => el.textContent = dataEvent.tanggal);
+            document.querySelectorAll('.txt-waktu').forEach(el => el.textContent = dataEvent.waktu);
+            document.querySelectorAll('.txt-tempat').forEach(el => el.textContent = dataEvent.tempat);
+            document.querySelectorAll('.txt-harga').forEach(el => el.textContent = dataEvent.harga);
+            document.querySelectorAll('.txt-kapasitas').forEach(el => el.textContent = dataEvent.kapasitas);
+            document.querySelectorAll('.txt-batas').forEach(el => el.textContent = dataEvent.batasPemesanan);
+            document.querySelectorAll('.txt-admin').forEach(el => el.textContent = dataEvent.namaAdmin);
+
+            // Set Link WhatsApp
+            const linkWA = `https://wa.me/${dataEvent.noWA}?text=${encodeURIComponent(dataEvent.pesanOtomatis)}`;
+            document.querySelectorAll('.btn-wa').forEach(el => el.href = linkWA);
+
+            // Render Pemateri Otomatis
+            const container = document.getElementById('speakers-container');
+            dataEvent.pemateri.forEach(p => {
+                const card = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-16 h-16 mx-auto bg-islamic-900 text-gold rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">${p.nama}</h3>
+                        <p class="text-sm text-islamic-700 font-medium">${p.jabatan}</p>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        });
+    </script>
+</body>
+</html>
