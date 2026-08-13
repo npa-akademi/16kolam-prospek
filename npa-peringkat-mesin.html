@@ -1,351 +1,1688 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Rank Engine Hybrid - 3iReborn</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: "#0b1120",
-                        panel: "#1e293b",
-                        gold: "#f59e0b",
-                        goldLight: "#fde047",
-                        neon: "#38bdf8"
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        impact: ['Oswald', 'sans-serif'],
-                    }
-                }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPA Rank Hybrid Engine</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                dark: "#0b1120",
+                panel: "#172033",
+                gold: "#f59e0b",
+                goldLight: "#fde047",
+                neon: "#38bdf8"
+            },
+            fontFamily: {
+                sans: ["Plus Jakarta Sans", "sans-serif"],
+                impact: ["Oswald", "sans-serif"]
             }
         }
-    </script>
-    <style>
-        body { background-color: #0b1120; color: #f8fafc; scroll-behavior: smooth; }
+    }
+}
+</script>
 
-        /* Teks Peringkat Super Bold & Glowing */
-        .rank-text {
-            background: linear-gradient(to bottom, #ffffff 0%, #fde047 40%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
-            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-        }
+<style>
 
-        .title-text {
-            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 20px rgba(0,0,0,0.9);
-        }
+body{
+    background:
+        radial-gradient(circle at top right,rgba(56,189,248,.08),transparent 30%),
+        radial-gradient(circle at bottom left,rgba(245,158,11,.08),transparent 30%),
+        #0b1120;
+    color:#f8fafc;
+    font-family:"Plus Jakarta Sans",sans-serif;
+}
 
-        /* Aspek Rasio Poster 4:5 */
-        .card-preview {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 4 / 5;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-            margin: 0 auto;
-        }
+.rank-text{
+    background:linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #fde047 40%,
+        #f59e0b 100%
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 5px 12px rgba(0,0,0,.9));
+}
 
-        .text-shadow-strong {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 4px rgba(0,0,0,0.9);
-        }
+.title-text{
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        4px 4px 20px rgba(0,0,0,.9);
+}
 
-        /* OUTPUT BOX PROMPT */
-        .output-box {
-            display: none;
-            background-color: #0f172a;
-            border: 2px dashed #f59e0b;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 400px;
-        }
+.card-preview{
+    width:100%;
+    max-width:420px;
+    aspect-ratio:4/5;
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.65),
+        0 0 0 1px rgba(255,255,255,.08);
+    transition:aspect-ratio .3s ease;
+}
 
-        .prompt-result {
-            font-family: Consolas, Monaco, monospace;
-            font-size: 0.85em;
-            line-height: 1.6;
-            color: #e2e8f0;
-            white-space: pre-wrap;
-            background: #020617;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-    </style>
+.preview-person{
+    width:190px;
+    height:245px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.65),
+        0 0 35px rgba(245,158,11,.18);
+}
+
+.prompt-result{
+    font-family:Consolas,Monaco,monospace;
+    font-size:13px;
+    line-height:1.65;
+    white-space:pre-wrap;
+    background:#020617;
+    border:1px solid #334155;
+    border-radius:12px;
+    padding:16px;
+    max-height:420px;
+    overflow:auto;
+}
+
+.output-box{
+    display:none;
+}
+
+.upload-preview{
+    display:none;
+    width:100%;
+    max-height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-top:10px;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.glass{
+    background:rgba(15,23,42,.72);
+    backdrop-filter:blur(14px);
+}
+
+</style>
 </head>
+
 <body class="min-h-screen p-4 md:p-8">
 
-    <div class="max-w-7xl mx-auto">
-        <!-- HEADER -->
-        <header class="mb-10 text-center md:text-left border-b border-white/10 pb-6">
-            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-crown text-gold"></i> NPA <span class="text-neon">Rank Hybrid Engine</span></h1>
-            <p class="text-slate-400">Gunakan Live Preview sebagai Sketsa, lalu Generate Prompt agar AI yang melukis hasil akhirnya.</p>
-        </header>
+<div class="max-w-7xl mx-auto">
 
-        <div class="flex flex-col lg:flex-row gap-10">
-            <!-- PANEL KIRI: KONTROL FORM -->
-            <div class="w-full lg:w-5/12 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
-                <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Apresiasi</h2>
-                
-                <div class="space-y-4">
-                    <!-- LOGO KUSTOM -->
-                    <div class="grid grid-cols-2 gap-4 bg-dark/50 p-4 rounded-xl border border-white/5">
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kiri</label>
-                            <input type="text" id="inputLogoKiri" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-neon outline-none" value="https://i.postimg.cc/k5HhytB9/logo-NPA.png">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kanan</label>
-                            <input type="text" id="inputLogoKanan" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-neon outline-none" placeholder="Link Logo Kanan">
-                        </div>
-                    </div>
+<!-- HEADER -->
+<header class="mb-8 pb-6 border-b border-white/10">
 
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
-                        <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon outline-none" value="Sugiarto Kurniawan">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru <i class="fa-solid fa-crown text-gold"></i></label>
-                        <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon outline-none">
-                            <option value="Entrepreneur">Entrepreneur</option>
-                            <option value="Smart Entrepreneur">Smart Entrepreneur</option>
-                            <option value="Team Entrepreneur">Team Entrepreneur</option>
-                            <option value="Leader Entrepreneur">Leader Entrepreneur</option>
-                            <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
-                            <option value="Silver Entrepreneur">Silver Entrepreneur</option>
-                            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-                            <option value="Diamond Executive">Diamond Executive</option>
-                            <option value="Royal Executive">Royal Executive</option>
-                            <option value="KING" selected>KING</option>
-                        </select>
-                    </div>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pilih Tema Background (Reward)</label>
-                        <select id="inputTema" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon outline-none font-bold text-gold">
-                            <option value="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?auto=format&fit=crop&w=600&q=80" data-prompt="a majestic and beautiful view of the Kaaba in Mecca during golden hour sunset">🕋 Tema Umroh (Baitullah)</option>
-                            <option value="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=600&q=80" data-prompt="a gigantic, ultra-luxurious modern cruise ship sailing on a crystal clear blue ocean under a bright sunny sky">🚢 Tema Cruise (Kapal Pesiar)</option>
-                            <option value="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" data-prompt="a stunning cinematic view of a majestic Balinese temple (Pura) and a beautiful sunset beach in Bali">🏝️ Tema Liburan Bali</option>
-                        </select>
-                    </div>
+        <div>
 
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto Mitra (Hero Wajah)</label>
-                        <input type="text" id="inputFoto" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon outline-none" value="https://i.postimg.cc/YCwLS5WT/file-00000000d1f082079fa6dffa9f722f56.png">
-                    </div>
+            <h1 class="text-3xl md:text-4xl font-black">
 
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Inspirasi Bawah</label>
-                        <textarea id="inputPesan" rows="2" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon outline-none text-sm">Kerja Keras & Semangat Pantang Menyerah Telah Membawamu Sampai Titik Ini!</textarea>
-                    </div>
+                <i class="fa-solid fa-crown text-gold"></i>
 
-                    <button id="btnGen" class="w-full mt-4 bg-gradient-to-r from-blue-600 to-neon text-white font-black py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-robot"></i> GENERATE PROMPT AI
-                    </button>
-                </div>
-            </div>
+                NPA
+                <span class="text-neon">
+                    Rank Hybrid Engine
+                </span>
 
-            <!-- PANEL KANAN: LIVE PREVIEW & OUTPUT PROMPT -->
-            <div class="w-full lg:w-7/12 flex flex-col items-center bg-dark/50 p-4 md:p-8 rounded-2xl border border-white/5 overflow-hidden">
-                <div class="mb-4 w-full max-w-[400px] flex justify-between items-center">
-                    <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Sketsa Layout</span>
-                    <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded"><i class="fa-solid fa-eye"></i> Visualizer</span>
-                </div>
+            </h1>
 
-                <!-- AREA MOCKUP POSTER -->
-                <div class="card-preview bg-slate-900 rounded-xl relative flex flex-col">
-                    
-                    <!-- BACKGROUND TEMA -->
-                    <img id="previewBg" crossorigin="anonymous" src="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50" alt="">
-                    
-                    <!-- OVERLAY GELAP -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+            <p class="text-slate-400 mt-2 text-sm md:text-base">
+                Mesin pembuat prompt poster achievement profesional dengan referensi wajah.
+            </p>
 
-                    <!-- KONTEN UTAMA POSTER -->
-                    <div class="relative w-full h-full p-4 md:p-6 flex flex-col justify-between z-20">
-                        
-                        <!-- Header Logos -->
-                        <div class="flex justify-between items-center h-10 mb-2">
-                            <div class="w-1/3 flex justify-start">
-                                <img id="previewLogoKiri" crossorigin="anonymous" src="" class="max-h-10 object-contain hidden" alt="Logo Kiri">
-                            </div>
-                            <div class="w-1/3 flex justify-end">
-                                <img id="previewLogoKanan" crossorigin="anonymous" src="" class="max-h-10 object-contain hidden" alt="Logo Kanan">
-                            </div>
-                        </div>
-
-                        <!-- Big Text Title -->
-                        <div class="text-center mt-2">
-                            <h2 class="font-impact text-3xl md:text-4xl text-white title-text italic uppercase transform -skew-x-6 tracking-wide leading-none">
-                                Congratulations
-                            </h2>
-                            <p class="text-goldLight text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mt-1 drop-shadow-lg mb-2">
-                                New Achievement Unlocked
-                            </p>
-                            <!-- Teks Peringkat -->
-                            <h1 id="previewRank" class="font-impact text-4xl md:text-5xl uppercase rank-text leading-tight transform -skew-x-6">
-                                <i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>
-                                KING
-                            </h1>
-                        </div>
-
-                        <!-- Area Tengah: FOTO TOKOH -->
-                        <div class="flex-1 flex justify-center items-center relative my-2">
-                            <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full border-[4px] border-gold shadow-[0_0_30px_rgba(245,158,11,0.5)] bg-black z-10 overflow-hidden">
-                                <img id="previewFoto" crossorigin="anonymous" src="" class="w-full h-full object-cover" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Area Bawah: Nama & Pesan -->
-                        <div class="text-center bg-black/60 backdrop-blur-md py-3 px-4 border-t-2 border-gold rounded-xl w-full">
-                            <h3 id="previewNamaBawah" class="text-xl md:text-2xl font-black text-white uppercase tracking-widest mb-1 text-shadow-strong line-clamp-1">SUGIARTO KURNIAWAN</h3>
-                            <p id="previewPesan" class="text-[9px] md:text-[11px] text-goldLight font-bold leading-snug uppercase drop-shadow-md">KERJA KERAS & SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI.</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- KOTAK OUTPUT PROMPT (Muncul setelah diklik) -->
-                <div class="output-box" id="outputBox">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-black text-gold"><i class="fa-solid fa-terminal"></i> Prompt DALL-E 3</h3>
-                        <button class="bg-gold hover:bg-goldHover text-black text-xs font-bold px-3 py-1.5 rounded" id="btnCopy">
-                            <i class="fa-regular fa-copy"></i> Salin
-                        </button>
-                    </div>
-                    <div class="prompt-result" id="finalPrompt"></div>
-                    <p class="text-[10px] text-slate-400 mt-3 text-center">Paste ke ChatGPT. Setelah gambar jadi, tumpuk logo dan foto asli di dalam lingkaran kosong menggunakan Canva.</p>
-                </div>
-            </div>
         </div>
+
+        <div class="glass px-4 py-3 rounded-xl border border-white/10">
+
+            <div class="text-xs text-slate-400">
+                OUTPUT
+            </div>
+
+            <div class="font-black text-gold">
+                8K ULTRA HD
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- SCRIPT LOGIKA -->
-    <script>
-        // DOM Elements
-        const inputs = {
-            nama: document.getElementById('inputNama'),
-            rank: document.getElementById('inputRank'),
-            tema: document.getElementById('inputTema'),
-            foto: document.getElementById('inputFoto'),
-            pesan: document.getElementById('inputPesan'),
-            logoKiri: document.getElementById('inputLogoKiri'),
-            logoKanan: document.getElementById('inputLogoKanan')
-        };
+</header>
 
-        const previews = {
-            rank: document.getElementById('previewRank'),
-            foto: document.getElementById('previewFoto'),
-            bg: document.getElementById('previewBg'),
-            namaBawah: document.getElementById('previewNamaBawah'),
-            pesan: document.getElementById('previewPesan'),
-            logoKiri: document.getElementById('previewLogoKiri'),
-            logoKanan: document.getElementById('previewLogoKanan')
-        };
 
-        // Update Live Preview (Sebagai Sketsa Visual)
-        function updatePreview() {
-            previews.namaBawah.textContent = inputs.nama.value || 'NAMA MITRA';
-            const rank = inputs.rank.value;
-            previews.rank.innerHTML = `<i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>${rank}`;
-            previews.bg.src = inputs.tema.value;
-            previews.pesan.textContent = inputs.pesan.value || '';
-            const fotoUrl = inputs.foto.value.trim();
-            previews.foto.src = fotoUrl ? fotoUrl : 'https://via.placeholder.com/200/1e293b/94a3b8?text=FOTO';
+<div class="flex flex-col lg:flex-row gap-8">
 
-            if (inputs.logoKiri.value.trim() !== '') {
-                previews.logoKiri.src = inputs.logoKiri.value.trim();
-                previews.logoKiri.classList.remove('hidden');
-            } else { previews.logoKiri.classList.add('hidden'); }
 
-            if (inputs.logoKanan.value.trim() !== '') {
-                previews.logoKanan.src = inputs.logoKanan.value.trim();
-                previews.logoKanan.classList.remove('hidden');
-            } else { previews.logoKanan.classList.add('hidden'); }
+<!-- ===================================================== -->
+<!-- PANEL KONTROL -->
+<!-- ===================================================== -->
+
+<div class="w-full lg:w-5/12">
+
+<div class="bg-panel p-5 md:p-6 rounded-2xl border border-white/10 shadow-2xl">
+
+<h2 class="text-xl font-black mb-6 pb-4 border-b border-white/10">
+
+<i class="fa-solid fa-sliders text-neon mr-2"></i>
+
+Pengaturan Poster
+
+</h2>
+
+
+<div class="space-y-5">
+
+
+<!-- LOGO -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-dark/60 p-4 rounded-xl">
+
+<div>
+
+<label class="block text-xs font-bold text-slate-400 mb-2">
+URL LOGO KIRI
+</label>
+
+<input
+type="text"
+id="inputLogoKiri"
+value="https://i.postimg.cc/k5HhytB9/logo-NPA.png"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-sm outline-none focus:border-neon"
+>
+
+</div>
+
+
+<div>
+
+<label class="block text-xs font-bold text-slate-400 mb-2">
+URL LOGO KANAN
+</label>
+
+<input
+type="text"
+id="inputLogoKanan"
+placeholder="Opsional"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-sm outline-none focus:border-neon"
+>
+
+</div>
+
+</div>
+
+
+<!-- NAMA -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+Nama Mitra
+</label>
+
+<input
+type="text"
+id="inputNama"
+value="Sugiarto Kurniawan"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+</div>
+
+
+<!-- RANK -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+
+<i class="fa-solid fa-trophy text-gold mr-1"></i>
+
+Peringkat / Achievement
+
+</label>
+
+<select
+id="inputRank"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option value="Entrepreneur">🏅 Entrepreneur</option>
+
+<option value="Smart Entrepreneur">
+🏅 Smart Entrepreneur
+</option>
+
+<option value="Team Entrepreneur">
+👥 Team Entrepreneur
+</option>
+
+<option value="Leader Entrepreneur">
+🚩 Leader Entrepreneur
+</option>
+
+<option value="Bronze Entrepreneur">
+🥉 Bronze Entrepreneur
+</option>
+
+<option value="Silver Entrepreneur">
+🥈 Silver Entrepreneur
+</option>
+
+<option value="Gold Entrepreneur" selected>
+🥇 Gold Entrepreneur
+</option>
+
+<option value="Diamond Executive">
+💎 Diamond Executive
+</option>
+
+<option value="Royal Executive">
+👑 Royal Executive
+</option>
+
+<option value="KING">
+👑 KING
+</option>
+
+</select>
+
+</div>
+
+
+<!-- BACKGROUND -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+
+<i class="fa-solid fa-image text-neon mr-1"></i>
+
+Background
+
+</label>
+
+<select
+id="inputTema"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option
+value="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?auto=format&fit=crop&w=900&q=85"
+data-prompt="a majestic and beautiful view of the Kaaba in Mecca, luxurious Islamic atmosphere, beautiful clear sky and premium travel scenery"
+>
+🕋 Umroh / Baitullah
+</option>
+
+
+<option
+value="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=900&q=85"
+data-prompt="a gigantic luxurious modern cruise ship sailing across a crystal clear blue ocean under a beautiful bright sky"
+>
+🚢 Cruise / Kapal Pesiar
+</option>
+
+
+<option
+value="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=85"
+data-prompt="a stunning beautiful Balinese temple, tropical Bali scenery, beautiful beach, clear bright sky and luxurious holiday atmosphere"
+>
+🏝️ Liburan Bali
+</option>
+
+</select>
+
+</div>
+
+
+<!-- FOTO REFERENSI -->
+<div class="bg-dark/60 p-4 rounded-xl border border-white/5">
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+
+<i class="fa-solid fa-camera text-gold mr-1"></i>
+
+Upload Foto Referensi Wajah
+
+</label>
+
+
+<input
+type="file"
+id="inputFotoFile"
+accept="image/*"
+class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-slate-300"
+>
+
+
+<img
+id="uploadPreview"
+class="upload-preview"
+alt="Preview foto referensi"
+>
+
+
+<p class="text-[10px] text-slate-500 mt-2 leading-relaxed">
+
+Foto digunakan sebagai referensi utama wajah.
+Prompt akan meminta kemiripan wajah sekitar
+<strong class="text-gold">95%</strong>,
+mempertahankan ciri wajah, kacamata, peci dan karakter asli.
+
+</p>
+
+
+<div class="mt-3">
+
+<label class="block text-xs font-bold text-slate-500 mb-1">
+ATAU URL FOTO
+</label>
+
+<input
+type="text"
+id="inputFoto"
+placeholder="https://..."
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-sm outline-none focus:border-neon"
+>
+
+</div>
+
+</div>
+
+
+<!-- PAKAIAN -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+
+<i class="fa-solid fa-shirt text-neon mr-1"></i>
+
+Pakaian
+
+</label>
+
+<select
+id="inputPakaian"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option value="koko putih elegan">
+👕 Koko Putih Elegan
+</option>
+
+<option value="koko hitam premium">
+👕 Koko Hitam Premium
+</option>
+
+<option value="jas hitam elegan">
+🤵 Jas Hitam Elegan
+</option>
+
+<option value="jas navy profesional">
+🤵 Jas Navy Profesional
+</option>
+
+<option value="kaos polo merah">
+👕 Kaos Polo Merah
+</option>
+
+<option value="kaos polo putih">
+👕 Kaos Polo Putih
+</option>
+
+<option value="sweatshirt merah">
+👕 Sweatshirt Merah
+</option>
+
+<option value="kemeja putih profesional">
+👔 Kemeja Putih Profesional
+</option>
+
+<option value="batik Indonesia premium">
+👔 Batik Indonesia Premium
+</option>
+
+</select>
+
+</div>
+
+
+<!-- LIGHTING -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+
+<i class="fa-solid fa-sun text-gold mr-1"></i>
+
+Pencahayaan
+
+</label>
+
+<select
+id="inputLighting"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option value="cinematic alami">
+🎬 Cinematic Alami
+</option>
+
+<option value="pagi hari cerah">
+🌅 Pagi Hari Cerah
+</option>
+
+<option value="siang hari cerah">
+☀️ Siang Hari Cerah
+</option>
+
+</select>
+
+</div>
+
+
+<!-- RATIO + RESOLUTION -->
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+Aspek Rasio
+</label>
+
+<select
+id="inputRatio"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option value="1:1">
+1:1
+</option>
+
+<option value="4:5" selected>
+4:5
+</option>
+
+<option value="9:16">
+9:16
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+Resolusi
+</label>
+
+<select
+id="inputResolution"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon"
+>
+
+<option value="8K Ultra HD">
+8K Ultra HD
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<!-- PESAN -->
+<div>
+
+<label class="block text-sm font-bold text-slate-300 mb-2">
+Pesan Inspirasi
+</label>
+
+<textarea
+id="inputPesan"
+rows="3"
+class="w-full bg-dark border border-slate-700 rounded-lg p-3 outline-none focus:border-neon text-sm"
+>Kerja Keras & Semangat Pantang Menyerah Telah Membawamu Sampai Titik Ini!</textarea>
+
+</div>
+
+
+<!-- BUTTON -->
+<button
+id="btnGen"
+class="w-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 hover:from-blue-500 hover:to-cyan-300 text-white font-black py-4 rounded-xl shadow-xl transition transform hover:scale-[1.02] flex items-center justify-center gap-3"
+>
+
+<i class="fa-solid fa-robot"></i>
+
+GENERATE PROMPT AI
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- PREVIEW -->
+<!-- ===================================================== -->
+
+<div class="w-full lg:w-7/12">
+
+<div class="bg-dark/50 p-4 md:p-6 rounded-2xl border border-white/5">
+
+<div class="flex justify-between items-center mb-4">
+
+<div>
+
+<span class="text-sm font-black text-slate-300">
+LIVE PREVIEW
+</span>
+
+<p class="text-[10px] text-slate-500">
+Sketsa komposisi poster
+</p>
+
+</div>
+
+
+<div
+id="ratioBadge"
+class="text-xs bg-slate-800 text-gold px-3 py-1.5 rounded-lg font-bold"
+>
+4:5
+</div>
+
+</div>
+
+
+<!-- POSTER -->
+<div
+id="poster"
+class="card-preview bg-slate-900 mx-auto"
+>
+
+
+<!-- BACKGROUND -->
+<img
+id="previewBg"
+src=""
+crossorigin="anonymous"
+class="absolute inset-0 w-full h-full object-cover"
+alt=""
+>
+
+
+<!-- OVERLAY -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/80 z-10"></div>
+
+
+<!-- CONTENT -->
+<div class="relative z-20 h-full w-full p-4 md:p-6 flex flex-col justify-between">
+
+
+<!-- HEADER LOGO -->
+<div class="flex justify-between items-start">
+
+<div class="w-1/3">
+
+<img
+id="previewLogoKiri"
+src=""
+class="max-h-10 max-w-[100px] object-contain hidden"
+alt=""
+>
+
+</div>
+
+
+<div class="w-1/3 flex justify-end">
+
+<img
+id="previewLogoKanan"
+src=""
+class="max-h-10 max-w-[100px] object-contain hidden"
+alt=""
+>
+
+</div>
+
+</div>
+
+
+<!-- TITLE -->
+<div class="text-center">
+
+<h2
+class="font-impact text-3xl md:text-5xl uppercase italic text-white title-text"
+>
+CONGRATULATIONS
+</h2>
+
+
+<p
+class="text-goldLight text-[9px] md:text-xs font-black uppercase tracking-[0.25em] mt-1"
+>
+NEW ACHIEVEMENT UNLOCKED
+</p>
+
+</div>
+
+
+<!-- RANK -->
+<div class="text-center">
+
+<div
+id="previewRankIcon"
+class="text-5xl md:text-6xl text-goldLight drop-shadow-2xl"
+>
+<i class="fa-solid fa-trophy"></i>
+</div>
+
+
+<h1
+id="previewRank"
+class="font-impact rank-text text-3xl md:text-5xl uppercase leading-tight"
+>
+GOLD ENTREPRENEUR
+</h1>
+
+</div>
+
+
+<!-- HERO PERSON -->
+<div class="flex-1 flex items-center justify-center relative">
+
+<div
+class="absolute bottom-0 left-1/2 -translate-x-1/2 w-56 h-56 md:w-72 md:h-72 bg-gold/10 blur-3xl rounded-full"
+></div>
+
+
+<img
+id="previewFoto"
+src="https://via.placeholder.com/400x500/1e293b/94a3b8?text=UPLOAD+FOTO"
+class="preview-person relative z-10"
+alt="Foto Referensi"
+>
+
+</div>
+
+
+<!-- BOTTOM -->
+<div class="text-center glass border-t-2 border-gold rounded-xl py-3 px-3">
+
+<h3
+id="previewNama"
+class="text-lg md:text-2xl font-black text-white uppercase tracking-wider"
+>
+SUGIARTO KURNIAWAN
+</h3>
+
+
+<p
+id="previewPesan"
+class="text-[8px] md:text-[10px] text-goldLight font-bold uppercase mt-1"
+>
+KERJA KERAS & SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI!
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- OUTPUT -->
+<div
+id="outputBox"
+class="output-box mt-6 bg-panel border border-gold/40 rounded-2xl p-5"
+>
+
+<div class="flex justify-between items-center mb-4">
+
+<h3 class="font-black text-gold">
+
+<i class="fa-solid fa-terminal mr-2"></i>
+
+PROMPT AI
+
+</h3>
+
+
+<button
+id="btnCopy"
+class="bg-gold hover:bg-yellow-300 text-black font-black text-xs px-4 py-2 rounded-lg"
+>
+
+<i class="fa-regular fa-copy"></i>
+
+SALIN
+
+</button>
+
+</div>
+
+
+<div
+id="finalPrompt"
+class="prompt-result"
+></div>
+
+
+<p class="text-[10px] text-slate-500 mt-3 text-center">
+
+Copy prompt → upload foto referensi → generate gambar di AI.
+
+Tidak menggunakan frame lingkaran.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const inputNama =
+document.getElementById("inputNama");
+
+const inputRank =
+document.getElementById("inputRank");
+
+const inputTema =
+document.getElementById("inputTema");
+
+const inputFoto =
+document.getElementById("inputFoto");
+
+const inputFotoFile =
+document.getElementById("inputFotoFile");
+
+const inputPakaian =
+document.getElementById("inputPakaian");
+
+const inputLighting =
+document.getElementById("inputLighting");
+
+const inputRatio =
+document.getElementById("inputRatio");
+
+const inputResolution =
+document.getElementById("inputResolution");
+
+const inputPesan =
+document.getElementById("inputPesan");
+
+const inputLogoKiri =
+document.getElementById("inputLogoKiri");
+
+const inputLogoKanan =
+document.getElementById("inputLogoKanan");
+
+
+const previewBg =
+document.getElementById("previewBg");
+
+const previewFoto =
+document.getElementById("previewFoto");
+
+const uploadPreview =
+document.getElementById("uploadPreview");
+
+const previewNama =
+document.getElementById("previewNama");
+
+const previewRank =
+document.getElementById("previewRank");
+
+const previewRankIcon =
+document.getElementById("previewRankIcon");
+
+const previewPesan =
+document.getElementById("previewPesan");
+
+const previewLogoKiri =
+document.getElementById("previewLogoKiri");
+
+const previewLogoKanan =
+document.getElementById("previewLogoKanan");
+
+const poster =
+document.getElementById("poster");
+
+const ratioBadge =
+document.getElementById("ratioBadge");
+
+
+let uploadedPhotoData = "";
+
+
+/* =========================================================
+   ICON PERINGKAT
+========================================================= */
+
+const rankIcons = {
+
+    "Entrepreneur":
+        "fa-solid fa-medal",
+
+    "Smart Entrepreneur":
+        "fa-solid fa-medal",
+
+    "Team Entrepreneur":
+        "fa-solid fa-users",
+
+    "Leader Entrepreneur":
+        "fa-solid fa-flag",
+
+    "Bronze Entrepreneur":
+        "fa-solid fa-medal",
+
+    "Silver Entrepreneur":
+        "fa-solid fa-medal",
+
+    "Gold Entrepreneur":
+        "fa-solid fa-trophy",
+
+    "Diamond Executive":
+        "fa-solid fa-gem",
+
+    "Royal Executive":
+        "fa-solid fa-crown",
+
+    "KING":
+        "fa-solid fa-crown"
+
+};
+
+
+/* =========================================================
+   UPDATE RATIO
+========================================================= */
+
+function updateRatio(){
+
+    const ratio =
+        inputRatio.value;
+
+    const ratioMap = {
+
+        "1:1":
+            "1 / 1",
+
+        "4:5":
+            "4 / 5",
+
+        "9:16":
+            "9 / 16"
+
+    };
+
+    poster.style.aspectRatio =
+        ratioMap[ratio];
+
+    ratioBadge.textContent =
+        ratio;
+
+}
+
+
+/* =========================================================
+   UPDATE PREVIEW
+========================================================= */
+
+function updatePreview(){
+
+    const nama =
+        inputNama.value ||
+        "NAMA MITRA";
+
+    const rank =
+        inputRank.value;
+
+    previewNama.textContent =
+        nama.toUpperCase();
+
+    previewRank.textContent =
+        rank.toUpperCase();
+
+    previewPesan.textContent =
+        inputPesan.value.toUpperCase();
+
+    previewBg.src =
+        inputTema.value;
+
+
+    /* ICON */
+
+    const icon =
+        rankIcons[rank] ||
+        "fa-solid fa-award";
+
+    previewRankIcon.innerHTML =
+        `<i class="${icon}"></i>`;
+
+
+    /* FOTO URL */
+
+    if(!uploadedPhotoData){
+
+        const url =
+            inputFoto.value.trim();
+
+        if(url){
+
+            previewFoto.src =
+                url;
+
         }
 
-        // Listener Input Form
-        Object.values(inputs).forEach(input => {
-            input.addEventListener('input', updatePreview);
-            if(input.tagName === 'SELECT') { input.addEventListener('change', updatePreview); }
-        });
+    }
 
-        // FUNGSI GENERATE PROMPT AI
-        document.getElementById('btnGen').addEventListener('click', function() {
-            const nama = inputs.nama.value.trim().toUpperCase();
-            const rank = inputs.rank.value.trim().toUpperCase();
-            const pesan = inputs.pesan.value.trim();
-            
-            // Ambil deskripsi tema dari atribut data-prompt
-            const selectTema = document.getElementById('inputTema');
-            const visualTema = selectTema.options[selectTema.selectedIndex].getAttribute('data-prompt');
 
-            let prompt = `Act as a Master 3D Graphic Designer. Create a highly detailed, cinematic, and majestic achievement poster. Aspect ratio: 4:5 (Portrait).\n\n`;
-            
-            prompt += `**1. BACKGROUND THEME:**\n`;
-            prompt += `The background must feature ${visualTema}. The atmosphere should feel epic, luxurious, and highly celebratory.\n\n`;
-            
-            prompt += `**2. TOP TYPOGRAPHY (3D TEXT):**\n`;
-            prompt += `Leave some empty space at the top left and top right corners so I can manually add my own corporate logos later.\n`;
-            prompt += `At the top center, write a massive, glowing, elegant 3D text reading exactly: "CONGRATULATIONS".\n`;
-            prompt += `Right below it, in a smaller but bold golden font, write exactly: "NEW ACHIEVEMENT UNLOCKED".\n\n`;
-            
-            prompt += `**3. RANK & CROWN:**\n`;
-            prompt += `In the upper-middle area, draw a beautiful glowing golden Crown icon 👑.\n`;
-            prompt += `Below the crown, write the rank in huge, bold, striking 3D golden typography reading exactly: "${rank}".\n\n`;
-            
-            prompt += `**4. THE EMPTY FRAME:**\n`;
-            prompt += `In the lower-middle area, draw a large, elegant, glowing golden circular frame. INSIDE this circle, leave it completely blank or a solid black color so I can easily paste a real photo into it later.\n\n`;
-            
-            prompt += `**5. BOTTOM TYPOGRAPHY:**\n`;
-            prompt += `Below the empty circular frame, write the person's name in a bold, elegant, bright white font reading exactly: "${nama}".\n`;
-            if (pesan) { prompt += `At the very bottom, in a smaller, inspiring golden text, write exactly: "${pesan}".\n\n`; }
+    /* LOGO KIRI */
 
-            prompt += `**STYLE:** Hyper-realistic, 8k resolution, volumetric lighting. Ensure all text is spelled correctly.`;
+    const logoKiri =
+        inputLogoKiri.value.trim();
 
-            document.getElementById('finalPrompt').textContent = prompt;
-            document.getElementById('outputBox').style.display = 'block';
-            document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth' });
-        });
+    if(logoKiri){
 
-        // Copy Prompt Function
-        document.getElementById('btnCopy').addEventListener('click', function() {
-            const textToCopy = document.getElementById('finalPrompt').textContent;
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    alert('Prompt berhasil disalin! Silakan paste ke ChatGPT (DALL-E 3).');
-                }).catch(() => fallbackCopy(textToCopy));
-            } else { fallbackCopy(textToCopy); }
-        });
+        previewLogoKiri.src =
+            logoKiri;
 
-        function fallbackCopy(text) {
-            let textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try { document.execCommand('copy'); alert('Prompt disalin. Paste ke ChatGPT.'); } 
-            catch (err) { alert('Gagal menyalin otomatis.'); }
-            document.body.removeChild(textArea);
-        }
+        previewLogoKiri.classList.remove("hidden");
 
-        // Load awal
-        updatePreview();
-    </script>
+    }else{
+
+        previewLogoKiri.classList.add("hidden");
+
+    }
+
+
+    /* LOGO KANAN */
+
+    const logoKanan =
+        inputLogoKanan.value.trim();
+
+    if(logoKanan){
+
+        previewLogoKanan.src =
+            logoKanan;
+
+        previewLogoKanan.classList.remove("hidden");
+
+    }else{
+
+        previewLogoKanan.classList.add("hidden");
+
+    }
+
+
+    updateRatio();
+
+}
+
+
+/* =========================================================
+   UPLOAD FOTO
+========================================================= */
+
+inputFotoFile.addEventListener(
+"change",
+function(){
+
+    const file =
+        this.files[0];
+
+    if(!file)
+        return;
+
+
+    if(!file.type.startsWith("image/")){
+
+        alert(
+            "Silakan pilih file gambar."
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+    function(e){
+
+        uploadedPhotoData =
+            e.target.result;
+
+        previewFoto.src =
+            uploadedPhotoData;
+
+        uploadPreview.src =
+            uploadedPhotoData;
+
+        uploadPreview.style.display =
+            "block";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =========================================================
+   EVENT UPDATE
+========================================================= */
+
+[
+    inputNama,
+    inputRank,
+    inputTema,
+    inputFoto,
+    inputPakaian,
+    inputLighting,
+    inputRatio,
+    inputPesan,
+    inputLogoKiri,
+    inputLogoKanan
+].forEach(
+    el => {
+
+        el.addEventListener(
+            "input",
+            updatePreview
+        );
+
+        el.addEventListener(
+            "change",
+            updatePreview
+        );
+
+    }
+);
+
+
+/* =========================================================
+   GENERATE PROMPT
+========================================================= */
+
+document
+.getElementById("btnGen")
+.addEventListener(
+"click",
+function(){
+
+    const nama =
+        inputNama.value
+        .trim()
+        .toUpperCase();
+
+    const rank =
+        inputRank.value
+        .trim()
+        .toUpperCase();
+
+    const pakaian =
+        inputPakaian.value;
+
+    const lighting =
+        inputLighting.value;
+
+    const ratio =
+        inputRatio.value;
+
+    const resolution =
+        inputResolution.value;
+
+    const pesan =
+        inputPesan.value.trim();
+
+    const temaOption =
+        inputTema.options[
+            inputTema.selectedIndex
+        ];
+
+    const visualTema =
+        temaOption.getAttribute(
+            "data-prompt"
+        );
+
+
+    let prompt = "";
+
+
+    prompt +=
+`ACT AS A MASTER 3D GRAPHIC DESIGNER AND PREMIUM ACHIEVEMENT POSTER ART DIRECTOR.
+
+Create an ultra-detailed, cinematic, majestic, premium achievement poster for a successful Indonesian entrepreneur.
+
+ASPECT RATIO: ${ratio}
+RESOLUTION: ${resolution}
+
+IMPORTANT: The final composition must NOT contain any circular photo frame, empty circle, golden ring, round portrait placeholder, or circular border around the person.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+1. MAIN CHARACTER & FACE REFERENCE
+==================================================
+
+Use the uploaded reference face as the primary facial reference.
+
+Preserve approximately 95% facial resemblance to the reference image.
+
+Maintain the recognizable identity, facial structure, eyes, nose, mouth, cheeks, jawline, natural skin texture, glasses and characteristic appearance.
+
+Do NOT generate a different person.
+
+Do NOT beautify the face excessively.
+
+Do NOT change the identity.
+
+Keep realistic Indonesian facial characteristics, natural skin pores, subtle facial asymmetry and authentic expression.
+
+The person must look like the same real individual from the reference photo, naturally integrated into the new environment.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+2. CHARACTER CLOTHING
+==================================================
+
+Dress the character in:
+
+${pakaian}
+
+The clothing must look premium, realistic, elegant, professional and appropriate for a successful Indonesian entrepreneur.
+
+Realistic fabric texture.
+
+Natural folds.
+
+Premium commercial photography quality.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+3. BACKGROUND
+==================================================
+
+Use this selected background concept:
+
+${visualTema}
+
+The environment must look bright, beautiful, luxurious and inspirational.
+
+The sky should be beautiful and clear.
+
+The scenery should be attractive and premium.
+
+Avoid gloomy atmosphere.
+
+Avoid dark night scenery.
+
+Avoid depressing atmosphere.
+
+Avoid overly orange late-afternoon lighting unless specifically required by the selected background.
+
+Create strong foreground, middle-ground and background separation.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+4. LIGHTING
+==================================================
+
+Lighting style:
+
+${lighting}
+
+Use beautiful natural cinematic lighting.
+
+Bright but controlled exposure.
+
+Natural skin highlights.
+
+Soft realistic shadows.
+
+Professional commercial portrait lighting.
+
+Subtle rim light.
+
+Realistic reflections.
+
+Rich contrast.
+
+Cinematic depth.
+
+The result must feel premium and photorealistic, not artificial.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+5. TOP TYPOGRAPHY
+==================================================
+
+Leave clean negative space at the upper-left and upper-right areas for corporate logos.
+
+At the top center create large premium 3D typography:
+
+"CONGRATULATIONS"
+
+Directly underneath:
+
+"NEW ACHIEVEMENT UNLOCKED"
+
+Use elegant premium typography.
+
+High readability.
+
+Perfect spelling.
+
+Gold, white and subtle metallic highlights.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+6. RANK & ACHIEVEMENT
+==================================================
+
+Selected rank:
+
+"${rank}"
+
+Use a suitable achievement icon for the selected rank.
+
+Entrepreneur = medal icon.
+
+Bronze Entrepreneur = bronze medal.
+
+Silver Entrepreneur = silver medal.
+
+Gold Entrepreneur = prestigious golden trophy or gold medal.
+
+Diamond Executive = premium diamond icon.
+
+Royal Executive = luxurious golden crown.
+
+KING = monumental royal crown.
+
+Place the rank icon above or beside the rank.
+
+Below it display:
+
+"${rank}"
+
+Use huge, bold, striking premium 3D typography.
+
+Metallic gold finish.
+
+Realistic bevel.
+
+Glossy highlights.
+
+Elegant shadow.
+
+Luxury achievement aesthetic.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+7. MAIN CHARACTER POSITION
+==================================================
+
+Place the person as the main hero subject.
+
+The character must be OUTSIDE any frame.
+
+There must be NO circular frame.
+
+There must be NO empty circle.
+
+There must be NO portrait placeholder.
+
+There must be NO golden ring surrounding the person.
+
+The person should naturally stand or sit within the environment.
+
+Use realistic body proportions.
+
+Natural hands.
+
+Natural arms.
+
+Natural posture.
+
+Professional confident expression.
+
+Heroic but friendly.
+
+The person must look naturally photographed inside the environment rather than pasted into the background.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+8. BOTTOM TYPOGRAPHY
+==================================================
+
+Display the person's name:
+
+"${nama}"
+
+Use large elegant bright white premium typography.
+
+Below the name display:
+
+"${pesan}"
+
+Use smaller elegant golden typography.
+
+Keep the bottom section clean, premium and highly readable.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+9. VISUAL STYLE
+==================================================
+
+Ultra-realistic photography.
+
+Premium commercial advertising poster.
+
+Cinematic movie-poster quality.
+
+Photorealistic human.
+
+Realistic skin.
+
+Realistic hands.
+
+Realistic clothing.
+
+Realistic environmental lighting.
+
+High dynamic range.
+
+Professional color grading.
+
+Subtle film grain.
+
+Volumetric light.
+
+Depth of field.
+
+Premium 3D typography.
+
+Luxury achievement campaign.
+
+${resolution} quality appearance.
+
+`;
+
+
+    prompt +=
+`
+==================================================
+10. STRICT NEGATIVE PROMPT
+==================================================
+
+NO circular frame.
+
+NO empty circle.
+
+NO golden circular ring.
+
+NO round portrait frame.
+
+NO photo placeholder.
+
+NO distorted face.
+
+NO different identity.
+
+NO excessive face modification.
+
+NO cartoon.
+
+NO anime.
+
+NO illustration.
+
+NO plastic skin.
+
+NO deformed hands.
+
+NO extra fingers.
+
+NO missing fingers.
+
+NO duplicated person.
+
+NO duplicate face.
+
+NO malformed anatomy.
+
+NO blurry face.
+
+NO low resolution.
+
+NO dark gloomy atmosphere.
+
+NO night scene.
+
+NO flat lighting.
+
+NO excessive orange sunset.
+
+NO excessive HDR.
+
+NO random watermark.
+
+NO random logo.
+
+NO spelling mistakes.
+
+NO warped typography.
+
+NO illegible text.
+
+NO unnecessary objects.
+
+NO clutter.
+
+Final aspect ratio must be exactly ${ratio}.
+
+Final output should look like a professionally photographed premium achievement campaign.
+
+`;
+
+
+    document
+    .getElementById("finalPrompt")
+    .textContent =
+        prompt;
+
+
+    document
+    .getElementById("outputBox")
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById("outputBox")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================================================
+   COPY PROMPT
+========================================================= */
+
+document
+.getElementById("btnCopy")
+.addEventListener(
+"click",
+function(){
+
+    const text =
+        document
+        .getElementById("finalPrompt")
+        .textContent;
+
+
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
+
+        navigator.clipboard
+        .writeText(text)
+        .then(
+            function(){
+
+                alert(
+                    "Prompt berhasil disalin! 🚀"
+                );
+
+            }
+        )
+        .catch(
+            function(){
+
+                fallbackCopy(text);
+
+            }
+        );
+
+    }else{
+
+        fallbackCopy(text);
+
+    }
+
+});
+
+
+function fallbackCopy(text){
+
+    const textarea =
+        document.createElement(
+            "textarea"
+        );
+
+    textarea.value =
+        text;
+
+    textarea.style.position =
+        "fixed";
+
+    textarea.style.opacity =
+        "0";
+
+    document.body.appendChild(
+        textarea
+    );
+
+    textarea.select();
+
+    try{
+
+        document.execCommand(
+            "copy"
+        );
+
+        alert(
+            "Prompt berhasil disalin! 🚀"
+        );
+
+    }catch(e){
+
+        alert(
+            "Gagal menyalin prompt."
+        );
+
+    }
+
+    document.body.removeChild(
+        textarea
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+updatePreview();
+
+</script>
+
 </body>
 </html>
