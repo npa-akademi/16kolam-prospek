@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Rank Engine - 3iReborn</title>
+    <title>NPA Rank Engine Ultimate - 3iReborn</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script>
         tailwind.config = {
@@ -14,12 +14,14 @@
                     colors: {
                         dark: "#0b1120",
                         panel: "#1e293b",
-                        gold: "#fbbf24",
-                        neon: "#22d3ee"
+                        gold: "#f59e0b",
+                        goldLight: "#fde047",
+                        mobissBg: "#e0f2fe",
+                        mobissHeader: "#0ea5e9"
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        impact: ['Oswald', 'sans-serif'],
                     }
                 }
             }
@@ -27,183 +29,272 @@
     </script>
     <style>
         body { background-color: #0b1120; color: #f8fafc; }
-        .bg-cyber {
-            background-image: 
-                linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: center center;
+        
+        /* Efek Sinar Bintang/Burst di Background */
+        .bg-burst {
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
+                #0f172a;
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+
+        /* Teks Peringkat Super Bold & Glowing */
+        .rank-text {
+            background: linear-gradient(to bottom, #ffffff 0%, #fde047 50%, #f59e0b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.8));
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
         }
-        .gold-gradient {
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .title-text {
+            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 15px rgba(0,0,0,0.8);
         }
+
+        /* Aspek Rasio Poster Instagram/WA (4:5) */
         .card-preview {
             width: 100%;
-            max-width: 400px;
-            aspect-ratio: 1 / 1;
+            max-width: 450px;
+            aspect-ratio: 4 / 5;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+        }
+
+        /* Simulator UI Mobiss */
+        .mobiss-box {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-7xl mx-auto">
         <!-- HEADER -->
         <header class="mb-10 text-center md:text-left border-b border-white/10 pb-6">
-            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-award text-gold"></i> NPA <span class="text-neon">Rank Engine</span></h1>
-            <p class="text-slate-400">Mesin Pembuat Poster Apresiasi Peringkat 3iReborn Secara Otomatis.</p>
+            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-crown text-gold"></i> NPA <span class="text-blue-400">Rank Engine Ultimate</span></h1>
+            <p class="text-slate-400">Generator Poster Apresiasi Lengkap dengan Simulator Bukti Aplikasi.</p>
         </header>
 
-        <div class="flex flex-col md:flex-row gap-10">
+        <div class="flex flex-col lg:flex-row gap-10">
             <!-- PANEL KIRI: KONTROL FORM -->
-            <div class="w-full md:w-1/3 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
-                <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Apresiasi</h2>
+            <div class="w-full lg:w-5/12 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
+                <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Pencapaian</h2>
                 
                 <div class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
-                        <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon focus:outline-none transition" placeholder="Contoh: Sugiarto Kurniawan" value="Sugiarto Kurniawan">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2">
+                            <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
+                            <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Sugiarto Kurniawan">
+                        </div>
+                        
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru <i class="fa-solid fa-crown text-gold"></i></label>
+                            <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
+                                <option value="Team Agency">Team Agency</option>
+                                <option value="Leader Agency">Leader Agency</option>
+                                <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
+                                <option value="Silver Entrepreneur">Silver Entrepreneur</option>
+                                <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+                                <option value="Platinum Entrepreneur">Platinum Entrepreneur</option>
+                                <option value="Titanium Entrepreneur">Titanium Entrepreneur</option>
+                                <option value="Crown Entrepreneur" selected>Crown Entrepreneur</option>
+                            </select>
+                        </div>
+
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Sebelumnya</label>
+                            <select id="inputOldRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
+                                <option value="Smart Entrepreneur">Smart Entrepreneur</option>
+                                <option value="Team Agency">Team Agency</option>
+                                <option value="Leader Agency">Leader Agency</option>
+                                <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
+                                <option value="Silver Entrepreneur">Silver Entrepreneur</option>
+                                <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+                                <option value="Platinum Entrepreneur">Platinum Entrepreneur</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru</label>
-                        <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon focus:outline-none transition">
-                            <option value="Team Entrepreneur">Team Entrepreneur</option>
-                            <option value="Leader Entrepreneur">Leader Entrepreneur</option>
-                            <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
-                            <option value="Silver Entrepreneur">Silver Entrepreneur</option>
-                            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-                            <option value="Diamond Executive">Diamond Executive</option>
-                            <option value="Royal Executive">Royal Executive</option>
-                            <option value="King" selected>King</option>
-                        </select>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Periode Bulan</label>
+                        <input type="text" id="inputBulan" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Agustus 2026">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto (Postimage)</label>
-                        <input type="text" id="inputFoto" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon focus:outline-none transition" placeholder="Paste link .jpg atau .png" value="https://i.postimg.cc/k5HhytB9/logo-NPA.png">
-                        <p class="text-xs text-slate-500 mt-2">Sebaiknya gunakan foto tanpa background (PNG) atau foto setengah badan yang rapi.</p>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto (Postimage / Canva)</label>
+                        <input type="text" id="inputFoto" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="https://i.postimg.cc/k5HhytB9/logo-NPA.png">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan / Slogan Pendek</label>
-                        <textarea id="inputPesan" rows="2" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-neon focus:outline-none transition" placeholder="Contoh: Terus melangkah lebih berkah!">Menembus Batas Kemustahilan!</textarea>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Apresiasi Bawah</label>
+                        <textarea id="inputPesan" rows="3" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none text-sm">Kerja Keras, Komitmen, Dan Semangat Pantang Menyerah Telah Membawamu Sampai Titik Ini. Teruslah Menjadi Inspirasi!</textarea>
                     </div>
                 </div>
             </div>
 
-            <!-- PANEL KANAN: LIVE PREVIEW -->
-            <div class="w-full md:w-2/3 flex flex-col items-center justify-center bg-dark/50 p-6 rounded-2xl border border-white/5">
-                <div class="mb-4 w-full max-w-[400px] flex justify-between items-center">
+            <!-- PANEL KANAN: LIVE PREVIEW POSTER -->
+            <div class="w-full lg:w-7/12 flex flex-col items-center justify-center bg-dark/50 p-4 md:p-8 rounded-2xl border border-white/5 overflow-hidden">
+                <div class="mb-4 w-full max-w-[450px] flex justify-between items-center">
                     <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Live Preview</span>
-                    <span class="text-xs bg-neon/20 text-neon px-2 py-1 rounded">Siap di-Screenshot!</span>
+                    <span class="text-xs bg-green-500/20 text-green-400 px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-camera"></i> Siap Screenshot</span>
                 </div>
 
-                <!-- AREA POSTER YANG AKAN DI-SCREENSHOT -->
-                <div id="posterArea" class="card-preview bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] rounded-2xl">
-                    <!-- Efek Garis Cyber -->
-                    <div class="absolute inset-0 bg-cyber opacity-30"></div>
+                <!-- AREA POSTER -->
+                <div id="posterArea" class="card-preview bg-burst rounded-xl relative">
                     
-                    <!-- Lingkaran Glow Background -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neon/20 rounded-full blur-[60px]"></div>
+                    <!-- Dekorasi Garis Cahaya -->
+                    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+                    
+                    <!-- Latar Belakang Foto Tokoh (Besar & Faded) -->
+                    <div class="absolute right-0 bottom-0 w-3/4 h-3/4 opacity-40 mix-blend-luminosity mask-image: linear-gradient(to top, black, transparent)">
+                         <img id="bgFoto" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" class="w-full h-full object-cover object-bottom" alt="">
+                    </div>
 
-                    <!-- Konten Poster -->
-                    <div class="absolute inset-0 p-6 flex flex-col justify-between z-10 text-center">
+                    <!-- KONTEN UTAMA POSTER -->
+                    <div class="absolute inset-0 p-5 md:p-6 flex flex-col z-10">
                         
-                        <!-- Header / Logo Area -->
-                        <div class="flex justify-between items-start">
-                            <div class="text-left">
-                                <p class="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase">Congratulations</p>
-                                <p class="font-bold text-sm text-white">NEW ACHIEVEMENT</p>
+                        <!-- Header Logos -->
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center font-black text-blue-900 text-xs shadow-lg">CAR</div>
+                                <div class="font-black text-sm text-white drop-shadow-md">Life Insurance</div>
                             </div>
-                            <div class="font-black text-lg">
-                                3I<span class="text-neon">REBORN</span>
-                            </div>
-                        </div>
-
-                        <!-- Foto Area -->
-                        <div class="flex-1 flex items-center justify-center relative my-2">
-                            <!-- Bingkai Foto -->
-                            <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-neon/50 p-1 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-slate-800">
-                                    <img id="previewFoto" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" alt="Foto Mitra" class="w-full h-full object-cover">
-                                </div>
-                                <!-- Badge Bintang -->
-                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-dark border border-gold text-gold rounded-full px-3 py-1 text-xs font-black shadow-lg flex gap-1">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
+                            <div class="text-right">
+                                <div class="font-black text-xl text-white drop-shadow-md tracking-tighter">3i-Networks</div>
+                                <div class="text-[7px] text-white tracking-widest uppercase">Insurance - Investment - Income</div>
                             </div>
                         </div>
 
-                        <!-- Teks Apresiasi -->
-                        <div class="mt-2">
-                            <h2 id="previewNama" class="font-serif text-2xl font-black text-white mb-1 leading-tight">Sugiarto Kurniawan</h2>
-                            <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">Has Successfully Reached</p>
-                            <h3 id="previewRank" class="text-xl font-black gold-gradient uppercase tracking-wide mb-3">Crown Entrepreneur</h3>
+                        <!-- Big Text Title -->
+                        <div class="text-center mt-2 mb-2">
+                            <h2 class="font-impact text-4xl md:text-5xl text-white title-text italic uppercase transform -skew-x-6 tracking-wide">
+                                Congratulations
+                            </h2>
+                            <p class="text-white text-sm md:text-base font-bold uppercase tracking-[0.2em] mt-1 drop-shadow-lg">
+                                New Achievement Unlocked
+                            </p>
+                        </div>
+
+                        <!-- Teks Peringkat (SUPER BOLD + CROWN) -->
+                        <div class="text-center mb-4 transform -skew-x-6">
+                            <h1 id="previewRank" class="font-impact text-4xl md:text-5xl uppercase rank-text leading-none">
+                                <i class="fa-solid fa-crown text-goldLight drop-shadow-md"></i><br>
+                                CROWN ENTREPRENEUR
+                            </h1>
+                        </div>
+
+                        <!-- Area Tengah (Foto & Simulator Mobiss) -->
+                        <div class="flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between gap-4 mb-4">
                             
-                            <!-- Garis Pemisah -->
-                            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-neon to-transparent mx-auto mb-3"></div>
-                            
-                            <p id="previewPesan" class="text-xs font-medium text-slate-300 italic px-4">"Menembus Batas Kemustahilan!"</p>
+                            <!-- Foto Utama -->
+                            <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gold p-1 shadow-[0_0_30px_rgba(245,158,11,0.5)] bg-dark z-20">
+                                <img id="previewFoto" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" class="w-full h-full object-cover rounded-full" alt="">
+                                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase shadow-lg border border-white/50 whitespace-nowrap">
+                                    <i class="fa-solid fa-star text-gold"></i> SUPERSTAR
+                                </div>
+                            </div>
+
+                            <!-- SIMULATOR APLIKASI MOBISS -->
+                            <div class="mobiss-box bg-white rounded-lg w-full max-w-[220px] overflow-hidden z-20 text-slate-800 text-xs">
+                                <!-- Mobiss Header -->
+                                <div class="bg-mobissHeader text-white p-2 flex justify-between items-center font-bold">
+                                    <div class="flex items-center gap-1"><i class="fa-solid fa-chevron-left"></i> <span>Struktur</span></div>
+                                    <div class="flex gap-1">
+                                        <span class="bg-white/20 px-2 rounded text-[9px]">Awal</span>
+                                        <span class="bg-white/20 px-2 rounded text-[9px]">Kembali</span>
+                                    </div>
+                                </div>
+                                <!-- Mobiss Filter -->
+                                <div class="bg-mobissBg p-2 border-b border-blue-200">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-[10px]">Periode Bulan</span>
+                                        <span id="previewBulan" class="bg-white border border-slate-300 px-2 py-0.5 rounded text-[10px] font-bold">Agustus 2026</span>
+                                    </div>
+                                </div>
+                                <!-- Mobiss Data -->
+                                <div class="p-2 space-y-1 text-[10px] bg-white leading-tight">
+                                    <p class="text-blue-500 text-[9px] mb-1">Silahkan geser atas/bawah v untuk lihat detail</p>
+                                    <div class="flex"><span class="w-20 font-medium">Nama</span>: <span id="previewNamaMobiss" class="font-bold ml-1 uppercase">SUGIARTO KURNIAWAN</span> <div class="w-2 h-2 rounded-full bg-blue-600 ml-1 mt-0.5"></div></div>
+                                    <div class="flex"><span class="w-20 font-medium">Peringkat Lalu</span>: <span id="previewOldRankMobiss" class="ml-1 uppercase">Smart Entrepreneur</span></div>
+                                    <div class="flex items-center mt-1 pt-1 border-t border-slate-100">
+                                        <span class="w-20 font-bold text-blue-900">Kualifikasi</span>: 
+                                        <span id="previewRankMobiss" class="ml-1 font-bold text-blue-600 uppercase">CROWN ENTREPRENEUR</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Pesan Apresiasi Bawah -->
+                        <div class="bg-black/60 backdrop-blur-sm border-t-2 border-gold p-3 rounded-xl text-center relative z-20">
+                            <h3 id="previewNamaBawah" class="text-xl font-black text-white uppercase tracking-wider mb-1 drop-shadow-md">SUGIARTO KURNIAWAN</h3>
+                            <p id="previewPesan" class="text-[11px] md:text-xs text-gold font-bold leading-tight uppercase">KERJA KERAS, KOMITMEN, DAN SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI. TERUSLAH MENJADI INSPIRASI!</p>
                         </div>
 
                     </div>
                 </div>
                 <!-- END AREA POSTER -->
-
-                <div class="mt-8 text-center text-slate-500 text-sm max-w-sm">
-                    <p><i class="fa-solid fa-circle-info text-neon"></i> <strong>Cara Pakai:</strong> Ubah data di sebelah kiri, lalu <strong class="text-white">Screenshot (Tangkap Layar)</strong> kotak poster di atas dan potong (crop) dengan rapi sebelum dikirim ke grup WhatsApp.</p>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT LOGIKA LIVE PREVIEW -->
     <script>
-        // Ambil elemen input
-        const inputNama = document.getElementById('inputNama');
-        const inputRank = document.getElementById('inputRank');
-        const inputFoto = document.getElementById('inputFoto');
-        const inputPesan = document.getElementById('inputPesan');
+        // DOM Elements
+        const inputs = {
+            nama: document.getElementById('inputNama'),
+            rank: document.getElementById('inputRank'),
+            oldRank: document.getElementById('inputOldRank'),
+            bulan: document.getElementById('inputBulan'),
+            foto: document.getElementById('inputFoto'),
+            pesan: document.getElementById('inputPesan')
+        };
 
-        // Ambil elemen preview
-        const previewNama = document.getElementById('previewNama');
-        const previewRank = document.getElementById('previewRank');
-        const previewFoto = document.getElementById('previewFoto');
-        const previewPesan = document.getElementById('previewPesan');
+        const previews = {
+            rank: document.getElementById('previewRank'),
+            foto: document.getElementById('previewFoto'),
+            bgFoto: document.getElementById('bgFoto'),
+            bulan: document.getElementById('previewBulan'),
+            namaMobiss: document.getElementById('previewNamaMobiss'),
+            oldRankMobiss: document.getElementById('previewOldRankMobiss'),
+            rankMobiss: document.getElementById('previewRankMobiss'),
+            namaBawah: document.getElementById('previewNamaBawah'),
+            pesan: document.getElementById('previewPesan')
+        };
 
-        // Fungsi Update Real-time
         function updatePreview() {
-            previewNama.textContent = inputNama.value || 'Nama Mitra';
-            previewRank.textContent = inputRank.value;
+            // Update Teks
+            const nama = inputs.nama.value || 'NAMA MITRA';
+            previews.namaMobiss.textContent = nama;
+            previews.namaBawah.textContent = nama;
             
-            // Handle foto jika kosong
-            const fotoUrl = inputFoto.value.trim();
-            if (fotoUrl) {
-                previewFoto.src = fotoUrl;
-            } else {
-                previewFoto.src = 'https://via.placeholder.com/150/1e293b/94a3b8?text=FOTO';
-            }
+            const rank = inputs.rank.value;
+            previews.rank.innerHTML = `<i class="fa-solid fa-crown text-goldLight drop-shadow-md"></i><br>${rank}`;
+            previews.rankMobiss.textContent = rank;
             
-            previewPesan.textContent = `"${inputPesan.value || 'Sukses Berkah Bersama 3iReborn'}"`;
+            previews.oldRankMobiss.textContent = inputs.oldRank.value;
+            previews.bulan.textContent = inputs.bulan.value || '-';
+            previews.pesan.textContent = inputs.pesan.value || '';
+
+            // Update Foto (Utama & Background Faded)
+            const fotoUrl = inputs.foto.value.trim();
+            const defaultFoto = 'https://via.placeholder.com/150/1e293b/94a3b8?text=FOTO';
+            previews.foto.src = fotoUrl ? fotoUrl : defaultFoto;
+            previews.bgFoto.src = fotoUrl ? fotoUrl : defaultFoto;
         }
 
-        // Tambahkan Event Listener ke semua input
-        inputNama.addEventListener('input', updatePreview);
-        inputRank.addEventListener('change', updatePreview);
-        inputFoto.addEventListener('input', updatePreview);
-        inputPesan.addEventListener('input', updatePreview);
+        // Event Listeners
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', updatePreview);
+            if(input.tagName === 'SELECT') {
+                input.addEventListener('change', updatePreview);
+            }
+        });
+
+        // Initial Load
+        updatePreview();
     </script>
 </body>
 </html>
