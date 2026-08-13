@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Rank Engine Ultimate - 3iReborn</title>
+    <title>NPA Rank Engine Cinematic - 3iReborn</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Library untuk mengubah HTML menjadi Gambar (Download) -->
@@ -21,8 +21,6 @@
                         panel: "#1e293b",
                         gold: "#f59e0b",
                         goldLight: "#fde047",
-                        mobissBg: "#e0f2fe",
-                        mobissHeader: "#0ea5e9"
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -34,39 +32,33 @@
     </script>
     <style>
         body { background-color: #0b1120; color: #f8fafc; }
-        
-        .bg-burst {
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.4) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
-                #0f172a;
-        }
 
+        /* Teks Peringkat Super Bold & Glowing */
         .rank-text {
-            background: linear-gradient(to bottom, #ffffff 0%, #fde047 50%, #f59e0b 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, #fde047 40%, #f59e0b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.8));
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
         }
 
         .title-text {
-            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 15px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 20px rgba(0,0,0,0.9);
         }
 
+        /* Aspek Rasio Poster 4:5 (Standard IG/FB/WA) */
         .card-preview {
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
             aspect-ratio: 4 / 5;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+            margin: 0 auto;
         }
 
-        .mobiss-box {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.1);
+        .text-shadow-strong {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 4px rgba(0,0,0,0.9);
         }
     </style>
 </head>
@@ -75,77 +67,62 @@
     <div class="max-w-7xl mx-auto">
         <!-- HEADER -->
         <header class="mb-10 text-center md:text-left border-b border-white/10 pb-6">
-            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-crown text-gold"></i> NPA <span class="text-blue-400">Rank Engine Ultimate</span></h1>
-            <p class="text-slate-400">Generator Poster Apresiasi Lengkap dengan Fitur Download Otomatis.</p>
+            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-crown text-gold"></i> NPA <span class="text-blue-400">Rank Engine Cinematic</span></h1>
+            <p class="text-slate-400">Fokus pada Wajah, Peringkat BOLD, dan Background Reward (Umroh/Cruise/Bali).</p>
         </header>
 
         <div class="flex flex-col lg:flex-row gap-10">
             <!-- PANEL KIRI: KONTROL FORM -->
             <div class="w-full lg:w-5/12 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
-                <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Pencapaian</h2>
+                <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Apresiasi</h2>
                 
                 <div class="space-y-4">
                     <!-- LOGO KUSTOM -->
                     <div class="grid grid-cols-2 gap-4 bg-dark/50 p-4 rounded-xl border border-white/5">
-                        <div class="col-span-2">
-                            <p class="text-xs text-gold mb-2 font-bold"><i class="fa-solid fa-triangle-exclamation"></i> Logo Perusahaan dihilangkan demi kepatuhan. Masukkan URL Logo Grup Anda (Opsional):</p>
-                        </div>
                         <div class="col-span-2 sm:col-span-1">
                             <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kiri</label>
-                            <input type="text" id="inputLogoKiri" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Contoh: Link Logo 3iReborn">
+                            <input type="text" id="inputLogoKiri" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Link Logo Kiri">
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                             <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kanan</label>
-                            <input type="text" id="inputLogoKanan" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Contoh: Link Logo Synergy">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-2">
-                            <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
-                            <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Sugiarto Kurniawan">
-                        </div>
-                        
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru <i class="fa-solid fa-crown text-gold"></i></label>
-                            <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
-                                <option value="Team Agency">Team Agency</option>
-                                <option value="Leader Agency">Leader Agency</option>
-                                <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
-                                <option value="Silver Entrepreneur">Silver Entrepreneur</option>
-                                <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-                                <option value="Platinum Entrepreneur">Platinum Entrepreneur</option>
-                                <option value="Titanium Entrepreneur">Titanium Entrepreneur</option>
-                                <option value="Crown Entrepreneur" selected>Crown Entrepreneur</option>
-                            </select>
-                        </div>
-
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Sebelumnya</label>
-                            <select id="inputOldRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
-                                <option value="Smart Entrepreneur">Smart Entrepreneur</option>
-                                <option value="Team Agency">Team Agency</option>
-                                <option value="Leader Agency">Leader Agency</option>
-                                <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
-                                <option value="Silver Entrepreneur">Silver Entrepreneur</option>
-                                <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-                                <option value="Platinum Entrepreneur">Platinum Entrepreneur</option>
-                            </select>
+                            <input type="text" id="inputLogoKanan" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Link Logo Kanan">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Periode Bulan</label>
-                        <input type="text" id="inputBulan" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Agustus 2026">
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
+                        <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Sugiarto Kurniawan">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru <i class="fa-solid fa-crown text-gold"></i></label>
+                        <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
+                            <option value="Entrepreneur">Entrepreneur</option>
+                            <option value="Smart Entrepreneur">Smart Entrepreneur</option>
+                            <option value="Team Entrepreneur">Team Entrepreneur</option>
+                            <option value="Leader Entrepreneur">Leader Entrepreneur</option>
+                            <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
+                            <option value="Silver Entrepreneur">Silver Entrepreneur</option>
+                            <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+                            <option value="Diamond Executive">Diamond Executive</option>
+                            <option value="Royal Executive">Royal Executive</option>
+                            <option value="KING" selected>KING</option>
+                        </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto (Postimage / Canva)</label>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto Mitra (Wajib PNG Tanpa Background)</label>
                         <input type="text" id="inputFoto" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="https://i.postimg.cc/k5HhytB9/logo-NPA.png">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Apresiasi Bawah</label>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Background (Tema Umroh / Cruise / Bali)</label>
+                        <input type="text" id="inputBg" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" placeholder="Masukkan Link Pemandangan" value="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?q=80&w=600&auto=format&fit=crop">
+                        <p class="text-[10px] text-slate-400 mt-1">Kosongkan jika hanya ingin warna gelap biasa.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Inspirasi Bawah</label>
                         <textarea id="inputPesan" rows="2" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none text-sm">Kerja Keras & Semangat Pantang Menyerah Telah Membawamu Sampai Titik Ini. Teruslah Menjadi Inspirasi!</textarea>
                     </div>
                 </div>
@@ -153,30 +130,29 @@
 
             <!-- PANEL KANAN: LIVE PREVIEW & DOWNLOAD -->
             <div class="w-full lg:w-7/12 flex flex-col items-center justify-center bg-dark/50 p-4 md:p-8 rounded-2xl border border-white/5 overflow-hidden">
-                <div class="mb-4 w-full max-w-[450px] flex justify-between items-center">
+                <div class="mb-4 w-full max-w-[400px] flex justify-between items-center">
                     <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Live Preview</span>
-                    <!-- TOMBOL DOWNLOAD BARU -->
                     <button id="btnDownload" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-download"></i> Download Poster
                     </button>
                 </div>
 
                 <!-- AREA POSTER YANG AKAN DI-DOWNLOAD -->
-                <div id="posterArea" class="card-preview bg-burst rounded-xl relative">
+                <div id="posterArea" class="card-preview bg-slate-900 rounded-xl relative">
                     
-                    <!-- Dekorasi Garis Cahaya -->
-                    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+                    <!-- BACKGROUND TEMA (UMROH/CRUISE/BALI) -->
+                    <img id="previewBg" crossorigin="anonymous" src="" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60" alt="">
                     
-                    <!-- Latar Belakang Foto Tokoh (Besar & Faded) -->
-                    <div class="absolute right-0 bottom-0 w-3/4 h-3/4 opacity-30 mix-blend-luminosity mask-image: linear-gradient(to top, black, transparent)">
-                         <img id="bgFoto" crossorigin="anonymous" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" class="w-full h-full object-cover object-bottom" alt="">
-                    </div>
+                    <!-- OVERLAY GELAP (Agar teks terbaca) -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/80 z-10"></div>
+                    <!-- Efek Bintik Bintang -->
+                    <div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-10"></div>
 
-                    <!-- KONTEN UTAMA POSTER (Di-resize agar tidak kepotong di HP) -->
-                    <div class="absolute inset-0 p-4 flex flex-col z-10">
+                    <!-- KONTEN UTAMA POSTER -->
+                    <div class="absolute inset-0 p-5 flex flex-col z-20">
                         
-                        <!-- Header Logos (Dinamis dari Input) -->
-                        <div class="flex justify-between items-center mb-1 h-12">
+                        <!-- Header Logos -->
+                        <div class="flex justify-between items-center h-10 mb-4">
                             <div class="w-1/3 flex justify-start">
                                 <img id="previewLogoKiri" crossorigin="anonymous" src="" class="max-h-10 object-contain hidden" alt="Logo Kiri">
                             </div>
@@ -186,60 +162,38 @@
                         </div>
 
                         <!-- Big Text Title -->
-                        <div class="text-center mb-1">
+                        <div class="text-center mb-2">
                             <h2 class="font-impact text-3xl md:text-4xl text-white title-text italic uppercase transform -skew-x-6 tracking-wide leading-none">
                                 Congratulations
                             </h2>
-                            <p class="text-white text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-1 drop-shadow-lg">
+                            <p class="text-goldLight text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mt-1 drop-shadow-lg">
                                 New Achievement Unlocked
                             </p>
                         </div>
 
-                        <!-- Teks Peringkat -->
-                        <div class="text-center mb-2 transform -skew-x-6">
-                            <h1 id="previewRank" class="font-impact text-3xl md:text-4xl uppercase rank-text leading-tight">
-                                <i class="fa-solid fa-crown text-goldLight drop-shadow-md text-2xl"></i><br>
-                                CROWN ENTREPRENEUR
+                        <!-- Teks Peringkat (SUPER BOLD + CROWN) -->
+                        <div class="text-center transform -skew-x-6 mb-4 relative z-30">
+                            <h1 id="previewRank" class="font-impact text-4xl md:text-5xl uppercase rank-text leading-tight">
+                                <i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>
+                                KING
                             </h1>
                         </div>
 
-                        <!-- Area Tengah (Foto & Simulator Mobiss) -->
-                        <div class="flex-1 flex flex-row items-center justify-between gap-2 md:gap-4 mb-2 px-2">
+                        <!-- FOTO TOKOH (Tengah Besar) -->
+                        <div class="flex-1 flex justify-center items-center relative z-20 mb-4">
+                            <!-- Cahaya di belakang foto -->
+                            <div class="absolute w-40 h-40 bg-gold/30 rounded-full blur-[40px] z-0"></div>
                             
-                            <!-- Foto Utama -->
-                            <div class="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gold p-1 shadow-[0_0_20px_rgba(245,158,11,0.5)] bg-dark z-20 shrink-0">
+                            <!-- Lingkaran Frame Emas -->
+                            <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-gold p-1.5 shadow-[0_0_40px_rgba(245,158,11,0.6)] bg-black/50 z-10">
                                 <img id="previewFoto" crossorigin="anonymous" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" class="w-full h-full object-cover rounded-full" alt="">
-                                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-[8px] md:text-[10px] font-black px-3 py-1 rounded-full uppercase shadow-lg border border-white/50 whitespace-nowrap">
-                                    <i class="fa-solid fa-star text-gold"></i> SUPERSTAR
-                                </div>
-                            </div>
-
-                            <!-- SIMULATOR APLIKASI MOBISS -->
-                            <div class="mobiss-box bg-white rounded-lg w-full max-w-[180px] md:max-w-[200px] overflow-hidden z-20 text-slate-800 text-xs shrink-0">
-                                <div class="bg-mobissHeader text-white p-1.5 flex justify-between items-center font-bold">
-                                    <div class="flex items-center gap-1 text-[10px]"><i class="fa-solid fa-chevron-left"></i> <span>Struktur</span></div>
-                                </div>
-                                <div class="bg-mobissBg p-1.5 border-b border-blue-200">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-[8px] md:text-[9px]">Periode Bulan</span>
-                                        <span id="previewBulan" class="bg-white border border-slate-300 px-1 py-0.5 rounded text-[8px] md:text-[9px] font-bold">Agustus 2026</span>
-                                    </div>
-                                </div>
-                                <div class="p-1.5 space-y-1 text-[8px] md:text-[9px] bg-white leading-tight">
-                                    <div class="flex"><span class="w-16 font-medium">Nama</span>: <span id="previewNamaMobiss" class="font-bold ml-1 uppercase truncate max-w-[80px]">SUGIARTO</span></div>
-                                    <div class="flex"><span class="w-16 font-medium">Rank Lalu</span>: <span id="previewOldRankMobiss" class="ml-1 uppercase truncate max-w-[80px]">Smart</span></div>
-                                    <div class="flex items-center mt-1 pt-1 border-t border-slate-100">
-                                        <span class="w-16 font-bold text-blue-900">Kualifikasi</span>: 
-                                        <span id="previewRankMobiss" class="ml-1 font-bold text-blue-600 uppercase truncate max-w-[80px]">CROWN</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
-                        <!-- Pesan Apresiasi Bawah -->
-                        <div class="bg-black/70 backdrop-blur-sm border-t-2 border-gold p-2 md:p-3 rounded-xl text-center relative z-20 mt-auto">
-                            <h3 id="previewNamaBawah" class="text-lg md:text-xl font-black text-white uppercase tracking-wider mb-0.5 drop-shadow-md">SUGIARTO KURNIAWAN</h3>
-                            <p id="previewPesan" class="text-[9px] md:text-[11px] text-gold font-bold leading-snug uppercase">KERJA KERAS & SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI.</p>
+                        <!-- Nama & Pesan Apresiasi Bawah -->
+                        <div class="text-center relative z-20 mt-auto bg-black/40 backdrop-blur-sm py-3 px-2 border-t border-white/20 rounded-xl">
+                            <h3 id="previewNamaBawah" class="text-xl md:text-2xl font-black text-white uppercase tracking-wider mb-1 text-shadow-strong">SUGIARTO KURNIAWAN</h3>
+                            <p id="previewPesan" class="text-[10px] md:text-xs text-goldLight font-bold leading-tight uppercase drop-shadow-md">KERJA KERAS & SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI.</p>
                         </div>
 
                     </div>
@@ -255,9 +209,8 @@
         const inputs = {
             nama: document.getElementById('inputNama'),
             rank: document.getElementById('inputRank'),
-            oldRank: document.getElementById('inputOldRank'),
-            bulan: document.getElementById('inputBulan'),
             foto: document.getElementById('inputFoto'),
+            bg: document.getElementById('inputBg'),
             pesan: document.getElementById('inputPesan'),
             logoKiri: document.getElementById('inputLogoKiri'),
             logoKanan: document.getElementById('inputLogoKanan')
@@ -266,11 +219,7 @@
         const previews = {
             rank: document.getElementById('previewRank'),
             foto: document.getElementById('previewFoto'),
-            bgFoto: document.getElementById('bgFoto'),
-            bulan: document.getElementById('previewBulan'),
-            namaMobiss: document.getElementById('previewNamaMobiss'),
-            oldRankMobiss: document.getElementById('previewOldRankMobiss'),
-            rankMobiss: document.getElementById('previewRankMobiss'),
+            bg: document.getElementById('previewBg'),
             namaBawah: document.getElementById('previewNamaBawah'),
             pesan: document.getElementById('previewPesan'),
             logoKiri: document.getElementById('previewLogoKiri'),
@@ -278,24 +227,30 @@
         };
 
         function updatePreview() {
-            // Update Teks
+            // Update Teks Nama
             const nama = inputs.nama.value || 'NAMA MITRA';
-            previews.namaMobiss.textContent = nama.split(' ')[0]; // Ambil nama depan saja biar muat
             previews.namaBawah.textContent = nama;
             
+            // Update Teks Peringkat
             const rank = inputs.rank.value;
-            previews.rank.innerHTML = `<i class="fa-solid fa-crown text-goldLight drop-shadow-md text-2xl md:text-3xl"></i><br>${rank}`;
-            previews.rankMobiss.textContent = rank.replace(' Entrepreneur', ''); // Disingkat biar muat
+            previews.rank.innerHTML = `<i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>${rank}`;
             
-            previews.oldRankMobiss.textContent = inputs.oldRank.value.replace(' Entrepreneur', '');
-            previews.bulan.textContent = inputs.bulan.value || '-';
+            // Update Pesan Inspirasi
             previews.pesan.textContent = inputs.pesan.value || '';
 
-            // Update Foto (CrossOrigin ditambahkan di HTML agar bisa didownload)
+            // Update Foto Mitra
             const fotoUrl = inputs.foto.value.trim();
-            const defaultFoto = 'https://via.placeholder.com/150/1e293b/94a3b8?text=FOTO';
+            const defaultFoto = 'https://via.placeholder.com/200/1e293b/94a3b8?text=FOTO';
             previews.foto.src = fotoUrl ? fotoUrl : defaultFoto;
-            previews.bgFoto.src = fotoUrl ? fotoUrl : defaultFoto;
+
+            // Update Background Tema (Umroh/Cruise/Bali)
+            const bgUrl = inputs.bg.value.trim();
+            if (bgUrl) {
+                previews.bg.src = bgUrl;
+                previews.bg.style.display = 'block';
+            } else {
+                previews.bg.style.display = 'none';
+            }
 
             // Update Logo Kiri
             if (inputs.logoKiri.value.trim() !== '') {
@@ -331,15 +286,14 @@
 
             const poster = document.getElementById('posterArea');
             
-            // Konfigurasi html2canvas untuk menghindari gambar blank
             html2canvas(poster, { 
-                scale: 2, // Kualitas HD
-                useCORS: true, // Izinkan ambil gambar dari link luar (Postimage)
+                scale: 3, // Kualitas sangat tinggi untuk dicetak/diposting
+                useCORS: true, // Wajib agar gambar dari link luar (Postimage/Unsplash) tidak blank
                 allowTaint: false,
                 backgroundColor: '#0b1120'
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `Apresiasi-${inputs.nama.value.trim().replace(/\s+/g, '-')}.png`;
+                link.download = `Apresiasi-${inputs.rank.value.trim()}-${inputs.nama.value.trim().replace(/\s+/g, '-')}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
@@ -347,7 +301,7 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }).catch(err => {
-                alert("Gagal mengunduh poster. Pastikan URL gambar yang dimasukkan valid dan mendukung CORS (seperti postimg.cc).");
+                alert("Gagal mengunduh poster. Pastikan URL gambar yang dimasukkan valid dan mendukung CORS.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             });
