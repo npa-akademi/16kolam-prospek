@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPA Smart System V2 — Achievement Poster AI</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top right, rgba(132,204,22,.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(59,130,246,.10), transparent 30%),
+        #07110b;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .glass {
+      background: rgba(10, 25, 17, .82);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(163,230,53,.16);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .field {
+      width: 100%;
+      background: #0d1b13;
+      border: 1px solid #29452f;
+      color: #f5f5f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      outline: none;
+      transition: .2s;
+    }
+
+    .field:focus {
+      border-color: #84cc16;
+      box-shadow: 0 0 0 3px rgba(132,204,22,.12);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 7px;
+      color: #d9f99d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-box {
+      background:
+        linear-gradient(145deg, rgba(132,204,22,.08), transparent),
+        #050807;
+      border: 1px solid #243a29;
+    }
+
+    .quote-preview {
+      min-height: 110px;
+      background: linear-gradient(135deg, rgba(132,204,22,.12), rgba(255,255,255,.025));
+      border: 1px solid rgba(132,204,22,.22);
+    }
+
+    .rank-icon {
+      font-size: 20px;
+    }
+
+    .dropzone {
+      border: 2px dashed #385b3c;
+      transition: .2s;
+    }
+
+    .dropzone:hover {
+      border-color: #84cc16;
+      background: rgba(132,204,22,.05);
+    }
+
+    .copy-btn {
+      transition: .2s;
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .badge {
+      background: rgba(132,204,22,.1);
+      border: 1px solid rgba(132,204,22,.25);
+      color: #bef264;
+    }
+
+    .hidden-el {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body class="text-white min-h-screen">
+
+<div class="max-w-7xl mx-auto px-4 py-6 md:py-10">
+
+  <!-- HEADER -->
+  <header class="glass rounded-3xl p-6 md:p-8 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+      <div>
+        <div class="inline-flex items-center gap-2 badge rounded-full px-4 py-2 text-xs font-bold mb-3">
+          🤖 NPA SMART SYSTEM V2
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight">
+          Achievement Poster
+          <span class="text-lime-400">AI Generator</span>
+        </h1>
+
+        <p class="text-gray-400 mt-3 max-w-2xl">
+          Buat prompt poster achievement premium dengan referensi wajah,
+          pakaian, peringkat, background, pencahayaan, rasio dan
+          <strong class="text-lime-300">inspirasi yang dibuat otomatis berdasarkan topik.</strong>
+        </p>
+      </div>
+
+      <div class="text-left md:text-right">
+        <div class="text-xs text-gray-500">ENGINE</div>
+        <div class="font-black text-lime-400">SMART PROMPT V2</div>
+        <div class="text-xs text-gray-500 mt-1">No circular photo frame</div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <div class="grid lg:grid-cols-2 gap-6">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <main class="space-y-6">
+
+      <!-- FOTO REFERENSI -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          📸 <span>Foto Referensi Wajah</span>
+        </div>
+
+        <div id="dropZone"
+             class="dropzone rounded-2xl p-6 text-center cursor-pointer">
+
+          <input
+            id="faceUpload"
+            type="file"
+            accept="image/*"
+            class="hidden"
+          >
+
+          <div id="uploadPlaceholder">
+            <div class="text-5xl mb-3">🧑‍💼</div>
+            <div class="font-bold text-white">
+              Upload Foto Referensi
+            </div>
+            <div class="text-sm text-gray-500 mt-2">
+              Gunakan foto wajah yang jelas untuk menjaga kemiripan karakter.
+            </div>
+            <button
+              type="button"
+              onclick="document.getElementById('faceUpload').click()"
+              class="mt-4 bg-lime-500 hover:bg-lime-400 text-black font-black px-5 py-3 rounded-xl">
+              Pilih Foto
+            </button>
+          </div>
+
+          <div id="previewContainer" class="hidden-el">
+            <img
+              id="facePreview"
+              class="max-h-64 mx-auto rounded-2xl object-cover shadow-2xl"
+              alt="Preview wajah"
+            >
+            <div id="fileName"
+                 class="text-sm text-lime-300 mt-3 font-semibold"></div>
+            <button
+              type="button"
+              onclick="removeFace()"
+              class="mt-3 text-xs text-red-400 hover:text-red-300">
+              Hapus foto
+            </button>
+          </div>
+
+        </div>
+
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="bg-black/20 rounded-xl p-3">
+            <div class="text-xs text-gray-500">Target kemiripan</div>
+            <div class="font-black text-lime-400">95%</div>
+          </div>
+
+          <div class="bg-black/20 rounded-xl p-3">
+            <div class="text-xs text-gray-500">Face Identity</div>
+            <div class="font-black text-white">Preserve</div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- IDENTITAS -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          👤 <span>Identitas Karakter</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+            <label class="label">Nama Karakter</label>
+            <input
+              id="characterName"
+              class="field"
+              value="Sugiarto Kurniawan"
+              placeholder="Nama karakter">
+          </div>
+
+          <div>
+            <label class="label">Usia</label>
+            <input
+              id="age"
+              type="number"
+              class="field"
+              value="56"
+              min="18"
+              max="100">
+          </div>
+
+        </div>
+
+        <div class="mt-4">
+          <label class="label">Ciri Khas Karakter</label>
+          <textarea
+            id="characterTraits"
+            class="field"
+            rows="4"
+          >Pria Indonesia berusia 56 tahun, memakai peci hitam, kacamata elegan, wajah ramah dan berwibawa, senyum percaya diri, natural skin texture, realistic facial details.</textarea>
+        </div>
+
+        <div class="mt-4 bg-red-500/5 border border-red-500/20 rounded-2xl p-4">
+          <div class="font-bold text-red-300 text-sm mb-2">
+            ⚠️ Kontinuitas Karakter
+          </div>
+
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Tangan kiri karakter adalah sisi yang diamputasi.
+            Jangan membuat tangan/prostetik tambahan pada sisi tersebut.
+            Tangan kanan tetap menjadi satu-satunya tangan yang terlihat.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- TOPIK AI -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          🎯 <span>Topik Poster → Inspirasi AI</span>
+        </div>
+
+        <div>
+          <label class="label">
+            Pilih Topik
+          </label>
+
+          <select id="topic" class="field">
+            <option value="Kesuksesan Finansial">💰 Kesuksesan Finansial</option>
+            <option value="Bisnis & Entrepreneur">🚀 Bisnis & Entrepreneur</option>
+            <option value="Achievement">🏆 Achievement</option>
+            <option value="Motivasi">🔥 Motivasi</option>
+            <option value="Perjuangan & Pertumbuhan">🌱 Perjuangan & Pertumbuhan</option>
+            <option value="AI & Teknologi">🤖 AI & Teknologi</option>
+            <option value="Leadership">👑 Leadership</option>
+            <option value="Umroh & Spiritual">🕌 Umroh & Spiritual</option>
+            <option value="Reward & Perjalanan">🌴 Reward & Perjalanan</option>
+            <option value="Pendidikan">🎓 Pendidikan</option>
+            <option value="Keluarga & Masa Depan">❤️ Keluarga & Masa Depan</option>
+            <option value="Pensiun Produktif">☕ Pensiun Produktif</option>
+            <option value="Karya & Disabilitas">💪 Karya & Semangat</option>
+            <option value="Custom">✍️ Custom Topik</option>
+          </select>
+        </div>
+
+        <div id="customTopicBox" class="hidden-el mt-4">
+          <label class="label">Custom Topik</label>
+          <input
+            id="customTopic"
+            class="field"
+            placeholder="Contoh: Membangun aset digital di usia 50+">
+        </div>
+
+        <div class="mt-4 quote-preview rounded-2xl p-5">
+
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest">
+                AI Inspirational Quote
+              </div>
+              <div class="font-black text-lime-300">
+                AUTO GENERATED
+              </div>
+            </div>
+
+            <button
+              id="regenerateQuote"
+              type="button"
+              class="bg-lime-500 hover:bg-lime-400 text-black font-black px-4 py-2 rounded-xl text-sm">
+              🔄 Generate
+            </button>
+          </div>
+
+          <div
+            id="quotePreview"
+            class="text-lg md:text-xl font-bold leading-relaxed text-white">
+            Pilih topik untuk membuat inspirasi otomatis...
+          </div>
+
+          <div class="mt-4 text-xs text-gray-500">
+            💡 Inspirasi dibuat otomatis berdasarkan topik, karakter,
+            dan suasana achievement poster.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- RANK -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          🏆 <span>Peringkat / Achievement</span>
+        </div>
+
+        <select id="rank" class="field">
+
+          <option value="🌟 STARTER — New Achievement">
+            🌟 STARTER — New Achievement
+          </option>
+
+          <option value="🥉 BRONZE ENTREPRENEUR">
+            🥉 BRONZE ENTREPRENEUR
+          </option>
+
+          <option value="🥈 SILVER ENTREPRENEUR">
+            🥈 SILVER ENTREPRENEUR
+          </option>
+
+          <option value="🥇 GOLD ENTREPRENEUR" selected>
+            🥇 GOLD ENTREPRENEUR
+          </option>
+
+          <option value="💎 PLATINUM ENTREPRENEUR">
+            💎 PLATINUM ENTREPRENEUR
+          </option>
+
+          <option value="👑 DIAMOND LEADER">
+            👑 DIAMOND LEADER
+          </option>
+
+          <option value="🔥 TOP LEADER">
+            🔥 TOP LEADER
+          </option>
+
+          <option value="🏆 MASTER ACHIEVER">
+            🏆 MASTER ACHIEVER
+          </option>
+
+          <option value="👑 CUSTOM RANK">
+            👑 CUSTOM RANK
+          </option>
+
+        </select>
+
+        <div class="mt-4">
+          <label class="label">Custom Rank (opsional)</label>
+          <input
+            id="customRank"
+            class="field"
+            placeholder="Contoh: GOLD ENTREPRENEUR">
+        </div>
+
+      </section>
+
+
+      <!-- BACKGROUND -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          🌄 <span>Background</span>
+        </div>
+
+        <select id="background" class="field">
+
+          <option value="Bali luxury beach dengan pura Bali dan langit cerah">
+            🏝️ Bali — Pura & Pantai
+          </option>
+
+          <option value="modern Indonesian city skyline dengan langit cerah">
+            🏙️ Modern City
+          </option>
+
+          <option value="luxury business office modern">
+            🏢 Luxury Business Office
+          </option>
+
+          <option value="premium podcast studio">
+            🎙️ Podcast Studio
+          </option>
+
+          <option value="mountain landscape dengan langit biru cerah">
+            ⛰️ Mountain
+          </option>
+
+          <option value="tropical paradise dengan laut biru">
+            🌊 Tropical Paradise
+          </option>
+
+          <option value="modern Islamic architectural environment">
+            🕌 Islamic Architecture
+          </option>
+
+          <option value="futuristic AI digital environment">
+            🤖 Futuristic AI
+          </option>
+
+          <option value="luxury red and white Indonesian Independence Day environment">
+            🇮🇩 Kemerdekaan Indonesia
+          </option>
+
+        </select>
+
+      </section>
+
+
+      <!-- PAKAIAN -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          👔 <span>Pakaian</span>
+        </div>
+
+        <select id="outfit" class="field">
+
+          <option value="koko putih premium dengan detail biru elegan">
+            👕 Koko Putih
+          </option>
+
+          <option value="koko navy premium">
+            👕 Koko Navy
+          </option>
+
+          <option value="black premium business suit dengan aksen elegan">
+            🕴️ Jas Hitam
+          </option>
+
+          <option value="dark navy premium business suit">
+            🕴️ Jas Navy
+          </option>
+
+          <option value="white shirt dan black blazer">
+            🧥 Kemeja + Blazer
+          </option>
+
+          <option value="premium polo shirt">
+            👕 Kaos Polo
+          </option>
+
+          <option value="smart casual shirt">
+            👔 Smart Casual
+          </option>
+
+          <option value="red and white Indonesian Independence Day tracksuit">
+            🇮🇩 Outfit Merah Putih
+          </option>
+
+          <option value="luxury traditional Indonesian outfit">
+            🧵 Tradisional Indonesia
+          </option>
+
+          <option value="black modern turtleneck">
+            🖤 Modern Turtleneck
+          </option>
+
+          <option value="custom outfit">
+            ✍️ Custom
+          </option>
+
+        </select>
+
+        <div class="mt-4">
+          <label class="label">Detail Pakaian Tambahan</label>
+          <input
+            id="outfitDetail"
+            class="field"
+            placeholder="Opsional — contoh: pin NPA Smart System">
+        </div>
+
+      </section>
+
+
+      <!-- LIGHTING -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          💡 <span>Pencahayaan</span>
+        </div>
+
+        <select id="lighting" class="field">
+
+          <option value="cinematic natural morning light, soft warm sunlight">
+            🌅 Cinematic Natural — Pagi
+          </option>
+
+          <option value="bright natural daylight, clean soft shadows">
+            ☀️ Cinematic Natural — Siang
+          </option>
+
+          <option value="premium golden hour cinematic lighting">
+            🌤️ Golden Hour
+          </option>
+
+          <option value="dramatic cinematic studio lighting">
+            🎬 Dramatic Studio
+          </option>
+
+          <option value="luxury softbox commercial photography lighting">
+            💡 Luxury Commercial
+          </option>
+
+          <option value="bright high key professional photography">
+            ✨ Bright High Key
+          </option>
+
+          <option value="natural outdoor cinematic lighting">
+            🌿 Natural Outdoor
+          </option>
+
+        </select>
+
+      </section>
+
+
+      <!-- RATIO & RESOLUTION -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          📐 <span>Format Output</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+
+          <button
+            class="ratio-btn bg-lime-500 text-black font-black rounded-xl py-4"
+            data-ratio="1:1">
+            1:1
+          </button>
+
+          <button
+            class="ratio-btn bg-gray-800 hover:bg-gray-700 font-black rounded-xl py-4"
+            data-ratio="4:5">
+            4:5
+          </button>
+
+          <button
+            class="ratio-btn bg-gray-800 hover:bg-gray-700 font-black rounded-xl py-4"
+            data-ratio="9:16">
+            9:16
+          </button>
+
+        </div>
+
+        <div class="mt-4">
+
+          <label class="label">Resolusi</label>
+
+          <select id="resolution" class="field">
+            <option value="8K Ultra HD">🔥 8K Ultra HD</option>
+            <option value="6K">6K</option>
+            <option value="4K Ultra HD">4K Ultra HD</option>
+          </select>
+
+        </div>
+
+      </section>
+
+
+      <!-- GESTURE -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          👉 <span>Gesture Karakter</span>
+        </div>
+
+        <select id="gesture" class="field">
+
+          <option value="right hand pointing toward the left side of his chest using a clear finger-gun gesture with thumb, index finger and middle finger extended, naturally anatomically correct">
+            👉 Gesture Pistol ke Dada Kiri
+          </option>
+
+          <option value="right hand pointing toward the camera confidently">
+            ☝️ Menunjuk Kamera
+          </option>
+
+          <option value="right hand raised with one finger upward">
+            ☝️ Satu Jari ke Atas
+          </option>
+
+          <option value="right hand giving a confident thumbs up">
+            👍 Thumbs Up
+          </option>
+
+          <option value="right hand resting naturally and confidently">
+            🤝 Natural
+          </option>
+
+          <option value="arms crossed confidently">
+            💪 Tangan Bersilang
+          </option>
+
+        </select>
+
+        <div class="mt-4 p-4 rounded-2xl bg-red-500/5 border border-red-500/20 text-xs text-gray-400 leading-relaxed">
+          <strong class="text-red-300">Character Lock:</strong>
+          left amputated arm must remain completely hidden behind the body
+          or naturally outside the frame. Never regenerate a left arm,
+          prosthetic arm, extra hand, or duplicate limb.
+        </div>
+
+      </section>
+
+
+      <!-- CUSTOM TEXT -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          ✍️ <span>Teks Poster</span>
+        </div>
+
+        <div class="grid gap-4">
+
+          <div>
+            <label class="label">Judul Utama</label>
+            <input
+              id="headline"
+              class="field"
+              value="CONGRATULATIONS"
+              placeholder="Judul utama">
+          </div>
+
+          <div>
+            <label class="label">Subjudul</label>
+            <input
+              id="subheadline"
+              class="field"
+              value="NEW ACHIEVEMENT UNLOCKED"
+              placeholder="Subjudul">
+          </div>
+
+          <div>
+            <label class="label">Nama di Poster</label>
+            <input
+              id="posterName"
+              class="field"
+              value="SUGIARTO KURNIAWAN"
+              placeholder="Nama">
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- GENERATE -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <button
+          id="generateBtn"
+          class="w-full bg-lime-500 hover:bg-lime-400 text-black font-black text-lg py-4 rounded-2xl shadow-xl shadow-lime-500/10 transition">
+          🚀 GENERATE MASTER PROMPT AI
+        </button>
+
+        <button
+          id="copyBtn"
+          class="copy-btn w-full mt-3 bg-white/10 hover:bg-white/15 border border-white/10 font-bold py-3 rounded-2xl">
+          📋 COPY MASTER PROMPT
+        </button>
+
+      </section>
+
+    </main>
+
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <aside class="space-y-6 lg:sticky lg:top-5 lg:self-start">
+
+      <!-- QUOTE PREVIEW -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          💬 <span>Preview Inspirasi AI</span>
+        </div>
+
+        <div class="quote-preview rounded-2xl p-6">
+
+          <div class="text-xs uppercase tracking-widest text-lime-400 mb-4">
+            AI Generated Inspirational Quote
+          </div>
+
+          <div
+            id="quoteLarge"
+            class="text-xl md:text-2xl font-black leading-relaxed">
+            Pilih topik untuk menghasilkan inspirasi.
+          </div>
+
+          <div class="mt-5 text-xs text-gray-500">
+            Topik:
+            <span id="quoteTopic" class="text-gray-300">
+              Kesuksesan Finansial
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- POSTER SETTINGS SUMMARY -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="section-title">
+          ⚙️ <span>Poster Settings</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+
+          <div class="bg-black/20 rounded-xl p-4">
+            <div class="text-xs text-gray-500">Rank</div>
+            <div id="summaryRank" class="font-bold text-lime-300 mt-1">
+              🥇 GOLD ENTREPRENEUR
+            </div>
+          </div>
+
+          <div class="bg-black/20 rounded-xl p-4">
+            <div class="text-xs text-gray-500">Rasio</div>
+            <div id="summaryRatio" class="font-bold text-white mt-1">
+              1:1
+            </div>
+          </div>
+
+          <div class="bg-black/20 rounded-xl p-4">
+            <div class="text-xs text-gray-500">Lighting</div>
+            <div id="summaryLighting" class="font-bold text-white mt-1">
+              Natural Morning
+            </div>
+          </div>
+
+          <div class="bg-black/20 rounded-xl p-4">
+            <div class="text-xs text-gray-500">Resolusi</div>
+            <div id="summaryResolution" class="font-bold text-white mt-1">
+              8K Ultra HD
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- MASTER PROMPT -->
+      <section class="glass rounded-3xl p-5 md:p-6">
+
+        <div class="flex items-center justify-between gap-3 mb-4">
+
+          <div class="section-title !mb-0">
+            🤖 <span>Master Prompt AI</span>
+          </div>
+
+          <span class="badge px-3 py-1 rounded-full text-xs font-bold">
+            READY
+          </span>
+
+        </div>
+
+        <textarea
+          id="outputPrompt"
+          class="field"
+          rows="30"
+          placeholder="Master prompt akan muncul di sini setelah Generate..."
+        ></textarea>
+
+        <button
+          id="copyBtnBottom"
+          class="w-full mt-3 bg-lime-500 hover:bg-lime-400 text-black font-black py-3 rounded-xl">
+          📋 COPY PROMPT
+        </button>
+
+      </section>
+
+
+      <!-- INFO -->
+      <section class="glass rounded-3xl p-5">
+
+        <div class="font-black text-lime-300 mb-3">
+          🔥 NPA SMART SYSTEM V2
+        </div>
+
+        <ul class="text-sm text-gray-400 space-y-2">
+          <li>✅ Face reference target 95%</li>
+          <li>✅ No circular photo frame</li>
+          <li>✅ AI inspirational quote berdasarkan topik</li>
+          <li>✅ Outfit dropdown</li>
+          <li>✅ Rank dengan ikon</li>
+          <li>✅ Natural / cinematic lighting</li>
+          <li>✅ Rasio 1:1 / 4:5 / 9:16</li>
+          <li>✅ Resolusi hingga 8K</li>
+          <li>✅ Character continuity lock</li>
+          <li>✅ Gesture tangan kanan terkontrol</li>
+        </ul>
+
+      </section>
+
+    </aside>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================================================
+     NPA SMART SYSTEM V2
+     ACHIEVEMENT POSTER AI GENERATOR
+     ========================================================= */
+
+  let selectedRatio = "1:1";
+  let uploadedFaceName = "";
+  let uploadedFaceData = "";
+
+  const faceUpload = document.getElementById("faceUpload");
+  const facePreview = document.getElementById("facePreview");
+  const previewContainer = document.getElementById("previewContainer");
+  const uploadPlaceholder = document.getElementById("uploadPlaceholder");
+  const fileName = document.getElementById("fileName");
+  const dropZone = document.getElementById("dropZone");
+
+  const topicSelect = document.getElementById("topic");
+  const customTopicBox = document.getElementById("customTopicBox");
+  const customTopic = document.getElementById("customTopic");
+
+  const quotePreview = document.getElementById("quotePreview");
+  const quoteLarge = document.getElementById("quoteLarge");
+  const quoteTopic = document.getElementById("quoteTopic");
+
+
+  /* =========================================================
+     FOTO REFERENSI
+     ========================================================= */
+
+  faceUpload.addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    uploadedFaceName = file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      uploadedFaceData = event.target.result;
+
+      facePreview.src = uploadedFaceData;
+      fileName.textContent = uploadedFaceName;
+
+      uploadPlaceholder.classList.add("hidden-el");
+      previewContainer.classList.remove("hidden-el");
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+
+  dropZone.addEventListener("dragover", function(e) {
+    e.preventDefault();
+    dropZone.style.borderColor = "#84cc16";
+  });
+
+  dropZone.addEventListener("dragleave", function() {
+    dropZone.style.borderColor = "";
+  });
+
+  dropZone.addEventListener("drop", function(e) {
+    e.preventDefault();
+
+    const file = e.dataTransfer.files[0];
+
+    if (!file || !file.type.startsWith("image/")) return;
+
+    faceUpload.files = e.dataTransfer.files;
+    faceUpload.dispatchEvent(new Event("change"));
+  });
+
+
+  function removeFace() {
+    uploadedFaceName = "";
+    uploadedFaceData = "";
+    faceUpload.value = "";
+    facePreview.src = "";
+
+    uploadPlaceholder.classList.remove("hidden-el");
+    previewContainer.classList.add("hidden-el");
+  }
+
+
+  /* =========================================================
+     TOPIK
+     ========================================================= */
+
+  topicSelect.addEventListener("change", function() {
+
+    if (this.value === "Custom") {
+      customTopicBox.classList.remove("hidden-el");
+    } else {
+      customTopicBox.classList.add("hidden-el");
+    }
+
+    generateInspirationalQuote();
+
+  });
+
+  customTopic.addEventListener("input", generateInspirationalQuote);
+
+
+  function getSelectedTopic() {
+
+    if (topicSelect.value === "Custom") {
+      return customTopic.value.trim() || "Pengembangan diri dan kesuksesan";
+    }
+
+    return topicSelect.value;
+  }
+
+
+  /* =========================================================
+     AI-STYLE INSPIRATIONAL QUOTE ENGINE
+     ========================================================= */
+
+  const quoteDatabase = {
+
+    "Kesuksesan Finansial": [
+      "Bangun aset hari ini, agar masa depan tidak hanya bergantung pada gaji.",
+      "Kemakmuran dimulai dari keberanian mengubah cara berpikir dan bertindak.",
+      "Jangan hanya mengejar penghasilan, bangun sistem yang terus bertumbuh.",
+      "Masa depan finansial dibentuk dari keputusan kecil yang konsisten hari ini."
+    ],
+
+    "Bisnis & Entrepreneur": [
+      "Pengusaha hebat bukan yang tidak pernah gagal, tetapi yang terus belajar dan bertumbuh.",
+      "Bisnis besar dimulai dari keberanian mengambil satu langkah pertama.",
+      "Jangan hanya membangun bisnis, bangun juga versi terbaik dari dirimu.",
+      "Peluang datang kepada mereka yang siap bekerja, belajar, dan bertindak."
+    ],
+
+    "Achievement": [
+      "Pencapaian hari ini adalah bukti bahwa perjuangan kemarin tidak pernah sia-sia.",
+      "Rayakan pencapaian, lalu bersiap menaklukkan target berikutnya.",
+      "Satu pencapaian bukan akhir perjalanan, tetapi tanda untuk naik level.",
+      "Kerja keras yang konsisten akhirnya berubah menjadi sebuah pencapaian."
+    ],
+
+    "Motivasi": [
+      "Jangan menunggu siap untuk melangkah, karena langkahmulah yang membuatmu siap.",
+      "Selama masih mau belajar, selalu ada alasan untuk terus bertumbuh.",
+      "Hari ini mungkin berat, tetapi menyerah tidak pernah membuat keadaan lebih ringan.",
+      "Tetap melangkah, karena perubahan besar sering dimulai dari keputusan sederhana."
+    ],
+
+    "Perjuangan & Pertumbuhan": [
+      "Setiap perjuangan meninggalkan pelajaran yang membuat kita semakin kuat.",
+      "Tidak semua proses terlihat indah, tetapi setiap proses membentuk kita.",
+      "Bertumbuh berarti berani melewati rasa nyaman dan terus mencoba.",
+      "Jatuh boleh, berhenti sebentar boleh, tetapi jangan berhenti bertumbuh."
+    ],
+
+    "AI & Teknologi": [
+      "Teknologi terus berubah, tetapi mereka yang mau belajar selalu punya peluang.",
+      "Gunakan AI sebagai alat untuk memperbesar karya, bukan menggantikan semangat berkarya.",
+      "Masa depan bukan milik yang paling pintar, tetapi yang paling siap beradaptasi.",
+      "Belajar AI hari ini adalah investasi untuk tetap relevan di masa depan."
+    ],
+
+    "Leadership": [
+      "Pemimpin sejati tidak hanya menunjukkan jalan, tetapi ikut berjalan bersama tim.",
+      "Kepemimpinan dimulai dari kemampuan memimpin diri sendiri.",
+      "Pemimpin hebat menciptakan lebih banyak pemimpin, bukan sekadar pengikut.",
+      "Keteladanan adalah bahasa kepemimpinan yang paling mudah dipahami."
+    ],
+
+    "Umroh & Spiritual": [
+      "Perjalanan terbaik bukan hanya menuju tempat indah, tetapi mendekatkan hati kepada Allah.",
+      "Niat yang baik, ikhtiar yang konsisten, dan doa membuka jalan menuju Baitullah.",
+      "Rezeki bukan sekadar tentang memiliki, tetapi tentang keberkahan.",
+      "Semoga setiap ikhtiar menjadi jalan menuju keberkahan dan kebaikan."
+    ],
+
+    "Reward & Perjalanan": [
+      "Kerja keras terasa lebih indah ketika akhirnya bisa dinikmati bersama.",
+      "Perjalanan adalah hadiah untuk mereka yang tidak berhenti berjuang.",
+      "Bangun pencapaian hari ini, nikmati cerita indahnya di kemudian hari.",
+      "Sukses bukan hanya tentang sampai tujuan, tetapi menikmati perjalanan menuju sana."
+    ],
+
+    "Pendidikan": [
+      "Ilmu yang dipelajari hari ini bisa menjadi pintu peluang di masa depan.",
+      "Belajar tidak mengenal usia, karena pertumbuhan juga tidak mengenal batas.",
+      "Orang yang terus belajar selalu memiliki ruang untuk berkembang.",
+      "Investasi terbaik adalah ilmu yang membuat kita semakin bermanfaat."
+    ],
+
+    "Keluarga & Masa Depan": [
+      "Bangun masa depan bukan hanya untuk diri sendiri, tetapi untuk orang yang kita cintai.",
+      "Keluarga adalah alasan mengapa perjuangan hari ini begitu berarti.",
+      "Masa depan keluarga dimulai dari keputusan bijak yang dibuat hari ini.",
+      "Bekerja keras menjadi lebih bermakna ketika tujuannya adalah kehidupan yang lebih baik."
+    ],
+
+    "Pensiun Produktif": [
+      "Pensiun boleh dari kantor, tetapi jangan pernah pensiun dari berkarya.",
+      "Usia boleh bertambah, tetapi semangat belajar dan berkarya harus tetap menyala.",
+      "Masa tua yang tenang dibangun dari persiapan yang dimulai hari ini.",
+      "Produktif tidak mengenal usia, selama masih ada kemauan untuk memberi manfaat."
+    ],
+
+    "Karya & Semangat": [
+      "Keterbatasan bukan alasan berhenti berkarya, tetapi alasan untuk menemukan cara baru.",
+      "Tidak harus sempurna untuk menjadi bermanfaat.",
+      "Terus berkarya, karena setiap karya bisa menjadi inspirasi bagi orang lain.",
+      "Semangat bukan tentang keadaan sempurna, tetapi tentang keberanian untuk tetap melangkah."
+    ]
+
+  };
+
+
+  function generateInspirationalQuote() {
+
+    const topic = getSelectedTopic();
+
+    let quotes = quoteDatabase[topic];
+
+    if (!quotes) {
+
+      quotes = [
+        `Setiap langkah dalam ${topic} adalah kesempatan untuk bertumbuh dan menjadi lebih baik.`,
+        `${topic} bukan sekadar tujuan, tetapi perjalanan untuk menjadi versi terbaik diri kita.`,
+        `Berani belajar, berani bertumbuh, dan berani menciptakan perubahan melalui ${topic}.`,
+        `Kesuksesan dalam ${topic} dimulai dari satu keputusan untuk terus bergerak.`
+      ];
+
+    }
+
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    quotePreview.textContent = `"${quote}"`;
+    quoteLarge.textContent = `"${quote}"`;
+    quoteTopic.textContent = topic;
+
+    return quote;
+  }
+
+
+  document
+    .getElementById("regenerateQuote")
+    .addEventListener("click", generateInspirationalQuote);
+
+
+  /* =========================================================
+     RATIO
+     ========================================================= */
+
+  document.querySelectorAll(".ratio-btn").forEach(btn => {
+
+    btn.addEventListener("click", function() {
+
+      document.querySelectorAll(".ratio-btn").forEach(b => {
+        b.classList.remove("bg-lime-500", "text-black");
+        b.classList.add("bg-gray-800");
+      });
+
+      this.classList.remove("bg-gray-800");
+      this.classList.add("bg-lime-500", "text-black");
+
+      selectedRatio = this.dataset.ratio;
+
+      document.getElementById("summaryRatio").textContent = selectedRatio;
+
+    });
+
+  });
+
+
+  /* =========================================================
+     SUMMARY LIVE
+     ========================================================= */
+
+  document.getElementById("rank").addEventListener("change", updateSummary);
+  document.getElementById("resolution").addEventListener("change", updateSummary);
+  document.getElementById("lighting").addEventListener("change", updateSummary);
+
+  function updateSummary() {
+
+    let rank = document.getElementById("rank").value;
+
+    if (
+      document.getElementById("customRank").value.trim() &&
+      rank.includes("CUSTOM")
+    ) {
+      rank = "👑 " + document.getElementById("customRank").value.trim();
+    }
+
+    document.getElementById("summaryRank").textContent = rank;
+
+    const lighting = document.getElementById("lighting").value;
+
+    document.getElementById("summaryLighting").textContent =
+      lighting
+        .replace("cinematic natural morning light, soft warm sunlight", "Natural Morning")
+        .replace("bright natural daylight, clean soft shadows", "Natural Daylight")
+        .replace("premium golden hour cinematic lighting", "Golden Hour")
+        .replace("dramatic cinematic studio lighting", "Dramatic Studio")
+        .replace("luxury softbox commercial photography lighting", "Luxury Commercial")
+        .replace("bright high key professional photography", "Bright High Key")
+        .replace("natural outdoor cinematic lighting", "Natural Outdoor");
+
+    document.getElementById("summaryResolution").textContent =
+      document.getElementById("resolution").value;
+  }
+
+
+  document.getElementById("customRank")
+    .addEventListener("input", updateSummary);
+
+
+  /* =========================================================
+     MASTER PROMPT
+     ========================================================= */
+
+  function buildMasterPrompt() {
+
+    const name =
+      document.getElementById("characterName").value.trim() ||
+      "Sugiarto Kurniawan";
+
+    const age =
+      document.getElementById("age").value || "56";
+
+    const traits =
+      document.getElementById("characterTraits").value.trim();
+
+    const rankSelect =
+      document.getElementById("rank").value;
+
+    const customRankValue =
+      document.getElementById("customRank").value.trim();
+
+    const rank =
+      rankSelect.includes("CUSTOM") && customRankValue
+        ? "👑 " + customRankValue
+        : rankSelect;
+
+    const background =
+      document.getElementById("background").value;
+
+    const outfit =
+      document.getElementById("outfit").value;
+
+    const outfitDetail =
+      document.getElementById("outfitDetail").value.trim();
+
+    const lighting =
+      document.getElementById("lighting").value;
+
+    const gesture =
+      document.getElementById("gesture").value;
+
+    const headline =
+      document.getElementById("headline").value.trim() ||
+      "CONGRATULATIONS";
+
+    const subheadline =
+      document.getElementById("subheadline").value.trim() ||
+      "NEW ACHIEVEMENT UNLOCKED";
+
+    const posterName =
+      document.getElementById("posterName").value.trim() ||
+      name;
+
+    const topic =
+      getSelectedTopic();
+
+    const quote =
+      quotePreview.textContent.replace(/^"|"$/g, "").trim();
+
+    const resolution =
+      document.getElementById("resolution").value;
+
+
+    const faceInstruction = uploadedFaceName
+      ? `Use the uploaded image "${uploadedFaceName}" as the PRIMARY FACE REFERENCE. Preserve the person's facial identity with approximately 95% visual resemblance. Maintain facial structure, eyes, eyebrows, nose, mouth, cheeks, jawline, skin tone, glasses, age appearance and natural facial asymmetry. Do not replace the identity with a generic model.`
+      : `Use the user's supplied face reference image as the PRIMARY FACE REFERENCE and preserve approximately 95% facial resemblance. Do not replace the identity with a generic model.`;
+
+
+    const prompt = `MASTER PROMPT — NPA SMART SYSTEM V2
+ACHIEVEMENT POSTER AI GENERATOR
+
+Create an ultra-detailed, premium, cinematic achievement poster featuring the Indonesian character "${name}".
+
+==================================================
+1. FACE IDENTITY / REFERENCE
+==================================================
+
+${faceInstruction}
+
+Character:
+${traits}
+
+Age:
+${age} years old.
+
+The face must remain highly consistent with the reference.
+Natural Indonesian facial characteristics.
+Realistic skin texture.
+Natural pores.
+Subtle facial asymmetry.
+Authentic micro-expression.
+Photorealistic human appearance.
+
+==================================================
+2. CRITICAL CHARACTER CONTINUITY
+==================================================
+
+IMPORTANT:
+
+The character has an amputated LEFT ARM.
+
+The LEFT ARM MUST NOT BE REGENERATED.
+
+The left amputated side must remain hidden behind the body,
+naturally outside the frame, or visually obscured by the character's pose.
+
+NEVER create:
+- a regenerated left arm
+- prosthetic arm
+- artificial limb
+- extra hand
+- duplicate arm
+- duplicate fingers
+- extra fingers
+- anatomical distortion
+
+Only the RIGHT ARM/HAND should be visible.
+
+==================================================
+3. SIGNATURE GESTURE
+==================================================
+
+Use the RIGHT HAND with this gesture:
+
+${gesture}
+
+The gesture must be anatomically correct, natural,
+proportional and realistic.
+
+If using the finger-gun gesture:
+- thumb extended
+- index finger extended
+- middle finger naturally extended as requested
+- remaining fingers naturally positioned
+- right hand clearly originates from the right shoulder
+- no duplicated fingers
+- no malformed hand
+
+The pointing direction must clearly communicate confidence
+and personal ownership of the achievement.
+
+==================================================
+4. OUTFIT
+==================================================
+
+Main outfit:
+
+${outfit}
+
+Additional outfit detail:
+${outfitDetail || "Elegant and premium styling, no unnecessary accessories."}
+
+Make the outfit realistic with detailed fabric texture,
+natural folds, premium material and professional styling.
+
+==================================================
+5. ACHIEVEMENT / RANK
+==================================================
+
+Achievement Rank:
+
+${rank}
+
+Create an elegant premium rank symbol appropriate to the selected level.
+
+Possible visual hierarchy:
+🌟 Starter
+🥉 Bronze
+🥈 Silver
+🥇 Gold
+💎 Platinum
+👑 Diamond
+🔥 Top Leader
+🏆 Master
+
+The rank icon must look premium, dimensional,
+clean and integrated naturally into the poster.
+
+==================================================
+6. BACKGROUND
+==================================================
+
+Selected background:
+
+${background}
+
+Create a sophisticated cinematic environment.
+
+The background must complement the character
+without distracting from the face or achievement rank.
+
+Use realistic environmental depth,
+soft atmospheric perspective,
+professional commercial photography composition
+and premium visual storytelling.
+
+==================================================
+7. LIGHTING
+==================================================
+
+Lighting style:
+
+${lighting}
+
+The lighting must be natural and cinematic,
+with realistic skin highlights,
+controlled shadows,
+beautiful subject separation,
+subtle rim lighting,
+professional exposure,
+high dynamic range,
+and premium commercial photography quality.
+
+Avoid flat lighting.
+
+==================================================
+8. POSTER COMPOSITION
+==================================================
+
+Aspect ratio:
+
+${selectedRatio}
+
+Resolution:
+
+${resolution}
+
+Create a balanced premium achievement poster.
+
+IMPORTANT:
+
+DO NOT CREATE ANY CIRCULAR PHOTO FRAME.
+
+NO empty circle.
+NO golden ring.
+NO circular portrait placeholder.
+NO circular border around the character.
+NO circular photo frame behind or around the character.
+
+The character must stand/sit naturally OUTSIDE all decorative
+elements and must never be enclosed inside a circle.
+
+Leave clean negative space where appropriate
+for typography and visual hierarchy.
+
+==================================================
+9. TYPOGRAPHY
+==================================================
+
+Top headline:
+
+"${headline}"
+
+Subheadline:
+
+"${subheadline}"
+
+Achievement:
+
+"${rank}"
+
+Name:
+
+"${posterName}"
+
+Typography must be:
+- premium
+- bold
+- elegant
+- highly readable
+- correctly spelled
+- cinematic 3D
+- physically realistic
+- appropriate for commercial advertising
+
+Do not distort letters.
+
+Do not overlap text with the face.
+
+==================================================
+10. AI-GENERATED INSPIRATIONAL QUOTE
+==================================================
+
+Selected Topic:
+
+${topic}
+
+The inspirational quote below was generated automatically
+from the selected topic:
+
+"${quote}"
+
+Place the quote elegantly near the lower section of the poster.
+
+The quote should feel emotionally connected to the achievement,
+character and selected topic.
+
+Use elegant typography with excellent readability.
+
+==================================================
+11. VISUAL STYLE
+==================================================
+
+Ultra-realistic cinematic photography.
+Premium commercial advertising.
+Photorealistic human character.
+8K detail.
+Natural skin.
+Realistic fabric.
+Professional composition.
+Luxury achievement campaign.
+Cinematic depth.
+High dynamic range.
+Volumetric atmosphere.
+Subtle film grain.
+Professional color grading.
+Sharp facial detail.
+Physically accurate lighting.
+
+==================================================
+12. NEGATIVE PROMPT
+==================================================
+
+No circular photo frame,
+no empty circular frame,
+no golden ring,
+no circular portrait placeholder,
+no regenerated left arm,
+no prosthetic,
+no artificial left arm,
+no extra arm,
+no extra hand,
+no duplicate limb,
+no extra fingers,
+no missing fingers,
+no malformed fingers,
+no distorted hand,
+no deformed anatomy,
+no generic face,
+no identity replacement,
+no face mismatch,
+no plastic skin,
+no cartoon,
+no anime,
+no low resolution,
+no blurry face,
+no distorted face,
+no warped typography,
+no spelling errors,
+no random logos,
+no watermark,
+no excessive text,
+no cluttered background,
+no flat lighting,
+no oversaturated colors,
+no unnatural pose,
+no unrealistic proportions,
+no duplicate person.
+
+==================================================
+FINAL CREATIVE DIRECTION
+==================================================
+
+The final image must feel like a premium international
+achievement campaign poster.
+
+The viewer should immediately notice:
+
+1. Authentic character identity
+2. Achievement rank
+3. Premium visual environment
+4. Powerful but natural gesture
+5. Clear inspirational message
+6. Professional typography
+7. Strong emotional impact
+
+The character remains the visual hero.
+
+No circular frame around the character.
+
+Maintain maximum facial consistency with the uploaded
+reference image.
+
+FINAL OUTPUT:
+${resolution}, aspect ratio ${selectedRatio},
+premium cinematic achievement poster,
+photorealistic, highly detailed, professional advertising quality.`;
+
+
+    return prompt;
+  }
+
+
+  /* =========================================================
+     GENERATE BUTTON
+     ========================================================= */
+
+  document.getElementById("generateBtn")
+    .addEventListener("click", function() {
+
+      generateInspirationalQuote();
+      updateSummary();
+
+      const prompt = buildMasterPrompt();
+
+      document.getElementById("outputPrompt").value = prompt;
+
+      this.textContent = "✅ MASTER PROMPT BERHASIL DIBUAT";
+
+      setTimeout(() => {
+        this.textContent = "🚀 GENERATE MASTER PROMPT AI";
+      }, 2200);
+
+      document.getElementById("outputPrompt")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+    });
+
+
+  /* =========================================================
+     COPY
+     ========================================================= */
+
+  async function copyPrompt() {
+
+    const output =
+      document.getElementById("outputPrompt");
+
+    if (!output.value.trim()) {
+      output.value = buildMasterPrompt();
+    }
+
+    try {
+
+      await navigator.clipboard.writeText(output.value);
+
+      showCopySuccess();
+
+    } catch (error) {
+
+      output.select();
+      document.execCommand("copy");
+
+      showCopySuccess();
+
+    }
+
+  }
+
+
+  function showCopySuccess() {
+
+    const buttons = [
+      document.getElementById("copyBtn"),
+      document.getElementById("copyBtnBottom")
+    ];
+
+    buttons.forEach(btn => {
+
+      if (!btn) return;
+
+      const original = btn.textContent;
+
+      btn.textContent = "✅ PROMPT TERSALIN";
+
+      setTimeout(() => {
+        btn.textContent = original;
+      }, 1800);
+
+    });
+
+  }
+
+
+  document.getElementById("copyBtn")
+    .addEventListener("click", copyPrompt);
+
+  document.getElementById("copyBtnBottom")
+    .addEventListener("click", copyPrompt);
+
+
+  /* =========================================================
+     INITIALIZE
+     ========================================================= */
+
+  generateInspirationalQuote();
+  updateSummary();
+
+</script>
+
+</body>
+</html>
