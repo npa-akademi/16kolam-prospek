@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Rank Engine Builder - 3iReborn</title>
+    <title>NPA Rank Prompt Engine - 3iReborn</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Library untuk mengubah HTML menjadi Gambar (Download) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
     <script>
@@ -20,11 +17,11 @@
                         dark: "#0b1120",
                         panel: "#1e293b",
                         gold: "#f59e0b",
-                        goldLight: "#fde047",
+                        goldHover: "#d97706",
+                        neon: "#38bdf8"
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        impact: ['Oswald', 'sans-serif'],
                     }
                 }
             }
@@ -32,276 +29,219 @@
     </script>
     <style>
         body { background-color: #0b1120; color: #f8fafc; }
-
-        /* Teks Peringkat Super Bold & Glowing */
-        .rank-text {
-            background: linear-gradient(to bottom, #ffffff 0%, #fde047 40%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
-            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+        
+        /* OUTPUT BOX */
+        .output-box {
+            display: none;
+            background-color: #0f172a;
+            border: 2px dashed #f59e0b;
+            border-radius: 12px;
+            padding: 25px;
         }
 
-        .title-text {
-            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 20px rgba(0,0,0,0.9);
+        .prompt-result {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            background: #020617;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
-        /* Aspek Rasio Poster 4:5 (Standard IG/FB/WA) */
-        .card-preview {
-            width: 100%;
-            max-width: 420px;
-            aspect-ratio: 4 / 5;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-            margin: 0 auto;
+        .btn-copy {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0b1120;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
         }
 
-        .text-shadow-strong {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 4px rgba(0,0,0,0.9);
+        .btn-copy:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
         <!-- HEADER -->
         <header class="mb-10 text-center md:text-left border-b border-white/10 pb-6">
-            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-crown text-gold"></i> NPA <span class="text-blue-400">Rank Engine Builder</span></h1>
-            <p class="text-slate-400">Pabrik Poster Apresiasi Otomatis. Fokus pada Wajah, Peringkat, dan Background Reward.</p>
+            <h1 class="text-3xl font-black mb-2"><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> NPA <span class="text-neon">Rank Prompt Engine</span></h1>
+            <p class="text-slate-400">Generator Prompt AI untuk Poster Apresiasi 3iReborn. Kualitas Film Layar Lebar!</p>
         </header>
 
-        <div class="flex flex-col lg:flex-row gap-10">
+        <div class="flex flex-col md:flex-row gap-10">
             <!-- PANEL KIRI: KONTROL FORM -->
-            <div class="w-full lg:w-5/12 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
+            <div class="w-full md:w-5/12 bg-panel p-6 rounded-2xl border border-white/10 shadow-xl h-fit">
                 <h2 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Data Apresiasi</h2>
                 
-                <div class="space-y-4">
-                    <!-- LOGO KUSTOM -->
-                    <div class="grid grid-cols-2 gap-4 bg-dark/50 p-4 rounded-xl border border-white/5">
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kiri</label>
-                            <input type="text" id="inputLogoKiri" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Link Logo Kiri">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label class="block text-xs font-semibold mb-1 text-slate-300">URL Logo Kanan</label>
-                            <input type="text" id="inputLogoKanan" class="w-full bg-dark border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-blue-400 outline-none" placeholder="Link Logo Kanan">
-                        </div>
-                    </div>
-
+                <div class="space-y-5">
                     <div>
                         <label class="block text-sm font-semibold mb-2 text-slate-300">Nama Mitra</label>
-                        <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="Sugiarto Kurniawan">
+                        <input type="text" id="inputNama" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-gold outline-none transition" placeholder="Contoh: Sugiarto Kurniawan" value="Sugiarto Kurniawan">
                     </div>
                     
                     <div>
                         <label class="block text-sm font-semibold mb-2 text-slate-300">Peringkat Baru <i class="fa-solid fa-crown text-gold"></i></label>
-                        <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none">
-                            <option value="Entrepreneur">Entrepreneur</option>
-                            <option value="Smart Entrepreneur">Smart Entrepreneur</option>
-                            <option value="Team Entrepreneur">Team Entrepreneur</option>
-                            <option value="Leader Entrepreneur">Leader Entrepreneur</option>
+                        <select id="inputRank" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-gold outline-none transition">
+                            <option value="Team Agency">Team Agency</option>
+                            <option value="Leader Agency">Leader Agency</option>
                             <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
                             <option value="Silver Entrepreneur">Silver Entrepreneur</option>
                             <option value="Gold Entrepreneur">Gold Entrepreneur</option>
-                            <option value="Diamond Executive">Diamond Executive</option>
-                            <option value="Royal Executive">Royal Executive</option>
+                            <option value="Platinum Entrepreneur">Platinum Entrepreneur</option>
+                            <option value="Titanium Entrepreneur">Titanium Entrepreneur</option>
                             <option value="KING" selected>KING</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pilih Tema Background (Reward)</label>
-                        <select id="inputTema" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none font-bold text-gold">
-                            <option value="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?auto=format&fit=crop&w=600&q=80">🕋 Tema Umroh (Baitullah)</option>
-                            <option value="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=600&q=80">🚢 Tema Cruise (Kapal Pesiar)</option>
-                            <option value="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80">🏝️ Tema Liburan Bali</option>
-                            <option value="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80">✨ Tema Luxury Gold (Elegan)</option>
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Tema Background (Reward)</label>
+                        <select id="inputTema" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-gold outline-none font-bold text-neon transition">
+                            <option value="Umroh">🕋 Umroh / Suasana Masjidil Haram yang megah</option>
+                            <option value="Cruise">🚢 Kapal Pesiar Mewah di lautan biru</option>
+                            <option value="Bali">🏝️ Pemandangan Bali (Pura & Pantai eksotis)</option>
+                            <option value="Luxury">✨ Panggung Emas & Lampu Sorot Mewah</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">URL Foto Mitra (Wajib PNG Tanpa Background)</label>
-                        <input type="text" id="inputFoto" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none" value="https://i.postimg.cc/k5HhytB9/logo-NPA.png">
+                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Inspirasi / Motivasi</label>
+                        <textarea id="inputPesan" rows="3" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-gold outline-none transition text-sm">Kerja keras dan semangat pantang menyerah telah membawamu sampai titik ini!</textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-slate-300">Pesan Inspirasi Bawah</label>
-                        <textarea id="inputPesan" rows="2" class="w-full bg-dark border border-slate-700 rounded-lg p-3 text-white focus:border-blue-400 outline-none text-sm">Kerja Keras & Semangat Pantang Menyerah Telah Membawamu Sampai Titik Ini. Teruslah Menjadi Inspirasi!</textarea>
-                    </div>
+                    <button id="btnGen" class="w-full bg-gradient-to-r from-blue-600 to-neon text-white font-black py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-robot"></i> GENERATE PROMPT AI
+                    </button>
                 </div>
             </div>
 
-            <!-- PANEL KANAN: LIVE PREVIEW & DOWNLOAD -->
-            <div class="w-full lg:w-7/12 flex flex-col items-center justify-center bg-dark/50 p-4 md:p-8 rounded-2xl border border-white/5 overflow-hidden">
-                <div class="mb-4 w-full max-w-[420px] flex justify-between items-center">
-                    <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Live Preview</span>
-                    <button id="btnDownload" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transition flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-download"></i> Download Poster
-                    </button>
-                </div>
-
-                <!-- AREA POSTER YANG AKAN DI-DOWNLOAD -->
-                <div id="posterArea" class="card-preview bg-slate-900 rounded-xl relative flex flex-col">
+            <!-- PANEL KANAN: OUTPUT PROMPT -->
+            <div class="w-full md:w-7/12">
+                <!-- KOTAK OUTPUT -->
+                <div class="output-box h-full flex flex-col" id="outputBox">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-black text-gold"><i class="fa-solid fa-copy"></i> Hasil Prompt Anda</h3>
+                        <button class="btn-copy" id="btnCopy"><i class="fa-regular fa-copy"></i> Salin Prompt</button>
+                    </div>
+                    <div class="prompt-result flex-1" id="finalPrompt"></div>
                     
-                    <!-- BACKGROUND TEMA (UMROH/CRUISE/BALI) -->
-                    <img id="previewBg" crossorigin="anonymous" src="https://images.unsplash.com/photo-1565552643954-1e40ce577d26?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60" alt="">
-                    
-                    <!-- OVERLAY GELAP (Agar teks terbaca) -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/80 z-10"></div>
-                    <!-- Efek Bintik Bintang -->
-                    <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-10"></div>
-
-                    <!-- KONTEN UTAMA POSTER (Pakai Flexbox agar tidak kepotong) -->
-                    <div class="relative w-full h-full p-4 md:p-6 flex flex-col justify-between z-20">
-                        
-                        <!-- Area Atas: Header Logos -->
-                        <div class="flex justify-between items-center h-12 mb-2">
-                            <div class="w-1/3 flex justify-start">
-                                <img id="previewLogoKiri" crossorigin="anonymous" src="" class="max-h-12 object-contain hidden" alt="Logo Kiri">
-                            </div>
-                            <div class="w-1/3 flex justify-end">
-                                <img id="previewLogoKanan" crossorigin="anonymous" src="" class="max-h-12 object-contain hidden" alt="Logo Kanan">
-                            </div>
-                        </div>
-
-                        <!-- Area Atas: Judul & Peringkat -->
-                        <div class="text-center">
-                            <h2 class="font-impact text-3xl md:text-4xl text-white title-text italic uppercase transform -skew-x-6 tracking-wide leading-none">
-                                Congratulations
-                            </h2>
-                            <p class="text-goldLight text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mt-1 drop-shadow-lg mb-2">
-                                New Achievement Unlocked
-                            </p>
-                            <!-- Teks Peringkat (SUPER BOLD + CROWN) -->
-                            <h1 id="previewRank" class="font-impact text-4xl md:text-5xl uppercase rank-text leading-tight transform -skew-x-6">
-                                <i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>
-                                KING
-                            </h1>
-                        </div>
-
-                        <!-- Area Tengah: FOTO TOKOH -->
-                        <div class="flex-1 flex justify-center items-center relative my-2">
-                            <!-- Cahaya di belakang foto -->
-                            <div class="absolute w-40 h-40 bg-gold/40 rounded-full blur-[50px] z-0"></div>
-                            
-                            <!-- Lingkaran Frame Emas -->
-                            <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full border-[5px] border-gold p-1 shadow-[0_0_50px_rgba(245,158,11,0.6)] bg-black/50 z-10 overflow-hidden">
-                                <img id="previewFoto" crossorigin="anonymous" src="https://i.postimg.cc/k5HhytB9/logo-NPA.png" class="w-full h-full object-cover" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Area Bawah: Nama & Pesan Apresiasi (DIKUNCI DI BAWAH) -->
-                        <div class="text-center bg-black/60 backdrop-blur-md py-3 px-4 border-t-2 border-gold rounded-xl w-full">
-                            <h3 id="previewNamaBawah" class="text-xl md:text-2xl font-black text-white uppercase tracking-widest mb-1 text-shadow-strong line-clamp-1">SUGIARTO KURNIAWAN</h3>
-                            <p id="previewPesan" class="text-[9px] md:text-[11px] text-goldLight font-bold leading-snug uppercase drop-shadow-md">KERJA KERAS & SEMANGAT PANTANG MENYERAH TELAH MEMBAWAMU SAMPAI TITIK INI. TERUSLAH MENJADI INSPIRASI!</p>
-                        </div>
-
+                    <div class="mt-6 bg-blue-900/30 border border-blue-500/30 p-4 rounded-xl">
+                        <h4 class="font-bold text-neon mb-2"><i class="fa-solid fa-circle-info"></i> Langkah Selanjutnya:</h4>
+                        <ol class="list-decimal pl-5 text-sm text-slate-300 space-y-1">
+                            <li>Klik tombol <strong>Salin Prompt</strong> di atas.</li>
+                            <li>Buka <strong>ChatGPT (DALL-E 3)</strong> atau <strong>Bing Image Creator</strong>.</li>
+                            <li><em>Paste</em> (tempel) prompt tersebut dan kirim.</li>
+                            <li>Setelah gambar jadi, masukkan ke <strong>Canva</strong>.</li>
+                            <li>Hapus latar belakang foto asli mitra Anda, lalu tempelkan tepat di dalam <strong>Lingkaran Emas Kosong</strong> yang sudah disiapkan oleh AI.</li>
+                        </ol>
                     </div>
                 </div>
-                <!-- END AREA POSTER -->
+                
+                <!-- PLACEHOLDER SEBELUM GENERATE -->
+                <div id="placeholder" class="h-full flex flex-col items-center justify-center border-2 border-dashed border-slate-700 rounded-2xl p-10 text-center text-slate-500">
+                    <i class="fa-solid fa-wand-magic-sparkles text-6xl mb-4 opacity-50"></i>
+                    <p class="text-lg font-bold">Belum Ada Prompt</p>
+                    <p class="text-sm">Isi data di sebelah kiri dan klik tombol Generate.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT LOGIKA & DOWNLOAD -->
+    <!-- SCRIPT LOGIKA -->
     <script>
-        // DOM Elements
-        const inputs = {
-            nama: document.getElementById('inputNama'),
-            rank: document.getElementById('inputRank'),
-            tema: document.getElementById('inputTema'),
-            foto: document.getElementById('inputFoto'),
-            pesan: document.getElementById('inputPesan'),
-            logoKiri: document.getElementById('inputLogoKiri'),
-            logoKanan: document.getElementById('inputLogoKanan')
-        };
+        document.getElementById('btnGen').addEventListener('click', function() {
+            const nama = document.getElementById('inputNama').value.trim().toUpperCase();
+            const rank = document.getElementById('inputRank').value.trim().toUpperCase();
+            const tema = document.getElementById('inputTema').value;
+            const pesan = document.getElementById('inputPesan').value.trim();
 
-        const previews = {
-            rank: document.getElementById('previewRank'),
-            foto: document.getElementById('previewFoto'),
-            bg: document.getElementById('previewBg'),
-            namaBawah: document.getElementById('previewNamaBawah'),
-            pesan: document.getElementById('previewPesan'),
-            logoKiri: document.getElementById('previewLogoKiri'),
-            logoKanan: document.getElementById('previewLogoKanan')
-        };
-
-        function updatePreview() {
-            // Update Teks Nama
-            previews.namaBawah.textContent = inputs.nama.value || 'NAMA MITRA';
-            
-            // Update Teks Peringkat
-            const rank = inputs.rank.value;
-            previews.rank.innerHTML = `<i class="fa-solid fa-crown text-goldLight drop-shadow-md text-3xl"></i><br>${rank}`;
-            
-            // Update Tema Background
-            previews.bg.src = inputs.tema.value;
-
-            // Update Pesan Inspirasi
-            previews.pesan.textContent = inputs.pesan.value || '';
-
-            // Update Foto Mitra
-            const fotoUrl = inputs.foto.value.trim();
-            const defaultFoto = 'https://via.placeholder.com/200/1e293b/94a3b8?text=FOTO';
-            previews.foto.src = fotoUrl ? fotoUrl : defaultFoto;
-
-            // Update Logo Kiri
-            if (inputs.logoKiri.value.trim() !== '') {
-                previews.logoKiri.src = inputs.logoKiri.value.trim();
-                previews.logoKiri.classList.remove('hidden');
-            } else {
-                previews.logoKiri.classList.add('hidden');
+            if (!nama) {
+                alert('Nama Mitra tidak boleh kosong ya beb!');
+                return;
             }
 
-            // Update Logo Kanan
-            if (inputs.logoKanan.value.trim() !== '') {
-                previews.logoKanan.src = inputs.logoKanan.value.trim();
-                previews.logoKanan.classList.remove('hidden');
+            // Deklarasi Tema Visual
+            let visualTema = "";
+            if (tema === "Umroh") {
+                visualTema = "a majestic and beautiful view of the Kaaba in Mecca during golden hour sunset";
+            } else if (tema === "Cruise") {
+                visualTema = "a gigantic, ultra-luxurious modern cruise ship sailing on a crystal clear blue ocean under a bright sunny sky";
+            } else if (tema === "Bali") {
+                visualTema = "a stunning cinematic view of a majestic Balinese temple (Pura) and a beautiful sunset beach in Bali";
             } else {
-                previews.logoKanan.classList.add('hidden');
+                visualTema = "a luxurious golden award stage with dramatic spotlights and sparkling confetti in the air";
             }
+
+            // Merakit Prompt Super Detail untuk DALL-E 3
+            let prompt = `Act as a Master 3D Graphic Designer. Create a highly detailed, cinematic, and majestic achievement poster. Aspect ratio: 4:5 (Portrait).\n\n`;
+            
+            prompt += `**1. BACKGROUND THEME:**\n`;
+            prompt += `The background must feature ${visualTema}. The atmosphere should feel epic, luxurious, and highly celebratory.\n\n`;
+            
+            prompt += `**2. TOP TYPOGRAPHY (3D TEXT):**\n`;
+            prompt += `At the top center, write a massive, glowing, elegant 3D text reading exactly: "CONGRATULATIONS".\n`;
+            prompt += `Right below it, in a smaller but bold golden font, write exactly: "NEW ACHIEVEMENT UNLOCKED".\n\n`;
+            
+            prompt += `**3. RANK & CROWN:**\n`;
+            prompt += `In the upper-middle area, draw a beautiful glowing golden Crown icon 👑.\n`;
+            prompt += `Below the crown, write the rank in huge, bold, striking 3D golden typography reading exactly: "${rank}".\n\n`;
+            
+            prompt += `**4. THE EMPTY FRAME (CRITICAL FOR EDITING):**\n`;
+            prompt += `In the lower-middle area, draw a large, elegant, glowing golden circular frame (a perfect circle). INSIDE this circle, leave it completely blank or a solid dark color so I can easily paste a real photo into it later.\n\n`;
+            
+            prompt += `**5. BOTTOM TYPOGRAPHY (NAME & QUOTE):**\n`;
+            prompt += `Below the empty circular frame, write the person's name in a bold, elegant, bright white font reading exactly: "${nama}".\n`;
+            if (pesan) {
+                prompt += `At the very bottom, in a smaller, inspiring golden text, write exactly: "${pesan}".\n\n`;
+            }
+
+            prompt += `**STYLE:** Hyper-realistic, 8k resolution, volumetric lighting, epic masterpiece. Ensure all text is spelled correctly without any typos.`;
+
+            // Tampilkan Hasil
+            document.getElementById('finalPrompt').textContent = prompt;
+            document.getElementById('placeholder').style.display = 'none';
+            document.getElementById('outputBox').style.display = 'flex';
+        });
+
+        // Fallback Copy Function
+        document.getElementById('btnCopy').addEventListener('click', function() {
+            const textToCopy = document.getElementById('finalPrompt').textContent;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert('Prompt berhasil disalin! Silakan paste ke ChatGPT (DALL-E 3) / Bing Image Creator.');
+                }).catch(() => fallbackCopy(textToCopy));
+            } else {
+                fallbackCopy(textToCopy);
+            }
+        });
+
+        function fallbackCopy(text) {
+            let textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Prompt disalin (mode alternatif). Paste ke ChatGPT / Bing Image Creator.');
+            } catch (err) {
+                alert('Gagal menyalin otomatis. Silakan blok teks manual.');
+            }
+            document.body.removeChild(textArea);
         }
-
-        // Event Listeners Input
-        Object.values(inputs).forEach(input => {
-            input.addEventListener('input', updatePreview);
-            if(input.tagName === 'SELECT') {
-                input.addEventListener('change', updatePreview);
-            }
-        });
-
-        // FUNGSI DOWNLOAD POSTER (HTML2CANVAS)
-        document.getElementById('btnDownload').addEventListener('click', function() {
-            const btn = this;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
-            btn.disabled = true;
-
-            const poster = document.getElementById('posterArea');
-            
-            html2canvas(poster, { 
-                scale: 3, 
-                useCORS: true, 
-                allowTaint: false,
-                backgroundColor: '#0b1120'
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `Apresiasi-${inputs.rank.value.trim()}-${inputs.nama.value.trim().replace(/\s+/g, '-')}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }).catch(err => {
-                alert("Gagal mengunduh poster. Pastikan URL gambar yang dimasukkan valid dan mendukung CORS (Gunakan postimages.org).");
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            });
-        });
-
-        // Initial Load
-        updatePreview();
     </script>
 </body>
 </html>
