@@ -96,12 +96,13 @@
         <div class="bg-panel p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <!-- GENDER MODEL -->
+                <!-- GENDER / SUBJEK FOTO -->
                 <div>
-                    <label class="block text-sm font-semibold mb-2 text-slate-300">Gender Subjek Foto</label>
-                    <select id="inputGender" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
-                        <option value="Pria">Pria</option>
-                        <option value="Wanita">Wanita</option>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Subjek Foto</label>
+                    <select id="inputSubjek" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
+                        <option value="a man">Pria</option>
+                        <option value="a woman">Wanita</option>
+                        <option value="a family (father, mother, and child)">Keluarga (Ayah, Ibu, Anak)</option>
                     </select>
                 </div>
 
@@ -115,6 +116,17 @@
                         <option value="Lomba Kelereng di Sendok (Marble in spoon race)">Kelereng di Sendok</option>
                         <option value="Panjat Pinang (Greasy pole climbing)">Panjat Pinang</option>
                         <option value="Pukul Air dalam Plastik (Hitting water balloons blindfolded)">Pukul Bantal Air</option>
+                    </select>
+                </div>
+                
+                <!-- EKSPRESI WAJAH -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Ekspresi Wajah</label>
+                    <select id="inputEkspresi" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
+                        <option value="laughing cheerfully and looking highly spirited">Tertawa lepas & Semangat</option>
+                        <option value="shouting intensely, showing immense physical effort">Teriak berjuang keras / Ngeden (Cocok utk Tarik Tambang)</option>
+                        <option value="smiling brightly with eyes full of joy">Senyum ceria ke arah kamera</option>
+                        <option value="looking intensely focused and determined">Fokus tajam & Serius</option>
                     </select>
                 </div>
 
@@ -131,9 +143,9 @@
                 </div>
 
                 <!-- TEKS OVERLAY -->
-                <div>
+                <div class="md:col-span-2">
                     <label class="block text-sm font-semibold mb-2 text-slate-300">Teks di Gambar (Opsional)</label>
-                    <input type="text" id="inputTeks" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition" placeholder="Contoh: Merdeka!">
+                    <input type="text" id="inputTeks" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition" placeholder="Contoh: HUT RI KE-81 RT 07 RW 09" value="HUT RI KE-81 RT 07 RW 09">
                 </div>
             </div>
 
@@ -166,28 +178,31 @@
     <!-- SCRIPT LOGIKA -->
     <script>
         document.getElementById('btnGen').addEventListener('click', function() {
-            const gender = document.getElementById('inputGender').value;
+            const subjek = document.getElementById('inputSubjek').value;
             const lomba = document.getElementById('inputLomba').value;
+            const ekspresi = document.getElementById('inputEkspresi').value;
             const rasio = document.getElementById('inputRasio').value;
             const teks = document.getElementById('inputTeks').value.trim();
 
             // Membangun Image Prompt
-            let imgPrompt = `Act as a Master 3D Cinematic Illustrator. I will upload a reference photo of a person. Create a highly detailed, festive, and hyper-realistic 3D illustration of this exact person actively participating in a traditional Indonesian Independence Day competition: ${lomba}.\n\n`;
+            let imgPrompt = `Act as a Master 3D Cinematic Photographer. I will upload a reference photo. Create a highly detailed, festive, and hyper-realistic 3D illustration of ${subjek} actively participating in a traditional Indonesian Independence Day competition: ${lomba}.\n\n`;
             
-            imgPrompt += `Environment: A lively Indonesian village neighborhood celebrating 'HUT RI ke-81'. The area is beautifully decorated with waving red and white flags, celebratory banners, and a cheerful crowd of locals in the background. Cinematic sunlight, golden hour lighting, dramatic shadows, 8k resolution masterpiece. Aspect Ratio: ${rasio}.\n\n`;
+            // Detail Ekspresi & Fokus
+            imgPrompt += `The subject is the main focus of the image, positioned clearly in the foreground. Their facial expression is ${ekspresi}, covered in a bit of realistic sweat from the physical activity.\n\n`;
+            
+            // Detail Background & Bokeh/Blur (Lawan main & Penonton)
+            imgPrompt += `Environment: A lively Indonesian village neighborhood celebrating 'HUT RI ke-81'. The background features opponents competing against the subject and a cheerful crowd of locals watching. IMPORTANT: Use a strong Depth of Field (bokeh effect). The subject in the front must be sharp and in perfect focus, while the opponents and the crowd in the background must be slightly blurred.\n\n`;
 
-            // Aturan rahasia untuk model wanita
-            if (gender === 'Wanita') {
-                imgPrompt += `Ensure the female model is holding a bouquet of flowers in the scene.\n\n`;
-            }
+            // Lighting & Quality
+            imgPrompt += `Cinematic sunlight, golden hour lighting, dynamic action shot, 8k resolution masterpiece. Aspect Ratio: ${rasio}.\n\n`;
 
             // Aturan ketat warna & layout untuk teks
             if (teks) {
-                imgPrompt += `Add a large text overlay reading exactly: "${teks.toUpperCase()}". The text must have strict uppercase formatting, a thick black outline, and use a precise sequence of white, yellow, and red color mappings for the thumbnail text blocks.\n\n`;
+                imgPrompt += `Add a large, bold, comic-book style text overlay reading exactly: "${teks.toUpperCase()}". The text must have strict uppercase formatting, a thick black outline, and use a precise sequence of white, yellow, and red colors. Place the text strategically so it doesn't cover the main subject's face.\n\n`;
             }
 
             // Membangun Negative Prompt
-            const negPrompt = `ugly, deformed faces, bad anatomy, bad lighting, text errors, typos, out of frame, low resolution, extra limbs, dull colors.`;
+            const negPrompt = `holding flowers, holding bouquets, ugly, deformed faces, bad anatomy, bad lighting, text errors, typos, out of frame, low resolution, extra limbs, dull colors.`;
 
             // Tampilkan Hasil
             document.getElementById('imagePrompt').textContent = imgPrompt.trim();
