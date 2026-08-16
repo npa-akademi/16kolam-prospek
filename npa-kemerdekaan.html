@@ -102,7 +102,7 @@
                     <select id="inputSubjek" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
                         <option value="a man">Pria</option>
                         <option value="a woman">Wanita</option>
-                        <option value="a family (father, mother, and child)">Keluarga (Ayah, Ibu, Anak)</option>
+                        <option value="a family (matching the exact number of people in the reference photo)">Keluarga (Sesuai Jumlah di Foto Referensi)</option>
                     </select>
                 </div>
 
@@ -124,7 +124,7 @@
                     <label class="block text-sm font-semibold mb-2 text-slate-300">Ekspresi Wajah</label>
                     <select id="inputEkspresi" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
                         <option value="laughing cheerfully and looking highly spirited">Tertawa lepas & Semangat</option>
-                        <option value="shouting intensely, showing immense physical effort">Teriak berjuang keras / Ngeden (Cocok utk Tarik Tambang)</option>
+                        <option value="shouting intensely, showing immense physical effort">Teriak berjuang keras / Ngeden</option>
                         <option value="smiling brightly with eyes full of joy">Senyum ceria ke arah kamera</option>
                         <option value="looking intensely focused and determined">Fokus tajam & Serius</option>
                     </select>
@@ -187,10 +187,13 @@
             // Membangun Image Prompt
             let imgPrompt = `Act as a Master 3D Cinematic Photographer. I will upload a reference photo. Create a highly detailed, festive, and hyper-realistic 3D illustration of ${subjek} actively participating in a traditional Indonesian Independence Day competition: ${lomba}.\n\n`;
             
+            // Detail Outfit Wajib Merah Putih
+            imgPrompt += `OUTFIT RULES: The subject(s) MUST be wearing festive Indonesian Independence Day outfits. Change their clothing to predominantly red and white casual wear (such as red and white t-shirts, jerseys, or sports jackets) with Indonesian national motifs.\n\n`;
+
             // Detail Ekspresi & Fokus
             imgPrompt += `The subject is the main focus of the image, positioned clearly in the foreground. Their facial expression is ${ekspresi}, covered in a bit of realistic sweat from the physical activity.\n\n`;
             
-            // Detail Background & Bokeh/Blur (Lawan main & Penonton)
+            // Detail Background & Bokeh/Blur
             imgPrompt += `Environment: A lively Indonesian village neighborhood celebrating 'HUT RI ke-81'. The background features opponents competing against the subject and a cheerful crowd of locals watching. IMPORTANT: Use a strong Depth of Field (bokeh effect). The subject in the front must be sharp and in perfect focus, while the opponents and the crowd in the background must be slightly blurred.\n\n`;
 
             // Lighting & Quality
