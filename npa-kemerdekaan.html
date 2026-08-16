@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPA 17-an AI Engine</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: "#0b1120",
+                        panel: "#1e293b",
+                        merah: "#ef4444",
+                        merahHover: "#dc2626",
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; }
+        
+        .title-text {
+            background: linear-gradient(135deg, #ffffff 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .output-box {
+            display: none;
+            background-color: #0f172a;
+            border: 2px dashed #ef4444;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .prompt-result {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            background: #020617;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .btn-copy {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-copy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- HEADER -->
+        <header class="mb-8 text-center border-b border-white/10 pb-6">
+            <h1 class="text-4xl font-black mb-2 title-text uppercase tracking-wider">
+                <i class="fa-solid fa-flag text-merah"></i> NPA 17-an AI Engine
+            </h1>
+            <p class="text-slate-400">Ubah foto profilmu menjadi keseruan lomba kemerdekaan HUT RI ke-81 dengan AI!</p>
+        </header>
+
+        <div class="bg-panel p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- GENDER MODEL -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Gender Subjek Foto</label>
+                    <select id="inputGender" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                    </select>
+                </div>
+
+                <!-- JENIS LOMBA -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Jenis Perlombaan 17-an</label>
+                    <select id="inputLomba" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
+                        <option value="Tarik Tambang (Tug of War)">Tarik Tambang</option>
+                        <option value="Makan Kerupuk (Eating Cracker from a string)">Makan Kerupuk</option>
+                        <option value="Balap Karung (Sack Race)">Balap Karung</option>
+                        <option value="Lomba Kelereng di Sendok (Marble in spoon race)">Kelereng di Sendok</option>
+                        <option value="Panjat Pinang (Greasy pole climbing)">Panjat Pinang</option>
+                        <option value="Pukul Air dalam Plastik (Hitting water balloons blindfolded)">Pukul Bantal Air</option>
+                    </select>
+                </div>
+
+                <!-- ASPEK RASIO -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Aspek Rasio (Ukuran Poster)</label>
+                    <select id="inputRasio" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition">
+                        <option value="1:1">1:1 (Square - Feed IG)</option>
+                        <option value="3:4">3:4 (Portrait Pendek)</option>
+                        <option value="4:5">4:5 (Portrait Standard IG)</option>
+                        <option value="9:16">9:16 (Story / Reels / TikTok)</option>
+                        <option value="16:9">16:9 (Landscape / YouTube)</option>
+                    </select>
+                </div>
+
+                <!-- TEKS OVERLAY -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Teks di Gambar (Opsional)</label>
+                    <input type="text" id="inputTeks" class="w-full bg-dark border border-slate-700 rounded-xl p-3.5 text-white focus:border-merah outline-none transition" placeholder="Contoh: Merdeka!">
+                </div>
+            </div>
+
+            <button id="btnGen" class="w-full bg-merah hover:bg-merahHover text-white font-black py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 text-lg">
+                <i class="fa-solid fa-fire"></i> GENERATE PROMPT
+            </button>
+
+            <!-- KOTAK OUTPUT PROMPT -->
+            <div class="output-box" id="outputBox">
+                <div class="mb-2">
+                    <h3 class="text-sm font-black text-merah uppercase tracking-wider mb-2">### IMAGE PROMPT</h3>
+                    <div class="prompt-result" id="imagePrompt"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-sm font-black text-slate-400 uppercase tracking-wider mb-2">### NEGATIVE PROMPT</h3>
+                    <div class="prompt-result !border-slate-700 !text-slate-400" id="negativePrompt"></div>
+                </div>
+                
+                <!-- TOMBOL SAKTI DUAL-ACTION -->
+                <button class="btn-copy" id="btnCopy">
+                    <i class="fa-regular fa-copy"></i> COPY IMAGE + NEGATIVE
+                </button>
+
+                <p class="text-xs text-slate-500 mt-4 text-center">Upload foto aslimu ke ChatGPT (DALL-E 3), lalu paste prompt yang sudah disalin di atas.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA -->
+    <script>
+        document.getElementById('btnGen').addEventListener('click', function() {
+            const gender = document.getElementById('inputGender').value;
+            const lomba = document.getElementById('inputLomba').value;
+            const rasio = document.getElementById('inputRasio').value;
+            const teks = document.getElementById('inputTeks').value.trim();
+
+            // Membangun Image Prompt
+            let imgPrompt = `Act as a Master 3D Cinematic Illustrator. I will upload a reference photo of a person. Create a highly detailed, festive, and hyper-realistic 3D illustration of this exact person actively participating in a traditional Indonesian Independence Day competition: ${lomba}.\n\n`;
+            
+            imgPrompt += `Environment: A lively Indonesian village neighborhood celebrating 'HUT RI ke-81'. The area is beautifully decorated with waving red and white flags, celebratory banners, and a cheerful crowd of locals in the background. Cinematic sunlight, golden hour lighting, dramatic shadows, 8k resolution masterpiece. Aspect Ratio: ${rasio}.\n\n`;
+
+            // Aturan rahasia untuk model wanita
+            if (gender === 'Wanita') {
+                imgPrompt += `Ensure the female model is holding a bouquet of flowers in the scene.\n\n`;
+            }
+
+            // Aturan ketat warna & layout untuk teks
+            if (teks) {
+                imgPrompt += `Add a large text overlay reading exactly: "${teks.toUpperCase()}". The text must have strict uppercase formatting, a thick black outline, and use a precise sequence of white, yellow, and red color mappings for the thumbnail text blocks.\n\n`;
+            }
+
+            // Membangun Negative Prompt
+            const negPrompt = `ugly, deformed faces, bad anatomy, bad lighting, text errors, typos, out of frame, low resolution, extra limbs, dull colors.`;
+
+            // Tampilkan Hasil
+            document.getElementById('imagePrompt').textContent = imgPrompt.trim();
+            document.getElementById('negativePrompt').textContent = negPrompt;
+            
+            document.getElementById('outputBox').style.display = 'block';
+            document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Copy Dual-Action Function
+        document.getElementById('btnCopy').addEventListener('click', function() {
+            const imgP = document.getElementById('imagePrompt').textContent;
+            const negP = document.getElementById('negativePrompt').textContent;
+            
+            const fullText = `### IMAGE PROMPT\n${imgP}\n\n### NEGATIVE PROMPT\n${negP}`;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(fullText).then(() => {
+                    alert('Image & Negative Prompt berhasil disalin sekaligus! Silakan paste ke ChatGPT.');
+                }).catch(() => fallbackCopy(fullText));
+            } else { 
+                fallbackCopy(fullText); 
+            }
+        });
+
+        function fallbackCopy(text) {
+            let textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.select();
+            try { 
+                document.execCommand('copy'); 
+                alert('Prompt disalin (mode alternatif). Paste ke ChatGPT.'); 
+            } catch (err) { 
+                alert('Gagal menyalin otomatis.'); 
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
